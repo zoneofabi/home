@@ -1,0 +1,102 @@
+body {
+    background-color: black;
+    overflow-x: hidden;
+
+}
+
+
+
+
+.navbar {
+
+
+    border: 2px solid yellow;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: bold;
+    color: whitesmoke;
+    background-color: red;
+    border: 1px solid grey;
+    padding: 5px;
+    text-decoration: none;
+
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/*desktop query*/
+@media only screen and (min-width: 600px) {
+
+
+
+    .logoSvgSection {
+        border: 2px solid yellow;
+        width: 500px;
+        display: block;
+        margin: auto;
+
+    }
+
+
+    .navbar a {
+        width: 8%;
+
+    }
+
+
+
+
+}
+
+
+
+
+
+/*Mobile query*/
+@media only screen and (max-width: 600px) {
+
+    * {
+        overflow-x: hidden;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .headerContainer {
+        border: 2px solid rgb(209, 0, 94);
+    }
+
+    .logoSvgSection {
+        border: 2px solid yellow;
+        width: 300px;
+        display: block;
+        margin: auto;
+
+    }
+
+    .pageContentContainer {
+
+        overflow-y: visible;
+
+        border: 2px solid orange;
+        ;
+    }
+
+
+
+
+}
