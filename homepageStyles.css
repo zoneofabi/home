@@ -1,0 +1,5135 @@
+:root {
+
+  --s1Angle: 0;
+
+  --s1XPos: 10;
+  --s1YPos: 10;
+
+  --scp1TopLeftX: 'M20';
+  --scp1TopLeftY: '10';
+
+  --scp1BotLeftX: 'L20';
+  --scp1BotLeftY: '60';
+
+  --scp1BotRightX: 'L60';
+  --scp1BotRightY: '60';
+
+  --scp1TopRightX: 'L60';
+  --scp1TopRightY: '10Z';
+
+
+  /*Spotlight1 Animation Related Vars START*/
+  --S1_SweepTime: '0';
+
+  /*Central Pseudo Tracker Vars. The coords are of the top left point and the coords are HBI Relative. It is a string because it needs the percentage symbol*/
+  --S1_CPT_CurrX: '0%';
+  --S1_CPT_CurrY: '0%';
+
+  --S1_CPT_DestX: '0%';
+  --S1_CPT_DestY: '0%';
+
+  --S1_CPT_StartRO: '0rad';
+  --S1_CPT_DestRO: '0rad';
+
+  --S1_CPT_OffsetX: '';
+  --S1_CPT_OffsetY: '';
+
+
+  /*Ref CPT vars. This is what you position at the start and dest pos to get the PX position. Used by the S1Cont_RG Flexing function*/
+  --S1_Ref_CPT_CurrX: '0%';
+  --S1_Ref_CPT_CurrY: '0%';
+
+  --S1_Ref_CPT_DestX: '0%';
+  --S1_Ref_CPT_DestY: '0%';
+
+  --S1_Ref_CPT_StartRO: '0rad';
+  --S1_Ref_CPT_DestRO: '0rad';
+
+  --S1_Ref_CPT_OffsetX: '';
+  --S1_Ref_CPT_OffsetY: '';
+
+  /*SquarePointer Vars*/
+  --SQ_X: '0%';
+  --SQ_Y: '0%';
+
+  /*SquarePointer_PX Vars*/
+  --SQ_PX_X: '';
+  --SQ_PX_Y: '';
+
+  /*StartPosSquarePointer Vars*/
+  --StartPos_SQ_X: '';
+  --StartPos_SQ_Y: '';
+
+  /*DestPosSquarePointer Vars*/
+  --DestPos_SQ_X: '';
+  --DestPos_SQ_Y: '';
+
+  /*pointDPosSquarePointer Vars*/
+  --PointDPos_SQ_X: '';
+  --PointDPos_SQ_Y: '';
+
+  /*HBL Linked Vars*/
+  --S1_HBL_RG_CurrX: '';
+  --S1_HBL_RG_CurrY: '';
+
+  --S1_HBL_RG_PointDX: '';
+  --S1_HBL_RG_PointDY: '';
+
+  --S1_HBL_RG_DestX: '';
+  --S1_HBL_RG_DestY: '';
+
+  --S1_HBL_RG_StartRO: '';
+  --S1_HBL_RG_DestRO: '';
+
+  --S1_HBL_RG_XOffset: '';
+  --S1_HBL_RG_YOffset: '';
+
+  --S1_HBL_RG_XDiff: '';
+  --S1_HBL_RG_YDiff: '';
+
+  --S1_HBL_RG_StartPosXOffset: '';
+  --S1_HBL_RG_StartPosYOffset: '';
+
+  --S1_HBL_RG_PointDPosXOffset: '';
+  --S1_HBL_RG_PointDPosYOffset: '';
+
+  --S1_HBL_RG_DestPosXOffset: '';
+  --S1_HBL_RG_DestPosYOffset: '';
+
+
+
+
+
+
+
+
+  /*HBL Clip path Vars For S1*/
+  --S1_HBL_CP_CurrX: '0';
+  --S1_HBL_CP_CurrY: '0';
+
+  --S1_HBL_CP_DestX: '0';
+  --S1_HBL_CP_DestY: '0';
+
+
+  /*These variables are probably useless*/
+  --S1_HBL_CP_CurrCoordString: "M0.2202 0.05578, L0.2202 0.3468, L0.3936 0.3468, L0.3936 0.0578Z";
+  --S1_HBL_CP_DestCoordString: "M0.2202 0.05578, L0.2202 0.3468, L0.3936 0.3468, L0.3936 0.0578Z";
+
+
+  /*Spotlight1 Container Vars*/
+  --S1_Cont_CurrAngle: '0deg';
+  --S1_Cont_DestAngle: '0deg';
+
+
+
+  /*Spotlight1 Trig Version Acceleration Vars START*/
+  --S1_Cont_Part1_StartRO: '0deg';
+  --S1_Cont_Part1_EndRO: '0deg';
+  --S1_Cont_Part1_Dur: '0deg';
+  --S1_Cont_Part1_CubicBezierConfig: '';
+
+
+  --S1_Cont_Part2_StartRO: '0deg';
+  --S1_Cont_Part2_EndRO: '0deg';
+  --S1_Cont_Part2_Dur: '0deg';
+  --S1_Cont_Part2_CubicBezierConfig: '';
+  /*Spotlight1 Trig Version Acceleration Vars END*/
+
+  /*Spotlight1 Mouse Track Vars START*/
+  --S1_Cont_PrevFrameMousePosRO: '0deg';
+  --S1_Cont_MousePosRO: '0deg';
+
+  --S1_Cont_RG_PrevFrameMB: '';
+  --S1_Cont_RG_MousePosMB: '';
+  /*Spotlight1 Mouse Track Vars END*/
+
+  /*Spotlight2 MOuse Track Vars START*/
+  --S2_Cont_PrevFrameMousePosRO: '0deg';
+  --S2_Cont_MousePosRO: '0deg';
+
+  --S2_Cont_RG_PrevFrameMB: '';
+  --S2_Cont_RG_MousePosMB: '';
+  /*Spotlight2 Mouse Track Vars END*/
+
+
+
+  /*Spotlight2 Trig Version Acceleration Vars START*/
+  --S2_Cont_Part1_StartRO: '0deg';
+  --S2_Cont_Part1_EndRO: '0deg';
+  --S2_Cont_Part1_Dur: '0deg';
+  --S2_Cont_Part1_CubicBezierConfig: '';
+
+
+  --S2_Cont_Part2_StartRO: '0deg';
+  --S2_Cont_Part2_EndRO: '0deg';
+  --S2_Cont_Part2_Dur: '0deg';
+  --S2_Cont_Part2_CubicBezierConfig: '';
+  /*Spotlight2 Trig Version Acceleration Vars END*/
+
+
+  /*Spotlight1 Trig Version ONESTAGE Acceleration Vars START*/
+  --S1_Cont_OneStage_StartRO: '0deg';
+  --S1_Cont_OneStage_EndRO: '0deg';
+  --S1_Cont_OneStage_Dur: '0deg';
+  --S1_Cont_OneStage_CubicBezierConfig: '';
+  /*Spotlight1 Trig Version ONESTAGE Acceleration Vars END*/
+
+
+  /*Spotlight2 Trig Version ONESTAGE Acceleration Vars START*/
+  --S2_Cont_OneStage_StartRO: '0deg';
+  --S2_Cont_OneStage_EndRO: '0deg';
+  --S2_Cont_OneStage_Dur: '0deg';
+  --S2_Cont_OneStage_CubicBezierConfig: '';
+
+  /*Spotlight2 Trig Version ONESTAGE Acceleration Vars END*/
+
+
+  /*Spotlight1 Container MultiStage Rotation Stage Anims Vars START*/
+  --S1_Cont_Stage1StartRO: '0deg';
+  --S1_Cont_Stage1EndRO: '0deg';
+  --S1_Cont_Stage1Dur: '0ms';
+
+  --S1_Cont_Stage2StartRO: '0deg';
+  --S1_Cont_Stage2EndRO: '0deg';
+  --S1_Cont_Stage2Dur: '0ms';
+
+  --S1_Cont_Stage3StartRO: '0deg';
+  --S1_Cont_Stage3EndRO: '0deg';
+  --S1_Cont_Stage3Dur: '0ms';
+
+  --S1_Cont_Stage4StartRO: '0deg';
+  --S1_Cont_Stage4EndRO: '0deg';
+  --S1_Cont_Stage4Dur: '0ms';
+
+  /*This variable will hold the sum of stage1dur and stage2dur. Must be calced in JS file before inserting here*/
+  --S1_Cont_Stage3Delay: '0ms';
+  --S1_Cont_Stage4Delay: '0ms';
+
+
+  /*Spotlight1 Container MultiStage Rotation Stage Anims Vars END */
+
+
+  /*Spotlight1 Container RG flexing START MB stands for Margin bottom*/
+  --S1_Cont_RG_Stage1StartMT: '0%';
+    --S1_Cont_RG_Stage1EndMT: '0%';
+
+  --S1_Cont_RG_Stage2StartMT: '0%';
+  /*  --S1_Cont_RG_Stage2MidMT: '0%'; */
+    --S1_Cont_RG_Stage2EndMT: '0%';
+
+    --S1_Cont_RG_Stage3StartMT: '0%';
+  --S1_Cont_RG_Stage3EndMT: '0%';
+
+  --S1_Cont_RG_Stage4StartMT: '0%';
+--S1_Cont_RG_Stage4EndMT: '0%';
+
+  /*Spotlight1 Container RG flexing END*/
+
+  /*Spotlight1 Container RG Trig Version START Rad is radius*/
+  --S1_Cont_RG_TrigVersion_Stage1StartRad: '0%';
+  --S1_Cont_RG_TrigVersion_Stage1EndRad: '0%';
+  --S1_Cont_RG_TrigVersion_Stage1Dur: '';
+  --S1_Cont_RG_TrigVersion_Stage1BezierConfig: '';
+
+
+  --S1_Cont_RG_TrigVersion_Stage2StartRad: '0%';
+  --S1_Cont_RG_TrigVersion_Stage2EndRad: '0%';
+  --S1_Cont_RG_TrigVersion_Stage2Dur: '';
+  --S1_Cont_RG_TrigVersion_Stage2BezierConfig: '';
+
+  /*Spotlight1 Container RG Trig Version END*/
+
+  /*Spotlight1 Container RG Trig Version ONESTAGE START*/
+  --S1_Cont_RG_TrigVersion_OneStage_StartRad: '0%';
+  --S1_Cont_RG_TrigVersion_OneStage_EndRad: '0%';
+  --S1_Cont_RG_TrigVersion_OneStage_Dur: '';
+  --S1_Cont_RG_TrigVersion_OneStage_BezierConfig: '';
+  /*Spotlight1 Container RG Trig Version ONESTAGE END*/
+
+  /*Spotlight2 Container RG Trig Version ONESTAGE START*/
+  --S2_Cont_RG_TrigVersion_OneStage_StartRad: '0%';
+  --S2_Cont_RG_TrigVersion_OneStage_EndRad: '0%';
+  --S2_Cont_RG_TrigVersion_OneStage_Dur: '';
+  --S2_Cont_RG_TrigVersion_OneStage_BezierConfig: '';
+  /*Spotlight2 Container RG Trig Version ONESTAGE END*/
+
+
+
+  /*Spotlight2 Container RG Trig Version START*/
+  --S2_Cont_RG_TrigVersion_Stage1StartRad: '0%';
+  --S2_Cont_RG_TrigVersion_Stage1EndRad: '0%';
+  --S2_Cont_RG_TrigVersion_Stage1Dur: '';
+  --S2_Cont_RG_TrigVersion_Stage1BezierConfig: '';
+
+
+  --S2_Cont_RG_TrigVersion_Stage2StartRad: '0%';
+  --S2_Cont_RG_TrigVersion_Stage2EndRad: '0%';
+  --S2_Cont_RG_TrigVersion_Stage2Dur: '';
+  --S2_Cont_RG_TrigVersion_Stage2BezierConfig: '';
+  /*Spotlight2 Container RG Trig Version END*/
+
+  /*Spotlight1 Ray SVG Vars*/
+  --s1RayTopLeftXPos: '39.50';
+  --s1RayTopLeftYPos: '82.50';
+
+
+  /*START OF Spotlight1 Cont Native RadGrad Vars*/
+  --S1_Cont_RGYPos: 50%;
+
+
+
+  /*END OF Spotlight1 Cont Native RadGrad Vars*/
+
+  /*Spotlight1 Animation Related Vars END*/
+
+
+
+  /*Spotlight2 HBL RG Vars START*/
+
+  --S2_HBL_RG_CurrX: '';
+  --S2_HBL_RG_CurrY: '';
+
+  --S2_HBL_RG_PointDX: '';
+  --S2_HBL_RG_PointDY: '';
+
+  --S2_HBL_RG_DestX: '';
+  --S2_HBL_RG_DestY: '';
+
+  --S2_HBL_RG_XOffset: '';
+  --S2_HBL_RG_YOffset: '';
+
+  --S2_HBL_RG_XDiff: '';
+  --S2_HBL_RG_YDiff: '';
+
+
+  /*Spotlight2 HBL RG Vars END*/
+
+  /*Spotlight 2 Time vars START*/
+  --S2_SweepTime: '';
+  /*Spotlight 2 Time vars END*/
+
+  /*Spotlight2 HBL RG RO Vars START*/
+  --S2_HBL_RG_StartRO: '';
+  --S2_HBL_RG_DestRO: '';
+  /*Spotlight2 HBL RG RO Vars END*/
+
+}
+
+
+
+/*mobile query*/
+@media only screen and (max-width: 600px) {
+
+  body{
+    overflow-y: hidden;
+  }
+
+  #homeBaseInterfaceContainer {
+
+    border: 2px solid grey;
+    width: 90%;
+    height: 40vh;
+    ;
+    position: relative;
+    display: block;
+    margin: auto;
+    background-color: black;
+
+    margin-top: 10;
+    margin-bottom: 10px;
+
+
+
+  }
+
+
+  #hbi_TMP_LeftSiren{
+    display: none;
+  }
+
+  #hbi_TMP_RightSiren{
+    display: none;
+  }
+
+
+
+
+  /*START OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+#svgGridContainer{
+  border: 2px dotted yellowgreen;
+  position: absolute;
+  width: 90%;
+  left: 0%;
+  top: 0%;
+
+}
+
+  #HomeBaseTestSvgCONTAINER {
+    border: 2px solid greenyellow;
+    background-color: black;
+    display: block;
+    margin: auto;
+    width: 56%;
+    height: 50%;
+
+    position: relative;
+
+    overflow: hidden;
+
+
+
+  }
+
+
+
+  #HomeBaseTestSvg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+    display: block;
+    margin: auto;
+
+  }
+
+  #HomeBaseTestSvg_DarkTint {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    border: 2px solid red;
+    background-color: black;
+
+
+    display: block;
+    margin: auto;
+
+    opacity: 100%;
+
+    clip-path: url(#dualSpotlightsClipPath);
+
+    /*
+        background: radial-gradient(circle,
+         rgba(232, 255, 215, 0.6643791305584734) 9%,
+          rgba(0, 200, 33, 0.4262838924632353) 12%,
+           rgba(0, 0, 0, 1) 16%, rgba(0, 0, 0, 1) 100%);
+
+        */
+
+    /*
+        background: radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+         rgba(0, 200, 33, 0.4262838924632353) 21%,
+          rgba(0, 0, 0, 1) 35%,
+           rgba(0, 0, 0, 1) 85%), radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+                rgba(0, 200, 33, 0.4262838924632353) 21%,
+                rgba(0, 0, 0, 1) 35%,
+                rgba(0, 0, 0, 1) 85%)
+
+
+    */
+
+
+  }
+
+
+
+
+  #S1CircleContainer_Mask {
+    width: 10%;
+    height: 10%;
+  }
+
+
+  /*END OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+  #hbi_TopMenuPanel {
+    border: 2px dashed blue;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    background-color:black;
+    gap: 1%;
+
+  }
+
+  .hbi_TMP_VertMenuTree {
+
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    background-color: brown;
+    overflow:hidden;
+  }
+
+
+  .hbi_TMP_VMT_Top {
+    border: 2px dotted black;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10%;
+    overflow: hidden;
+  }
+
+  .hbi_TMP_VMT_Top button{
+    width: 19vw;
+    height: 5vw;
+  }
+
+  .hbi_TMP_VMT_Bottom {
+    border: 2px dotted white;
+    height: 50%;
+    overflow: hidden;
+  }
+
+  .hbi_TMP_VMT_Bottom button {
+    background-color: rgba(10, 45, 40, 1);
+    width: 16vw;
+    height: 5vw;
+    display: block;
+    margin: auto;
+    bottom: 0;
+    color: yellow;
+
+     }
+
+  .button_light {
+    border: 2px solid black;
+    background-color: black;
+    width: 20%;
+    display: block;
+    margin: auto;
+    height: 20%;
+    margin-top: 6%;
+    float: right;
+    }
+
+    .ButtonLightPostClick{
+      border: 2px solid darkred;
+      background-color: red;
+      width: 20%;
+      display: block;
+      margin: auto;
+      height: 20%;
+      margin-top: 6%;
+      float: right;
+    }
+
+
+
+  #hbi_LeftMenuPanel {
+    border: 2px solid yellow;
+    width: 20%;
+    height: 40%;
+    background-color: yellow;
+    float: left;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+  }
+
+
+  .hbi_LMP_HorzMenuTree{
+    display: flex;
+    /*Reversing the direction because the left side div has the secondary content*/
+    flex-direction: column-reverse;
+    border: 2px solid green;
+    background-color: black;
+  }
+
+  .hbi_LMP_HorzMenuTree:nth-of-type(2){
+    display: none;
+  }
+
+  .hbi_LMP_HMT_Right{
+
+    border: 2px dotted black;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: brown;
+    justify-content: flex-start;
+    top:0;
+
+  }
+
+  .hbi_LMP_HMT_Right button{
+
+    background-color: red;
+      width: 14vw;
+      height: 9vw;
+
+      display: block;
+      margin: auto;
+
+  }
+
+
+  .hbi_LMP_HMT_Left{
+
+    border: 2px dotted black;
+    background-color: darkgoldenrod;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1%;
+    visibility: visible;
+
+
+  }
+
+  .hbi_LMP_HMT_Left button{
+
+    background-color: blue;
+      width: 14vw;
+      height: 10vw;
+      display: block;
+      margin: auto;
+
+  }
+
+
+
+
+
+
+  #hbi_RightMenuPanel {
+    border: 2px solid yellow;
+    width: 20%;
+    height: 40%;
+    background-color: yellow;
+    float: right;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+    justify-content: center;
+
+  }
+
+  /*In the mobile version of the site, we can only have 1 horz menu tree so prioritize what content you want to show*/
+  .hbi_RMP_HorzMenuTree {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    background-color: purple;
+  }
+
+
+    /*In the mobile version of the site, we can only have 1 horz menu tree so prioritize what content you want to show*/
+  .hbi_RMP_HorzMenuTree:nth-of-type(2){
+    display: none;
+  }
+
+
+  .hbi_RMP_HMT_Left {
+    border: 2px dotted black;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    background-color: brown;
+    justify-content: flex-start;
+
+  }
+
+  .hbi_RMP_HMT_Left button {
+
+    background-color: red;
+      width: 14vw;
+    height: 9vw;
+
+    display: block;
+    margin: auto;
+
+    }
+
+  .hbi_RMP_HMT_Right {
+
+    border: 2px dotted black;
+    background-color: darkgoldenrod;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+    visibility: hidden;
+
+
+    }
+
+  .hbi_RMP_HMT_Right button {
+    background-color: blue;
+    width: 14vw;
+    height: 10vw;
+    display: block;
+    margin: auto;
+
+  }
+
+
+
+
+  #hbi_spotlightPanel {
+
+    width: 90%;
+    height: 20%;
+    border: 2px dashed grey;
+    display: block;
+    margin: auto;
+    overflow: visible;
+    bottom: 0;
+
+
+
+  }
+
+
+
+  /*All spotlight elements must be organized in this space for simplicity*/
+
+  #S1_CPT {
+    width: 5%;
+    height: 8%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    left: var(--S1_CPT_CurrX);
+    top: var(--S1_CPT_CurrY);
+
+    position: absolute;
+
+
+  }
+
+  .S1_CPT_Moving {
+
+    width: 5%;
+    height: 8%;
+    background-color: blue;
+    border: 2px solid yellow;
+
+    z-index: 5;
+
+
+    position: absolute;
+
+    animation-name: S1_CPT_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-timing-function: linear;
+
+
+  }
+
+  @keyframes S1_CPT_SweepAnim {
+
+    0% {
+      left: calc(var(--S1_CPT_CurrX) - var(--S1_CPT_OffsetX));
+      top: calc(var(--S1_CPT_CurrY) - var(--S1_CPT_OffsetY));
+      transform-origin: var(--S1_CPT_OffsetX) var(--S1_CPT_OffsetY);
+      transform: rotateZ(var(--S1_CPT_StartRO));
+    }
+
+
+    100% {
+      left: calc(var(--S1_CPT_DestX) - var(--S1_CPT_OffsetX) );
+      top: calc(var(--S1_CPT_DestY) - var(--S1_CPT_OffsetY) );
+      transform-origin: var(--S1_CPT_OffsetX) var(--S1_CPT_OffsetY);
+      transform: rotateZ(var(--S1_CPT_DestRO));
+    }
+
+  }
+
+
+
+  .S1_Ref_CPT{
+    width: 5%;
+    height: 8%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    background-color: green;
+    border: 2px solid yellow;
+
+    position: absolute;
+
+    left: var(--S1_Ref_CPT_CurrX);
+    top: var(--S1_Ref_CPT_CurrY);
+
+  }
+
+
+  .S1_Ref_CPT_PosChanged{
+
+    width: 5%;
+    height: 8%;
+    background-color: purple;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    position: absolute;
+
+    left: var(--S1_Ref_CPT_CurrX);
+    top: var(--S1_Ref_CPT_CurrY);
+
+
+
+
+
+  }
+
+
+
+
+  /*The square pointer is just a tool used for targeting locations on the interface*/
+  #squarePointer {
+
+    width: 10%;
+    height: 10%;
+    background-color: cadetblue;
+    position: absolute;
+  }
+
+  .squarePointer_ACTIVE {
+
+    width: 10%;
+    height: 10%;
+    background-color: cadetblue;
+    position: absolute;
+    left: var(--SQ_X);
+    top: var(--SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: squarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes squarePointerAnim {
+
+    0% {
+
+      left: var(--SQ_X);
+    }
+
+    100% {
+
+      left: var(--SQ_X);
+    }
+
+
+  }
+
+
+
+  #squarePointer_PX {
+
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+  }
+
+  .squarePointer_PX_ACTIVE {
+
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+    left: var(--SQ_PX_X);
+    top: var(--SQ_PX_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: squarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes squarePointerAnim {
+
+    0% {
+
+      left: var(--SQ_PX_X);
+    }
+
+    100% {
+
+      left: var(--SQ_PX_X);
+    }
+
+
+  }
+
+
+  /*START OF startPosSquarePointer styles*/
+#startPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    position: absolute;
+
+    left: 30px;
+    top: 40px;
+  }
+
+  .startPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    position: absolute;
+    left: var(--StartPos_SQ_X);
+    top: var(--StartPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: startPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes startPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--StartPos_SQ_X);
+      top: var(--StartPos_SQ_Y);
+    }
+
+    100% {
+
+      left: var(--StartPos_SQ_X);
+      top: var(--StartPos_SQ_Y)
+    }
+
+
+  }
+
+  /*---END OF StartPosSquarePointer Styles*/
+
+
+
+/*START OF destPosSquarePointer styles*/
+#destPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+
+  .destPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    left: var(--DestPos_SQ_X);
+    top: var(--DestPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: destPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes destPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--DestPos_SQ_X);
+      top: var(--DestPos_SQ_Y);
+    }
+
+    100% {
+
+      left: var(--DestPos_SQ_X);
+      top: var(--DestPos_SQ_Y);
+    }
+
+
+  }
+
+  /*---END OF destPosSquarePointer Styles*/
+
+
+
+
+
+
+  /*START OF pointDPosSquarePointer styles*/
+#pointDPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    position: absolute;
+
+  }
+
+  .pointDPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    position: absolute;
+    left: var(--PointDPos_SQ_X);
+    top: var(--PointDPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: pointDPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes pointDPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--PointDPos_SQ_X);
+      top: var(--PointDPos_SQ_Y);
+    }
+
+    100% {
+      left: var(--PointDPos_SQ_X);
+      top: var(--PointDPos_SQ_Y);
+    }
+
+  }
+
+  /*---END OF pointDPosSquarePointer Styles*/
+
+
+
+
+  /*Make a variable in CSS that tracks the corners of the spotlight clip paths and make this div follow that variable too*/
+  #spotlight1HBLLinkedRadGradContainer {
+  /*border: 2px dashed red;*/
+  width: 12vw;
+   height: 12vw;
+
+    position: absolute;
+    left: var(--S1_HBL_RG_CurrX);
+    top: var(--S1_HBL_RG_CurrY);
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 1) 60% 100%);
+    opacity: 100%;
+      /*DESIGN NOTE: CONSIDER REMOVING THIS BORDER-RADIUS TO SEE IF IT FIXES THE CUTOUT CLIPPING EFFECT*/
+    border-radius: 50% 50%;
+  }
+
+  .spotlight1HBLLinkedRadGradContainer_Moving {
+    border: 9px dotted orange;
+    width: 12vw;
+      height: 12vw;
+
+    position: absolute;
+
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, black 60% 100%);
+  /*  transform-origin: var(--S1_HBL_RG_XOffset) var(--S1_HBL_RG_YOffset); */
+    animation-name: S1_HBLRG_SweepAndRotate;
+    animation-duration: var(--S1_SweepTime);
+    transform-origin: 50% 50%;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: forwards;
+    animation-timing-function: linear;
+
+  }
+
+
+
+@keyframes S1_HBLRG_SweepAndRotate {
+
+  0%{
+
+    left: var(--S1_HBL_RG_CurrX);
+    top: var(--S1_HBL_RG_CurrY);
+    transform: rotateZ(var(--S1_HBL_RG_StartRO));
+
+
+
+
+  }
+
+
+  100%{
+
+
+    transform: translateX(var(--S1_HBL_RG_XDiff))
+              translateY(var(--S1_HBL_RG_YDiff))
+              rotateZ(var(--S1_HBL_RG_DestRO))  ;
+
+
+  }
+
+}
+
+
+
+  #spotlight1ClipPath {
+
+    /*  d: path("M150, 10 L40, 200 L260, 200 L260, 200Z");
+
+    d: path("M20, 10 L20, 200 L260, 200 L260, 200Z"); */
+    /*there must be 4 css vars that must be inserted into the string below*/
+
+  }
+
+  .spotlight1ClipPath_Moving {
+    visibility: hidden;
+
+    animation-name: S1_HBLCP_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes S1_HBLCP_SweepAnim {
+
+    0% {
+      d: path(var(--S1_HBL_CP_CurrCoordString));
+    }
+
+    100% {
+      /*              TL                        */
+      d: path(var(--S1_HBL_CP_DestCoordString));
+    }
+
+  }
+
+
+
+  #spotlight2ClipPath {}
+
+
+  /*End of Spotlight Clip Paths*/
+
+
+  .spotlight1Container {
+
+    border: 2px solid yellow;
+    width: 15%;
+    height: 100%;
+
+    position: absolute;
+    overflow: visible;
+    left: 0;
+    bottom: 0;
+
+
+
+  }
+
+  .spotlight1NativeRadGradContainer_moving_oneStage{
+    /*border: 3px solid orange; */
+
+      width: 100%;
+      height: 70%;
+
+        background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+        opacity: 100%;
+
+        animation-name: S1_Cont_RG_TrigVersionFlex_OneStage;
+          animation-duration: var(--S1_Cont_RG_TrigVersion_OneStage_Dur);
+          animation-iteration-count: 1;
+          animation-fill-mode: forwards;
+          animation-direction: normal;
+          animation-delay: 0ms;
+
+          animation-timing-function: var(--S1_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_OneStage {
+
+    0%{
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100%{
+    margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+  .spotlight2NativeRadGradContainer_moving_oneStage{
+    width: 100%;
+    height: 70%;
+
+      background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+      opacity: 100%;
+
+      animation-name: S2_Cont_RG_TrigVersionFlex_OneStage;
+        animation-duration: var(--S2_Cont_RG_TrigVersion_OneStage_Dur);
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-direction: normal;
+        animation-delay: 0ms;
+
+
+        animation-timing-function: var(--S2_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+  }
+
+
+    @keyframes S2_Cont_RG_TrigVersionFlex_OneStage {
+
+      0%{
+        margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_StartRad);
+      }
+
+      100%{
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_EndRad);
+
+      }
+
+    }
+
+
+
+
+
+  .spotlight1NativeRadGradContainer_moving{
+    border: 10px dotted red;
+     width: 12vw;
+
+    height: 12vw;
+
+
+      background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+      opacity: 100%;
+
+
+      animation-name: S1_Cont_RG_TrigVersionFlex_Stage1, S1_Cont_RG_TrigVersionFlex_Stage2;
+      animation-duration: var(--S1_Cont_RG_TrigVersion_Stage1Dur), var(--S1_Cont_RG_TrigVersion_Stage2Dur);
+      animation-iteration-count: 1, 1;
+      animation-fill-mode: forwards, forwards;
+      animation-direction: normal, normal;
+      animation-delay: 0ms, var(--S1_Cont_RG_TrigVersion_Stage1Dur);
+
+      animation-timing-function: var(--S1_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S1_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0%{
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+
+    }
+
+    100%{
+
+
+    transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+
+    }
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0%{
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+    /*margin-bottom: 243.14%;*/
+    }
+
+    100%{
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2EndRad);*/
+        transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+     /* margin-bottom: 318.6%; */
+  }
+
+  }
+
+
+.spotlight2NativeRadGradContainer_moving{
+
+  width: 12vw;
+  height: 12vw;
+
+background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0) 60% 100%);
+  opacity: 80%;
+
+  animation-name: S2_Cont_RG_TrigVersionFlex_Stage1, S2_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_Stage1Dur), var(--S2_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S2_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S2_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+}
+
+
+@keyframes S2_Cont_RG_TrigVersionFlex_Stage1 {
+
+  0%{
+  /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+ /*  margin-bottom: 414%; */
+
+  }
+
+  100%{
+/*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1EndRad); */
+    transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+   /* margin-bottom: 243.14%; */
+  }
+
+}
+
+@keyframes S2_Cont_RG_TrigVersionFlex_Stage2 {
+
+  0%{
+    /*margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+  /*margin-bottom: 243.14%;*/
+  }
+
+  100%{
+  /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2EndRad); */
+    transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+   /* margin-bottom: 318.6%; */
+}
+
+}
+
+
+
+
+.spotlight1ContainerTrig_OneStage_Moving{
+
+/*  border: 2px solid red; */
+  width: 15%;
+  height: 100%;
+  bottom: 0%;
+  position: absolute;
+  overflow: visible;
+
+
+
+  animation-name: S1ContTrigOneStageAnim;
+    animation-duration: var(--S1_Cont_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0s;
+
+
+  animation-timing-function: var(--S1_Cont_OneStage_CubicBezierConfig);
+
+
+    transform-origin: 50% 100%;
+
+}
+
+
+@keyframes S1ContTrigOneStageAnim {
+
+  0%{
+
+    transform: rotateZ(var(--S1_Cont_OneStage_StartRO));
+
+  }
+
+  100%{
+
+    transform: rotateZ(var(--S1_Cont_OneStage_EndRO));
+
+  }
+
+}
+
+
+
+
+}
+
+
+
+/*desktop query until 850 px*/
+@media only screen and (min-width: 600px) and (max-width: 850px) {
+
+  body {
+    overflow-y: hidden;
+  }
+
+  #homeBaseInterfaceContainer {
+
+    border: 2px solid orange;
+    width: 90%;
+    height: 70vh;
+    ;
+    position: relative;
+    display: block;
+    margin: auto;
+    background-color: black;
+
+
+
+    margin-top: 10;
+    margin-bottom: 10px;
+
+
+
+  }
+
+
+
+
+  /*START OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+  #svgGridContainer {
+    border: 2px dotted yellowgreen;
+    position: absolute;
+    width: 90%;
+    left: 0%;
+    top: 0%;
+
+
+  }
+
+  #HomeBaseTestSvgCONTAINER {
+    border: 2px solid red;
+    background-color: black;
+
+    margin: auto;
+    width: 47%;
+    height: 45%;
+
+    position: relative;
+
+    overflow: hidden;
+
+
+
+  }
+
+
+
+  #HomeBaseTestSvg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid red;
+
+    display: block;
+    margin: auto;
+
+  }
+
+  #HomeBaseTestSvg_DarkTint {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+
+
+
+    border: 2px solid red;
+    background-color: black;
+
+
+    display: block;
+    margin: auto;
+
+    opacity: 100%;
+
+    clip-path: url(#dualSpotlightsClipPath);
+
+    /*
+        background: radial-gradient(circle,
+         rgba(232, 255, 215, 0.6643791305584734) 9%,
+          rgba(0, 200, 33, 0.4262838924632353) 12%,
+           rgba(0, 0, 0, 1) 16%, rgba(0, 0, 0, 1) 100%);
+
+        */
+
+    /*
+        background: radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+         rgba(0, 200, 33, 0.4262838924632353) 21%,
+          rgba(0, 0, 0, 1) 35%,
+           rgba(0, 0, 0, 1) 85%), radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+                rgba(0, 200, 33, 0.4262838924632353) 21%,
+                rgba(0, 0, 0, 1) 35%,
+                rgba(0, 0, 0, 1) 85%)
+
+
+
+    */
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+  #S1CircleContainer_Mask {
+
+    width: 10%;
+    height: 10%;
+
+
+  }
+
+
+
+
+
+
+  /*END OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+
+
+
+  #hbi_TopMenuPanel {
+    border: 2px dashed blue;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+
+    /*Using the gap property to make sure even though the vert menus are centered, there exists a gap between them*/
+    gap: 10%;
+
+
+   /* background-image: url(#HomeBaseTestSvgVar);*/
+   background-color: darkblue;
+
+  }
+
+  .hbi_TMP_VertMenuTree {
+
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+   /* margin-left: 10%;
+    margin-right: 10%;*/
+
+
+  }
+
+
+  .hbi_TMP_VMT_Top {
+    border: 2px dotted black;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10%;
+  }
+
+  .hbi_TMP_VMT_Top button{
+    width: 10vw;
+    height: 3.5vw;
+
+  }
+
+  .hbi_TMP_VMT_Bottom {
+    border: 2px dotted white;
+    height: 50%;
+  }
+
+  .hbi_TMP_VMT_Bottom button{
+    background-color: rgba(10, 45, 40, 1);;
+    width: 6vw;
+    height: 4vw;
+    display: block;
+    margin: auto;
+    bottom: 0;
+    margin-top: 3%;
+    color: yellow;
+
+  }
+
+     .button_light {
+       border: 2px solid black;
+       background-color: black;
+       width: 40%;
+       display: block;
+       margin: auto;
+       height: 10%;
+       margin-top: 5%;
+     }
+
+     .ButtonLightPostClick{
+       border: 2px solid darkred;
+       background-color: red;
+       width: 40%;
+       display: block;
+       margin: auto;
+       height: 10%;
+       margin-top: 5%;
+     }
+
+
+
+
+
+  #hbi_LeftMenuPanel {
+    border: 2px solid yellow;
+    width: 22%;
+    height: 40%;
+
+    background-color: yellow;
+    float: left;
+
+     display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+  }
+
+
+  #hbi_RightMenuPanel {
+    border: 2px solid yellow;
+    width: 22%;
+
+    height:40%;
+    background-color: blue;
+    float: right;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+
+  }
+
+  .hbi_RMP_HorzMenuTree{
+    display: flex;
+    flex-direction: row;
+    border: 2px solid green;
+
+  }
+
+  .hbi_RMP_HMT_Left{
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .hbi_RMP_HMT_Left button{
+
+     background-color: red;
+    width: 7vw;
+    height: 5vw;
+
+    display: block;
+    margin: auto;
+
+  }
+
+  .hbi_RMP_HMT_Right{
+
+     border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+
+
+  }
+
+
+
+.hbi_RMP_HMT_Right button{
+
+  width: 10vw;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+
+}
+
+#hbi_LeftMenuPanel{
+
+  border: 2px solid red;
+  width: 22%;
+
+  background-color: yellow;
+  float: left;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  gap: 20%;
+
+
+}
+
+.hbi_LMP_HorzMenuTree{
+  display: flex;
+  flex-direction: row;
+  border: 2px solid green;
+}
+
+
+.hbi_LMP_HMT_Right{
+  border: 2px dotted black;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+}
+
+.hbi_LMP_HMT_Right button{
+
+  background-color: red;
+    width: 7vw;
+    height: 5vw;
+    display: block;
+    margin: auto;
+
+}
+
+
+
+.hbi_LMP_HMT_Left{
+
+  border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+
+}
+
+.hbi_LMP_HMT_Left button{
+
+  width: 10vw;
+  margin-top: 5%;
+  margin-bottom: 5%;
+
+}
+
+#hbi_TMP_LeftSiren{
+  border: 2px dotted red;
+  width: 5%;
+  height: 90%;
+  margin-top: 0.5%;
+
+  background-color: orange;
+
+}
+
+
+#hbi_TMP_RightSiren{
+  border: 2px dotted red;
+  width: 5%;
+  height: 90%;
+  margin-top: 0.5%;
+
+  background-color: orange;
+}
+
+
+
+
+
+
+
+#hbi_LeftSiren{
+  border: 2px solid red;
+  background-color: lawngreen;
+
+
+  float: left;
+  width: 3%;
+  height: 10vw;
+  margin-top: 2%;
+
+  position: relative;
+
+
+}
+
+#hbi_RightSiren{
+
+  border: 2px solid red;
+    background-color: blue;
+
+
+    float: right;
+    width: 3%;
+    height: 10vw;
+    margin-top: 2%;
+
+    position: relative;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  #hbi_spotlightPanel {
+
+    width: 90%;
+    height: 20%;
+    border: 2px dashed red;
+    display: block;
+    margin: auto;
+    overflow: visible;
+
+    bottom: 0;
+
+
+
+  }
+
+
+
+  /*All spotlight elements must be organized in this space for simplicity*/
+
+  #S1_CPT {
+    width: 5%;
+    height: 8%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    left: var(--S1_CPT_CurrX);
+    top: var(--S1_CPT_CurrY);
+
+    position: absolute;
+
+
+  }
+
+  .S1_CPT_Moving {
+
+    width: 5%;
+    height: 8%;
+    background-color: blue;
+    border: 2px solid yellow;
+
+    z-index: 5;
+
+
+    position: absolute;
+
+    animation-name: S1_CPT_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-timing-function: linear;
+
+
+  }
+
+  @keyframes S1_CPT_SweepAnim {
+
+    0% {
+      left: calc(var(--S1_CPT_CurrX) - var(--S1_CPT_OffsetX));
+      top: calc(var(--S1_CPT_CurrY) - var(--S1_CPT_OffsetY));
+      transform-origin: var(--S1_CPT_OffsetX) var(--S1_CPT_OffsetY);
+      transform: rotateZ(var(--S1_CPT_StartRO));
+    }
+
+
+    100% {
+      left: calc(var(--S1_CPT_DestX) - var(--S1_CPT_OffsetX));
+      top: calc(var(--S1_CPT_DestY) - var(--S1_CPT_OffsetY));
+      transform-origin: var(--S1_CPT_OffsetX) var(--S1_CPT_OffsetY);
+      transform: rotateZ(var(--S1_CPT_DestRO));
+    }
+
+  }
+
+
+
+  .S1_Ref_CPT {
+    width: 5%;
+    height: 8%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    background-color: green;
+    border: 2px solid yellow;
+
+    position: absolute;
+
+    left: var(--S1_Ref_CPT_CurrX);
+    top: var(--S1_Ref_CPT_CurrY);
+
+  }
+
+
+  .S1_Ref_CPT_PosChanged {
+
+    width: 5%;
+    height: 8%;
+    background-color: purple;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    position: absolute;
+
+    left: var(--S1_Ref_CPT_CurrX);
+    top: var(--S1_Ref_CPT_CurrY);
+
+
+
+
+
+  }
+
+
+
+
+  /*The square pointer is just a tool used for targeting locations on the interface*/
+  #squarePointer {
+
+    width: 10%;
+    height: 10%;
+    background-color: cadetblue;
+    position: absolute;
+  }
+
+  .squarePointer_ACTIVE {
+
+    width: 10%;
+    height: 10%;
+    background-color: cadetblue;
+    position: absolute;
+    left: var(--SQ_X);
+    top: var(--SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: squarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes squarePointerAnim {
+
+    0% {
+
+      left: var(--SQ_X);
+    }
+
+    100% {
+
+      left: var(--SQ_X);
+    }
+
+
+  }
+
+
+
+  #squarePointer_PX {
+
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+  }
+
+  .squarePointer_PX_ACTIVE {
+
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+    left: var(--SQ_PX_X);
+    top: var(--SQ_PX_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: squarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes squarePointerAnim {
+
+    0% {
+
+      left: var(--SQ_PX_X);
+    }
+
+    100% {
+
+      left: var(--SQ_PX_X);
+    }
+
+
+  }
+
+
+  /*START OF startPosSquarePointer styles*/
+  #startPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    position: absolute;
+
+    left: 30px;
+    top: 40px;
+  }
+
+  .startPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    position: absolute;
+    left: var(--StartPos_SQ_X);
+    top: var(--StartPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: startPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes startPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--StartPos_SQ_X);
+      top: var(--StartPos_SQ_Y);
+    }
+
+    100% {
+
+      left: var(--StartPos_SQ_X);
+      top: var(--StartPos_SQ_Y)
+    }
+
+
+  }
+
+  /*---END OF StartPosSquarePointer Styles*/
+
+
+
+  /*START OF destPosSquarePointer styles*/
+  #destPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+
+  .destPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    left: var(--DestPos_SQ_X);
+    top: var(--DestPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: destPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes destPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--DestPos_SQ_X);
+      top: var(--DestPos_SQ_Y);
+    }
+
+    100% {
+
+      left: var(--DestPos_SQ_X);
+      top: var(--DestPos_SQ_Y);
+    }
+
+
+  }
+
+  /*---END OF destPosSquarePointer Styles*/
+
+
+
+
+
+
+  /*START OF pointDPosSquarePointer styles*/
+  #pointDPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    position: absolute;
+
+  }
+
+  .pointDPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    position: absolute;
+    left: var(--PointDPos_SQ_X);
+    top: var(--PointDPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: pointDPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes pointDPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--PointDPos_SQ_X);
+      top: var(--PointDPos_SQ_Y);
+    }
+
+    100% {
+      left: var(--PointDPos_SQ_X);
+      top: var(--PointDPos_SQ_Y);
+    }
+
+  }
+
+  /*---END OF pointDPosSquarePointer Styles*/
+
+
+
+
+  /*Make a variable in CSS that tracks the corners of the spotlight clip paths and make this div follow that variable too*/
+  #spotlight1HBLLinkedRadGradContainer {
+    /*border: 2px dashed red;*/
+    width: 12vw;
+    height: 12vw;
+
+    position: absolute;
+    left: var(--S1_HBL_RG_CurrX);
+    top: var(--S1_HBL_RG_CurrY);
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 1) 60% 100%);
+    opacity: 100%;
+    /*DESIGN NOTE: CONSIDER REMOVING THIS BORDER-RADIUS TO SEE IF IT FIXES THE CUTOUT CLIPPING EFFECT*/
+    border-radius: 50% 50%;
+  }
+
+  .spotlight1HBLLinkedRadGradContainer_Moving {
+    border: 7px dotted orange;
+    width: 12vw;
+    height: 12vw;
+
+    position: absolute;
+
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, black 60% 100%);
+    /*  transform-origin: var(--S1_HBL_RG_XOffset) var(--S1_HBL_RG_YOffset); */
+    animation-name: S1_HBLRG_SweepAndRotate;
+    animation-duration: var(--S1_SweepTime);
+    transform-origin: 50% 50%;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: forwards;
+    animation-timing-function: linear;
+
+  }
+
+
+
+  @keyframes S1_HBLRG_SweepAndRotate {
+
+    0% {
+
+      left: var(--S1_HBL_RG_CurrX);
+      top: var(--S1_HBL_RG_CurrY);
+      transform: rotateZ(var(--S1_HBL_RG_StartRO));
+
+
+
+
+    }
+
+
+    100% {
+
+
+      transform: translateX(var(--S1_HBL_RG_XDiff)) translateY(var(--S1_HBL_RG_YDiff)) rotateZ(var(--S1_HBL_RG_DestRO));
+
+
+    }
+
+  }
+
+
+
+  #spotlight1ClipPath {
+
+    /*  d: path("M150, 10 L40, 200 L260, 200 L260, 200Z");
+
+    d: path("M20, 10 L20, 200 L260, 200 L260, 200Z"); */
+    /*there must be 4 css vars that must be inserted into the string below*/
+
+  }
+
+  .spotlight1ClipPath_Moving {
+    visibility: hidden;
+
+    animation-name: S1_HBLCP_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes S1_HBLCP_SweepAnim {
+
+    0% {
+      d: path(var(--S1_HBL_CP_CurrCoordString));
+    }
+
+    100% {
+      /*              TL                        */
+      d: path(var(--S1_HBL_CP_DestCoordString));
+    }
+
+  }
+
+
+
+  #spotlight2ClipPath {}
+
+
+  /*End of Spotlight Clip Paths*/
+
+
+  #spotlight1Container {
+
+    /*  border: 2px solid yellow; */
+    width: 15%;
+    height: 100%;
+
+    position: absolute;
+    overflow: visible;
+    left: 0;
+    bottom: 0;
+
+
+
+  }
+
+  .spotlight1NativeRadGradContainer_moving_oneStage {
+    /*border: 3px solid orange; */
+
+    width: 100%;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+    animation-name: S1_Cont_RG_TrigVersionFlex_OneStage;
+    animation-duration: var(--S1_Cont_RG_TrigVersion_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0ms;
+
+    animation-timing-function: var(--S1_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_OneStage {
+
+    0% {
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100% {
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+  .spotlight2NativeRadGradContainer_moving_oneStage {
+    width: 100%;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+    animation-name: S2_Cont_RG_TrigVersionFlex_OneStage;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0ms;
+
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+  }
+
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_OneStage {
+
+    0% {
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100% {
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+
+
+
+
+  .spotlight1NativeRadGradContainer_moving {
+
+    width: 12vw;
+
+    height: 12vw;
+
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+
+    animation-name: S1_Cont_RG_TrigVersionFlex_Stage1, S1_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S1_Cont_RG_TrigVersion_Stage1Dur), var(--S1_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S1_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S1_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S1_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0% {
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+
+    }
+
+    100% {
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+
+    }
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0% {
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+      /*margin-bottom: 243.14%;*/
+    }
+
+    100% {
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2EndRad);*/
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+      /* margin-bottom: 318.6%; */
+    }
+
+  }
+
+
+  .spotlight2NativeRadGradContainer_moving {
+
+    width: 12vw;
+    height: 12vw;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0) 60% 100%);
+    opacity: 80%;
+
+    animation-name: S2_Cont_RG_TrigVersionFlex_Stage1, S2_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_Stage1Dur), var(--S2_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S2_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S2_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+      /*  margin-bottom: 414%; */
+
+    }
+
+    100% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1EndRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+      /* margin-bottom: 243.14%; */
+    }
+
+  }
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0% {
+      /*margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+      /*margin-bottom: 243.14%;*/
+    }
+
+    100% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2EndRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+      /* margin-bottom: 318.6%; */
+    }
+
+  }
+
+
+
+
+  .spotlight1ContainerTrig_OneStage_Moving {
+
+    /*  border: 2px solid red; */
+    width: 15%;
+    height: 100%;
+    bottom: 0%;
+    position: absolute;
+    overflow: visible;
+
+
+
+    animation-name: S1ContTrigOneStageAnim;
+    animation-duration: var(--S1_Cont_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0s;
+
+
+    animation-timing-function: var(--S1_Cont_OneStage_CubicBezierConfig);
+
+
+    transform-origin: 50% 100%;
+
+  }
+
+
+  @keyframes S1ContTrigOneStageAnim {
+
+    0% {
+
+      transform: rotateZ(var(--S1_Cont_OneStage_StartRO));
+
+    }
+
+    100% {
+
+      transform: rotateZ(var(--S1_Cont_OneStage_EndRO));
+
+    }
+
+  }
+
+
+
+
+}
+
+
+
+
+/*desktop query beyond 850px and belo 1318px*/
+@media only screen and (min-width: 850px) and (max-width: 1300px) {
+
+  body {
+    overflow-y: hidden;
+  }
+
+  #homeBaseInterfaceContainer {
+
+    border: 2px solid green;
+    width: 90%;
+    /*Note: it's important to use VH for the height otherwise it will span downwards below the client viewing area*/
+    height: 70vh;
+
+    position: relative;
+    display: block;
+    margin: auto;
+    background-color: black;
+
+
+
+    margin-top: 10;
+    margin-bottom: 10px;
+
+
+
+  }
+
+
+
+
+  /*START OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+  #svgGridContainer {
+    border: 2px dotted yellowgreen;
+    position: absolute;
+    width: 90%;
+    left: 0%;
+    top: 0%;
+
+
+  }
+
+  #HomeBaseTestSvgCONTAINER {
+    border: 2px solid lawngreen;
+    background-color: black;
+    display: block;
+    margin: auto;
+    width: 47%;
+    height: 55%;
+
+    position: relative;
+
+    overflow: hidden;
+
+
+
+  }
+
+
+
+  #HomeBaseTestSvg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid green;
+    display: block;
+    margin: auto;
+
+  }
+
+  #HomeBaseTestSvg_DarkTint {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+
+
+
+    border: 2px solid red;
+    background-color: black;
+
+
+    display: block;
+    margin: auto;
+
+    opacity: 100%;
+
+    clip-path: url(#dualSpotlightsClipPath);
+
+    /*
+        background: radial-gradient(circle,
+         rgba(232, 255, 215, 0.6643791305584734) 9%,
+          rgba(0, 200, 33, 0.4262838924632353) 12%,
+           rgba(0, 0, 0, 1) 16%, rgba(0, 0, 0, 1) 100%);
+
+        */
+
+    /*
+        background: radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+         rgba(0, 200, 33, 0.4262838924632353) 21%,
+          rgba(0, 0, 0, 1) 35%,
+           rgba(0, 0, 0, 1) 85%), radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+                rgba(0, 200, 33, 0.4262838924632353) 21%,
+                rgba(0, 0, 0, 1) 35%,
+                rgba(0, 0, 0, 1) 85%)
+
+
+
+    */
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+  #S1CircleContainer_Mask {
+
+    width: 10%;
+    height: 10%;
+
+
+  }
+
+
+
+
+
+
+  /*END OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+
+
+
+  #hbi_TopMenuPanel {
+    border: 2px dashed blue;
+    height: 19%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    /*Using the gap property to make sure even though the vert menus are centered, there exists a gap between them*/
+    gap: 10%;
+
+
+    /* background-image: url(#HomeBaseTestSvgVar);*/
+    background-color: darkblue;
+
+  }
+
+  .hbi_TMP_VertMenuTree {
+
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    /* margin-left: 10%;
+    margin-right: 10%;*/
+
+
+  }
+
+
+  .hbi_TMP_VMT_Top {
+    border: 2px dotted black;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10%;
+  }
+
+  .hbi_TMP_VMT_Top button {
+    width: 8vw;
+    height: 2.2vw;
+
+  }
+
+  .hbi_TMP_VMT_Bottom {
+    border: 2px dotted white;
+    height: 50%;
+  }
+
+  .hbi_TMP_VMT_Bottom button {
+    background-color: rgba(10, 45, 40, 1);
+    border: 2px outset grey;
+    width: 6vw;
+    height: 3vw;
+    display: block;
+    margin: auto;
+    bottom: 0;
+    color: yellow;
+    font-family:Arial, Helvetica, sans-serif;
+  }
+
+
+
+  .button_light{
+    border: 2px solid black;
+    background-color: black;
+    width: 40%;
+    display: block;
+    margin: auto;
+    height: 10%;
+    margin-top: 5%;
+  }
+
+  .ButtonLightPostClick{
+    border: 2px solid darkred;
+    background-color: red;
+    width: 40%;
+    display: block;
+    margin: auto;
+    height: 10%;
+    margin-top: 5%;
+  }
+
+
+
+
+
+  #hbi_LeftMenuPanel {
+    border: 2px solid yellow;
+    width: 22%;
+    height: 40%;
+
+    background-color: yellow;
+    float: left;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+  }
+
+
+  #hbi_RightMenuPanel {
+    border: 2px solid yellow;
+    width: 22%;
+
+    height: 40%;
+    background-color: blue;
+    float: right;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+
+  }
+
+  .hbi_RMP_HorzMenuTree {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid green;
+
+  }
+
+  .hbi_RMP_HMT_Left {
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .hbi_RMP_HMT_Left button {
+
+    background-color: red;
+    width: 7vw;
+    height: 5vw;
+
+    display: block;
+    margin: auto;
+
+  }
+
+  .hbi_RMP_HMT_Right {
+
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+
+
+  }
+
+
+
+  .hbi_RMP_HMT_Right button {
+
+    width: 10vw;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+
+  }
+
+  #hbi_LeftMenuPanel {
+
+    border: 2px solid red;
+    width: 22%;
+
+    background-color: yellow;
+    float: left;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 20%;
+
+
+  }
+
+  .hbi_LMP_HorzMenuTree {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid green;
+  }
+
+
+  .hbi_LMP_HMT_Right {
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .hbi_LMP_HMT_Right button {
+
+    background-color: red;
+    width: 7vw;
+    height: 5vw;
+    display: block;
+    margin: auto;
+
+  }
+
+
+
+  .hbi_LMP_HMT_Left {
+
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+
+  }
+
+  .hbi_LMP_HMT_Left button {
+
+    width: 10vw;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+  }
+
+  #hbi_TMP_LeftSiren {
+    border: 2px dotted red;
+    width: 5%;
+    height: 90%;
+    margin-top: 0.5%;
+
+    background-color: orange;
+
+  }
+
+
+  #hbi_TMP_RightSiren {
+    border: 2px dotted red;
+    width: 5%;
+    height: 90%;
+    margin-top: 0.5%;
+
+    background-color: orange;
+  }
+
+
+
+
+
+
+
+  #hbi_LeftSiren {
+    border: 2px solid red;
+    background-color: lawngreen;
+
+
+    float: left;
+    width: 3%;
+    height: 10vw;
+    margin-top: 2%;
+
+    position: relative;
+
+
+  }
+
+  #hbi_RightSiren {
+
+    border: 2px solid red;
+    background-color: blue;
+
+
+    float: right;
+    width: 3%;
+    height: 10vw;
+    margin-top: 2%;
+
+    position: relative;
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  #hbi_spotlightPanel {
+
+    width: 90%;
+    height: 20%;
+    border: 2px dashed grey;
+    display: block;
+    margin: auto;
+    overflow: visible;
+    bottom: 0;
+
+
+
+  }
+
+
+
+  /*All spotlight elements must be organized in this space for simplicity*/
+
+  #S1_CPT {
+    width: 5%;
+    height: 8%;
+    background-color: transparent;
+    border: 2px solid red;
+    opacity: 80%;
+
+    z-index: 5;
+
+    left: var(--S1_CPT_CurrX);
+    top: var(--S1_CPT_CurrY);
+
+    position: absolute;
+
+
+  }
+
+  .S1_CPT_Moving {
+
+    width: 5%;
+    height: 8%;
+    background-color: blue;
+    border: 2px solid yellow;
+
+    z-index: 5;
+
+
+    position: absolute;
+
+    animation-name: S1_CPT_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-timing-function: linear;
+
+
+  }
+
+  @keyframes S1_CPT_SweepAnim {
+
+    0% {
+      left: calc(var(--S1_CPT_CurrX) - var(--S1_CPT_OffsetX));
+      top: calc(var(--S1_CPT_CurrY) - var(--S1_CPT_OffsetY));
+      transform-origin: var(--S1_CPT_OffsetX) var(--S1_CPT_OffsetY);
+      transform: rotateZ(var(--S1_CPT_StartRO));
+    }
+
+
+    100% {
+      left: calc(var(--S1_CPT_DestX) - var(--S1_CPT_OffsetX));
+      top: calc(var(--S1_CPT_DestY) - var(--S1_CPT_OffsetY));
+      transform-origin: var(--S1_CPT_OffsetX) var(--S1_CPT_OffsetY);
+      transform: rotateZ(var(--S1_CPT_DestRO));
+    }
+
+  }
+
+
+
+  .S1_Ref_CPT {
+    width: 5%;
+    height: 8%;
+    background-color: transparent;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    background-color: green;
+    border: 2px solid yellow;
+
+    position: absolute;
+
+    left: var(--S1_Ref_CPT_CurrX);
+    top: var(--S1_Ref_CPT_CurrY);
+
+  }
+
+
+  .S1_Ref_CPT_PosChanged {
+
+    width: 5%;
+    height: 8%;
+    background-color: purple;
+    border: 2px solid transparent;
+    opacity: 80%;
+
+    z-index: 5;
+
+    position: absolute;
+
+    left: var(--S1_Ref_CPT_CurrX);
+    top: var(--S1_Ref_CPT_CurrY);
+
+
+
+
+
+  }
+
+
+
+
+  /*The square pointer is just a tool used for targeting locations on the interface*/
+  #squarePointer {
+
+    width: 10%;
+    height: 10%;
+    background-color: cadetblue;
+    position: absolute;
+  }
+
+  .squarePointer_ACTIVE {
+
+    width: 10%;
+    height: 10%;
+    background-color: cadetblue;
+    position: absolute;
+    left: var(--SQ_X);
+    top: var(--SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: squarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes squarePointerAnim {
+
+    0% {
+
+      left: var(--SQ_X);
+    }
+
+    100% {
+
+      left: var(--SQ_X);
+    }
+
+
+  }
+
+
+
+  #squarePointer_PX {
+
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+  }
+
+  .squarePointer_PX_ACTIVE {
+
+    width: 4px;
+    height: 4px;
+    background-color: red;
+    position: absolute;
+    left: var(--SQ_PX_X);
+    top: var(--SQ_PX_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: squarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes squarePointerAnim {
+
+    0% {
+
+      left: var(--SQ_PX_X);
+    }
+
+    100% {
+
+      left: var(--SQ_PX_X);
+    }
+
+
+  }
+
+
+  /*START OF startPosSquarePointer styles*/
+  #startPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    position: absolute;
+
+    left: 30px;
+    top: 40px;
+  }
+
+  .startPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    position: absolute;
+    left: var(--StartPos_SQ_X);
+    top: var(--StartPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: startPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes startPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--StartPos_SQ_X);
+      top: var(--StartPos_SQ_Y);
+    }
+
+    100% {
+
+      left: var(--StartPos_SQ_X);
+      top: var(--StartPos_SQ_Y)
+    }
+
+
+  }
+
+  /*---END OF StartPosSquarePointer Styles*/
+
+
+
+  /*START OF destPosSquarePointer styles*/
+  #destPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    left: 30px;
+    top: 30px;
+  }
+
+  .destPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: blue;
+    position: absolute;
+    left: var(--DestPos_SQ_X);
+    top: var(--DestPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: destPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes destPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--DestPos_SQ_X);
+      top: var(--DestPos_SQ_Y);
+    }
+
+    100% {
+
+      left: var(--DestPos_SQ_X);
+      top: var(--DestPos_SQ_Y);
+    }
+
+
+  }
+
+  /*---END OF destPosSquarePointer Styles*/
+
+
+
+
+
+
+  /*START OF pointDPosSquarePointer styles*/
+  #pointDPosSquarePointer {
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    position: absolute;
+
+  }
+
+  .pointDPosSquarePointer_ACTIVE {
+
+    width: 10px;
+    height: 10px;
+    background-color: purple;
+    position: absolute;
+    left: var(--PointDPos_SQ_X);
+    top: var(--PointDPos_SQ_Y);
+    visibility: visible;
+
+    z-index: 6;
+
+    animation-name: pointDPosSquarePointerAnim;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes pointDPosSquarePointerAnim {
+
+    0% {
+
+      left: var(--PointDPos_SQ_X);
+      top: var(--PointDPos_SQ_Y);
+    }
+
+    100% {
+      left: var(--PointDPos_SQ_X);
+      top: var(--PointDPos_SQ_Y);
+    }
+
+  }
+
+  /*---END OF pointDPosSquarePointer Styles*/
+
+
+
+
+  /*Make a variable in CSS that tracks the corners of the spotlight clip paths and make this div follow that variable too*/
+  #spotlight1HBLLinkedRadGradContainer {
+    /*border: 2px dashed red;*/
+    width: 12vw;
+    height: 12vw;
+
+    position: absolute;
+    left: var(--S1_HBL_RG_CurrX);
+    top: var(--S1_HBL_RG_CurrY);
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 1) 60% 100%);
+    opacity: 100%;
+    /*DESIGN NOTE: CONSIDER REMOVING THIS BORDER-RADIUS TO SEE IF IT FIXES THE CUTOUT CLIPPING EFFECT*/
+    border-radius: 50% 50%;
+  }
+
+  .spotlight1HBLLinkedRadGradContainer_Moving {
+    border: 9px dotted green;
+    width: 12vw;
+    height: 12vw;
+
+    position: absolute;
+
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, black 60% 100%);
+    /*  transform-origin: var(--S1_HBL_RG_XOffset) var(--S1_HBL_RG_YOffset); */
+    animation-name: S1_HBLRG_SweepAndRotate;
+    animation-duration: var(--S1_SweepTime);
+    transform-origin: 50% 50%;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: forwards;
+    animation-timing-function: linear;
+
+  }
+
+
+
+  @keyframes S1_HBLRG_SweepAndRotate {
+
+    0% {
+
+      left: var(--S1_HBL_RG_CurrX);
+      top: var(--S1_HBL_RG_CurrY);
+      transform: rotateZ(var(--S1_HBL_RG_StartRO));
+
+
+
+
+    }
+
+
+    100% {
+
+
+      transform: translateX(var(--S1_HBL_RG_XDiff)) translateY(var(--S1_HBL_RG_YDiff)) rotateZ(var(--S1_HBL_RG_DestRO));
+
+
+    }
+
+  }
+
+
+
+  #spotlight1ClipPath {
+
+    /*  d: path("M150, 10 L40, 200 L260, 200 L260, 200Z");
+
+    d: path("M20, 10 L20, 200 L260, 200 L260, 200Z"); */
+    /*there must be 4 css vars that must be inserted into the string below*/
+
+  }
+
+  .spotlight1ClipPath_Moving {
+    visibility: hidden;
+
+    animation-name: S1_HBLCP_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes S1_HBLCP_SweepAnim {
+
+    0% {
+      d: path(var(--S1_HBL_CP_CurrCoordString));
+    }
+
+    100% {
+      /*              TL                        */
+      d: path(var(--S1_HBL_CP_DestCoordString));
+    }
+
+  }
+
+
+
+  #spotlight2ClipPath {}
+
+
+  /*End of Spotlight Clip Paths*/
+
+
+  #spotlight1Container {
+
+    /*  border: 2px solid yellow; */
+    width: 15%;
+    height: 100%;
+
+    position: absolute;
+    overflow: visible;
+    left: 0;
+    bottom: 0;
+
+
+
+  }
+
+  .spotlight1NativeRadGradContainer_moving_oneStage {
+    /*border: 3px solid orange; */
+
+    width: 100%;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+    animation-name: S1_Cont_RG_TrigVersionFlex_OneStage;
+    animation-duration: var(--S1_Cont_RG_TrigVersion_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0ms;
+
+    animation-timing-function: var(--S1_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_OneStage {
+
+    0% {
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100% {
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+  .spotlight2NativeRadGradContainer_moving_oneStage {
+    width: 100%;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+    animation-name: S2_Cont_RG_TrigVersionFlex_OneStage;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0ms;
+
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+  }
+
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_OneStage {
+
+    0% {
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100% {
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+
+
+
+
+  .spotlight1NativeRadGradContainer_moving {
+    border: 10px dotted red;
+    width: 12vw;
+
+    height: 12vw;
+
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+
+    animation-name: S1_Cont_RG_TrigVersionFlex_Stage1, S1_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S1_Cont_RG_TrigVersion_Stage1Dur), var(--S1_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S1_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S1_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S1_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0% {
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+
+    }
+
+    100% {
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+
+    }
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0% {
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+      /*margin-bottom: 243.14%;*/
+    }
+
+    100% {
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2EndRad);*/
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+      /* margin-bottom: 318.6%; */
+    }
+
+  }
+
+
+  .spotlight2NativeRadGradContainer_moving {
+
+    width: 12vw;
+    height: 12vw;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0) 60% 100%);
+    opacity: 80%;
+
+    animation-name: S2_Cont_RG_TrigVersionFlex_Stage1, S2_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_Stage1Dur), var(--S2_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S2_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S2_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+      /*  margin-bottom: 414%; */
+
+    }
+
+    100% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1EndRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+      /* margin-bottom: 243.14%; */
+    }
+
+  }
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0% {
+      /*margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+      /*margin-bottom: 243.14%;*/
+    }
+
+    100% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2EndRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+      /* margin-bottom: 318.6%; */
+    }
+
+  }
+
+
+
+
+  .spotlight1ContainerTrig_OneStage_Moving {
+
+    /*  border: 2px solid red; */
+    width: 15%;
+    height: 100%;
+    bottom: 0%;
+    position: absolute;
+    overflow: visible;
+
+
+
+    animation-name: S1ContTrigOneStageAnim;
+    animation-duration: var(--S1_Cont_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0s;
+
+
+    animation-timing-function: var(--S1_Cont_OneStage_CubicBezierConfig);
+
+
+    transform-origin: 50% 100%;
+
+  }
+
+
+  @keyframes S1ContTrigOneStageAnim {
+
+    0% {
+
+      transform: rotateZ(var(--S1_Cont_OneStage_StartRO));
+
+    }
+
+    100% {
+
+      transform: rotateZ(var(--S1_Cont_OneStage_EndRO));
+
+    }
+
+  }
+
+
+
+
+}
+
+
+/*desktop query beyond 1300px (Only declaring the styles which are differnet from the other queries)*/
+@media only screen and (min-width: 1300px) and (max-width: 2300px){
+
+   body {
+    overflow-y: hidden;
+  }
+
+
+   #homeBaseInterfaceContainer {
+
+    border: 2px solid grey;
+    width: 90%;
+    height: 70vh;
+    ;
+    position: relative;
+    display: block;
+    margin: auto;
+    background-color: black;
+
+
+
+    margin-top: 10;
+    margin-bottom: 10px;
+
+
+
+  }
+
+  /*START OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+  #svgGridContainer {
+    border: 2px dotted yellowgreen;
+    position: absolute;
+    width: 90%;
+    left: 0%;
+    top: 0%;
+
+
+  }
+
+  #HomeBaseTestSvgCONTAINER {
+    border: 2px solid lawngreen;
+    background-color: black;
+    display: block;
+    margin: auto;
+    width: 47%;
+    height: 55%;
+
+    position: relative;
+
+    overflow: hidden;
+
+
+
+  }
+
+
+
+  #HomeBaseTestSvg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 2px solid green;
+    display: block;
+    margin: auto;
+
+  }
+
+  #HomeBaseTestSvg_DarkTint {
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+
+
+
+    border: 2px solid red;
+    background-color: black;
+
+
+    display: block;
+    margin: auto;
+
+    opacity: 100%;
+
+    clip-path: url(#dualSpotlightsClipPath);
+
+    /*
+        background: radial-gradient(circle,
+         rgba(232, 255, 215, 0.6643791305584734) 9%,
+          rgba(0, 200, 33, 0.4262838924632353) 12%,
+           rgba(0, 0, 0, 1) 16%, rgba(0, 0, 0, 1) 100%);
+
+        */
+
+    /*
+        background: radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+         rgba(0, 200, 33, 0.4262838924632353) 21%,
+          rgba(0, 0, 0, 1) 35%,
+           rgba(0, 0, 0, 1) 85%), radial-gradient(circle at 80% 80%, rgba(232, 255, 215, 0.48230630142682074) 12%,
+                rgba(0, 200, 33, 0.4262838924632353) 21%,
+                rgba(0, 0, 0, 1) 35%,
+                rgba(0, 0, 0, 1) 85%)
+
+
+
+    */
+
+
+
+
+
+
+  }
+
+
+
+
+
+
+  #S1CircleContainer_Mask {
+
+    width: 10%;
+    height: 10%;
+
+
+  }
+
+
+
+
+
+
+  /*END OF HOME BASE SVG AND RELATED ELEMENTS*/
+
+
+
+
+  #hbi_TopMenuPanel {
+    border: 2px dashed purple;
+    height: 19%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    /*Using the gap property to make sure even though the vert menus are centered, there exists a gap between them*/
+    gap: 10%;
+
+
+    /* background-image: url(#HomeBaseTestSvgVar);*/
+    background-color: black;
+
+  }
+
+  .hbi_TMP_VertMenuTree {
+
+    display: flex;
+    flex-direction: column;
+    border: 2px solid green;
+    /* margin-left: 10%;
+    margin-right: 10%;*/
+
+
+  }
+
+
+  .hbi_TMP_VMT_Top {
+    border: 2px dotted black;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10%;
+  }
+
+  .hbi_TMP_VMT_Bottom {
+    border: 2px dotted white;
+    height: 50%;
+  }
+
+  .hbi_TMP_VMT_Bottom button {
+      background-color: rgba(10, 45, 40, 1);
+      border: 2px outset grey;
+      width: 6vw;
+      height: 2.5vw;
+      display: block;
+      margin: auto;
+
+      color: yellow;
+      font-family: Arial, Helvetica, sans-serif;
+      margin-top: 2%;
+
+    }
+
+    .hbi_TMP_VMT_Top button {
+      width: 8vw;
+      height: 2vw;
+      margin-top: 2%;
+
+    }
+
+    .button_light{
+    border: 2px solid darkgrey;
+    background-color: black;
+    width: 40%;
+    display: block;
+    margin: auto;
+    height: 10%;
+    margin-top: 5%;
+  }
+
+  .ButtonLightPostClick{
+    border: 2px solid darkred;
+    background-color: red;
+    width: 40%;
+    display: block;
+    margin: auto;
+    height: 10%;
+    margin-top: 5%;
+  }
+
+
+  .Tier2Button_Resting{
+    background: darkgrey;
+
+  }
+
+  .Tier2Button_Expanded{
+
+    background: blue;
+
+  }
+
+
+   #hbi_LeftMenuPanel {
+    border: 2px solid yellow;
+    width: 22%;
+    height: 40%;
+
+    background-color: yellow;
+    float: left;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+  }
+
+
+  #hbi_RightMenuPanel {
+    border: 2px solid yellow;
+    width: 22%;
+
+    height: 40%;
+    background-color: blue;
+    float: right;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 10%;
+
+
+  }
+
+  .hbi_RMP_HorzMenuTree {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid green;
+
+  }
+
+  .hbi_RMP_HMT_Left {
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .hbi_RMP_HMT_Left button {
+
+    background-color: red;
+    width: 7vw;
+    height: 5vw;
+
+    display: block;
+    margin: auto;
+
+  }
+
+  .hbi_RMP_HMT_Right {
+
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+
+
+  }
+
+
+
+  .hbi_RMP_HMT_Right button {
+
+    width: 10vw;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+
+  }
+
+  #hbi_LeftMenuPanel {
+
+    border: 2px solid red;
+    width: 22%;
+
+    background-color: yellow;
+    float: left;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    gap: 20%;
+
+
+  }
+
+  .hbi_LMP_HorzMenuTree {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid green;
+  }
+
+
+  .hbi_LMP_HMT_Right {
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  .hbi_LMP_HMT_Right button {
+
+    background-color: red;
+    width: 7vw;
+    height: 5vw;
+    display: block;
+    margin: auto;
+
+  }
+
+
+
+  .hbi_LMP_HMT_Left {
+
+    border: 2px dotted black;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10%;
+
+  }
+
+  .hbi_LMP_HMT_Left button {
+
+    width: 10vw;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+  }
+
+  #hbi_TMP_LeftSiren {
+    border: 2px dotted red;
+    width: 5%;
+    height: 90%;
+    margin-top: 0.5%;
+
+    background-color: orange;
+
+  }
+
+
+  #hbi_TMP_RightSiren {
+    border: 2px dotted red;
+    width: 5%;
+    height: 90%;
+    margin-top: 0.5%;
+
+    background-color: orange;
+  }
+
+
+  #hbi_LeftSiren {
+    border: 2px solid red;
+    background-color: lawngreen;
+
+
+    float: left;
+    width: 3%;
+    height: 10vw;
+    margin-top: 2%;
+
+    position: relative;
+
+
+  }
+
+  #hbi_RightSiren {
+
+    border: 2px solid red;
+    background-color: blue;
+
+
+    float: right;
+    width: 3%;
+    height: 10vw;
+    margin-top: 2%;
+
+    position: relative;
+
+
+  }
+
+  #hbi_spotlightPanel {
+
+    width: 90%;
+    height: 20%;
+    border: 2px dashed grey;
+    display: block;
+    margin: auto;
+    overflow: visible;
+    bottom: 0;
+
+  }
+
+
+
+
+ #spotlight1HBLLinkedRadGradContainer {
+    /*border: 2px dashed red;*/
+    width: 12vw;
+    height: 12vw;
+
+    position: absolute;
+    left: var(--S1_HBL_RG_CurrX);
+    top: var(--S1_HBL_RG_CurrY);
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 1) 60% 100%);
+    opacity: 100%;
+    /*DESIGN NOTE: CONSIDER REMOVING THIS BORDER-RADIUS TO SEE IF IT FIXES THE CUTOUT CLIPPING EFFECT*/
+    border-radius: 50% 50%;
+  }
+
+  .spotlight1HBLLinkedRadGradContainer_Moving {
+    /*border: 8px dotted orange;*/
+    width: 12vw;
+    height: 12vw;
+
+    position: absolute;
+
+    background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, black 60% 100%);
+    /*  transform-origin: var(--S1_HBL_RG_XOffset) var(--S1_HBL_RG_YOffset); */
+    animation-name: S1_HBLRG_SweepAndRotate;
+    animation-duration: var(--S1_SweepTime);
+    transform-origin: 50% 50%;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: forwards;
+    animation-timing-function: linear;
+
+  }
+
+  @keyframes S1_HBLRG_SweepAndRotate {
+
+    0% {
+
+      left: var(--S1_HBL_RG_CurrX);
+      top: var(--S1_HBL_RG_CurrY);
+      transform: rotateZ(var(--S1_HBL_RG_StartRO));
+
+    }
+
+    100% {
+      transform: translateX(var(--S1_HBL_RG_XDiff)) translateY(var(--S1_HBL_RG_YDiff)) rotateZ(var(--S1_HBL_RG_DestRO));
+    }
+
+  }
+
+
+    #spotlight1ClipPath {
+
+    /*  d: path("M150, 10 L40, 200 L260, 200 L260, 200Z");
+
+    d: path("M20, 10 L20, 200 L260, 200 L260, 200Z"); */
+    /*there must be 4 css vars that must be inserted into the string below*/
+
+  }
+
+  .spotlight1ClipPath_Moving {
+    visibility: hidden;
+
+    animation-name: S1_HBLCP_SweepAnim;
+    animation-duration: var(--S1_SweepTime);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: linear;
+
+  }
+
+  @keyframes S1_HBLCP_SweepAnim {
+
+    0% {
+      d: path(var(--S1_HBL_CP_CurrCoordString));
+    }
+
+    100% {
+      /*              TL                        */
+      d: path(var(--S1_HBL_CP_DestCoordString));
+    }
+
+  }
+
+ #spotlight2ClipPath {}
+
+
+  /*End of Spotlight Clip Paths*/
+
+
+  #spotlight1Container {
+
+    /*  border: 2px solid yellow; */
+    width: 15%;
+    height: 100%;
+
+    position: absolute;
+    overflow: visible;
+    left: 0;
+    bottom: 0;
+
+
+
+  }
+
+  .spotlight1NativeRadGradContainer_moving_oneStage {
+    /*border: 3px solid orange; */
+
+    width: 100%;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+    animation-name: S1_Cont_RG_TrigVersionFlex_OneStage;
+    animation-duration: var(--S1_Cont_RG_TrigVersion_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0ms;
+
+    animation-timing-function: var(--S1_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_OneStage {
+
+    0% {
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100% {
+      margin-bottom: var(--S1_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+  .spotlight2NativeRadGradContainer_moving_oneStage {
+    width: 100%;
+    height: 70%;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+    animation-name: S2_Cont_RG_TrigVersionFlex_OneStage;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0ms;
+
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_OneStage_BezierConfig);
+
+  }
+
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_OneStage {
+
+    0% {
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_StartRad);
+    }
+
+    100% {
+      margin-bottom: var(--S2_Cont_RG_TrigVersion_OneStage_EndRad);
+
+    }
+
+  }
+
+
+
+
+
+  .spotlight1NativeRadGradContainer_moving {
+  /*  border: 6px dotted red; */
+    width: 12vw;
+
+    height: 12vw;
+
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+    opacity: 100%;
+
+
+    animation-name: S1_Cont_RG_TrigVersionFlex_Stage1, S1_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S1_Cont_RG_TrigVersion_Stage1Dur), var(--S1_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S1_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S1_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S1_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0% {
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+
+    }
+
+    100% {
+
+
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+
+    }
+
+  }
+
+  @keyframes S1_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0% {
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+      /*margin-bottom: 243.14%;*/
+    }
+
+    100% {
+      /*margin-bottom: var(--S1_Cont_RG_TrigVersion_Stage2EndRad);*/
+      transform: translateY(calc(var(--S1_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+      /* margin-bottom: 318.6%; */
+    }
+
+  }
+
+
+  .spotlight2NativeRadGradContainer_moving {
+
+    width: 12vw;
+    height: 12vw;
+
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0) 60% 100%);
+    opacity: 80%;
+
+    animation-name: S2_Cont_RG_TrigVersionFlex_Stage1, S2_Cont_RG_TrigVersionFlex_Stage2;
+    animation-duration: var(--S2_Cont_RG_TrigVersion_Stage1Dur), var(--S2_Cont_RG_TrigVersion_Stage2Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0ms, var(--S2_Cont_RG_TrigVersion_Stage1Dur);
+
+    animation-timing-function: var(--S2_Cont_RG_TrigVersion_Stage1BezierConfig), var(--S2_Cont_RG_TrigVersion_Stage2BezierConfig);
+
+
+  }
+
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_Stage1 {
+
+    0% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1StartRad)*-1));
+      /*  margin-bottom: 414%; */
+
+    }
+
+    100% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage1EndRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage1EndRad)*-1));
+      /* margin-bottom: 243.14%; */
+    }
+
+  }
+
+  @keyframes S2_Cont_RG_TrigVersionFlex_Stage2 {
+
+    0% {
+      /*margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2StartRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2StartRad)*-1));
+      /*margin-bottom: 243.14%;*/
+    }
+
+    100% {
+      /*  margin-bottom: var(--S2_Cont_RG_TrigVersion_Stage2EndRad); */
+      transform: translateY(calc(var(--S2_Cont_RG_TrigVersion_Stage2EndRad)*-1));
+      /* margin-bottom: 318.6%; */
+    }
+
+  }
+
+
+
+
+  .spotlight1ContainerTrig_OneStage_Moving {
+
+    /*  border: 2px solid red; */
+    width: 15%;
+    height: 100%;
+    bottom: 0%;
+    position: absolute;
+    overflow: visible;
+
+
+
+    animation-name: S1ContTrigOneStageAnim;
+    animation-duration: var(--S1_Cont_OneStage_Dur);
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: normal;
+    animation-delay: 0s;
+
+
+    animation-timing-function: var(--S1_Cont_OneStage_CubicBezierConfig);
+
+
+    transform-origin: 50% 100%;
+
+  }
+
+
+  @keyframes S1ContTrigOneStageAnim {
+
+    0% {
+
+      transform: rotateZ(var(--S1_Cont_OneStage_StartRO));
+
+    }
+
+    100% {
+
+      transform: rotateZ(var(--S1_Cont_OneStage_EndRO));
+
+    }
+
+  }
+
+
+
+
+
+
+
+}
+
+
+
+
+  .spotlight2ContainerTrig_OneStage_Moving{
+
+    /*border: 2px solid red; */
+    width: 15%;
+    height: 100%;
+    bottom: 0%;
+    position: absolute;
+    overflow: visible;
+
+    animation-name: S2ContTrigOneStageAnim;
+      animation-duration: var(--S2_Cont_OneStage_Dur);
+      animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      animation-direction: normal;
+      animation-delay: 0s;
+
+      animation-timing-function: var(--S2_Cont_OneStage_CubicBezierConfig);
+
+        transform-origin: 50% 100%;
+
+  }
+
+  @keyframes S2ContTrigOneStageAnim {
+
+    0%{
+
+      transform: rotateZ(var(--S2_Cont_OneStage_StartRO));
+
+    }
+
+    100%{
+
+      transform: rotateZ(var(--S2_Cont_OneStage_EndRO));
+
+    }
+
+  }
+
+
+
+
+
+  .spotlight1ContainerTrig_Part1Moving{
+    /*border: 10px solid orange;*/
+    width: 15%;
+    height: 100%;
+    bottom: 0%;
+    position: absolute;
+    overflow: visible;
+
+
+
+    animation-name: S1ContTrigPart1Anim, S1ContTrigPart2Anim;
+      animation-duration: var(--S1_Cont_Part1_Dur), var(--S1_Cont_Part2_Dur);
+      animation-iteration-count: 1, 1;
+      animation-fill-mode: forwards, forwards;
+      animation-direction: normal, normal;
+      animation-delay: 0s, var(--S1_Cont_Part1_Dur);
+
+
+
+    /*this one also works good*/
+    animation-timing-function: var(--S1_Cont_Part1_CubicBezierConfig), var(--S1_Cont_Part2_CubicBezierConfig);
+
+
+      transform-origin: 50% 100%;
+      animation-play-state: running;
+
+  }
+
+
+  @keyframes S1ContTrigPart1Anim {
+
+    0%{
+      transform: rotateZ(var(--S1_Cont_Part1_StartRO));
+  /*    border: 10px solid green; */
+
+    }
+
+    100%{
+      transform: rotateZ(var(--S1_Cont_Part1_EndRO));
+    /*  border: 20px dashed purple; */
+    }
+
+  }
+
+  @keyframes S1ContTrigPart2Anim {
+
+    0%{
+      transform: rotateZ(var(--S1_Cont_Part2_StartRO));
+  /*    border: 20px dashed purple; */
+
+    }
+
+    100%{
+      transform: rotateZ(var(--S1_Cont_Part2_EndRO));
+  /*    border: 20px dotted white; */
+    }
+
+  }
+
+.spotlight2ContainerTrig_Part1Moving{
+
+  border: 10px solid orange;
+  width: 15%;
+  height: 100%;
+  bottom: 0%;
+  position: absolute;
+  overflow: visible;
+
+  animation-name: S2ContTrigPart1Anim, S2ContTrigPart2Anim;
+    animation-duration: var(--S2_Cont_Part1_Dur), var(--S2_Cont_Part2_Dur);
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards, forwards;
+    animation-direction: normal, normal;
+    animation-delay: 0s, var(--S2_Cont_Part1_Dur);
+
+    animation-timing-function: var(--S2_Cont_Part1_CubicBezierConfig), var(--S2_Cont_Part2_CubicBezierConfig);
+      transform-origin: 50% 100%;
+
+}
+
+@keyframes S2ContTrigPart1Anim {
+
+  0%{
+    transform: rotateZ(var(--S2_Cont_Part1_StartRO));
+
+  }
+
+  100%{
+    transform: rotateZ(var(--S2_Cont_Part1_EndRO));
+
+  }
+
+}
+
+@keyframes S2ContTrigPart2Anim {
+
+  0%{
+    transform: rotateZ(var(--S2_Cont_Part2_StartRO));
+    border: 2px solid blue;
+  }
+
+  100%{
+    transform: rotateZ(var(--S2_Cont_Part2_EndRO));
+    border: 2px solid blue;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+  #spotlight1NativeRadGradContainer {
+
+    /*border: 2px solid green;*/
+   width: 12vw;
+    height: 12vw;
+    position: absolute;
+    border-radius: 50% 50%;
+    bottom: 0;
+
+
+
+    /*left and top need to be assigned a variable that changes with the angle of the spotlight*/
+  /*  margin-top: var(--S1_Cont_RGYPos); */
+
+
+    background: radial-gradient(ellipse at 50% 50%, rgba(255, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0) 60% 100%);
+    opacity: 100%;
+
+
+  }
+
+
+
+
+  /*Note replace this with actual HTML spotlight where all the elements are HTML elements. You need to add a nice glowing effect that becomes more visible as you pitch the spotlight*/
+  #spotlight1EmitterMock {
+
+    border: 2px solid red;
+    background-color: blue;
+
+    /*
+        height: 4vw;
+        width: 4vw;
+        */
+
+    height: 10%;
+    width: 100%;
+
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+
+    opacity: 40%;
+
+    overflow: visible;
+
+  }
+
+
+
+#spotlight1EmitterAxis{
+
+  width: 1px;
+  height: 1000%;
+  border: 2px solid white;
+  margin: auto;
+
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  right: 50%;
+
+  overflow: visible;
+
+  margin-top: -200%;
+  visibility: hidden;
+
+}
+
+
+
+  #spotlightRaySVGContainer svg {
+    overflow: visible;
+  }
+
+
+  #spotlight1SVGBox{
+  /*  border: 4px dotted yellow; */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  /*  transform: rotate(180deg); */
+    transform-origin: center;
+    pointer-events: none;
+    overflow: visible;
+
+    bottom: 0;
+
+
+  }
+
+  #RayPath2 {
+    fill: url('#Gradient1');
+
+
+
+  }
+
+
+
+  /*START OF SPOTLIGHT2 STYLES*/
+  #spotlight2Container{
+
+  /*  border: 2px solid red; */
+    width: 15%;
+    height: 100%;
+
+    position: absolute;
+    overflow: visible;
+    right: 0;
+    bottom: 0;
+
+
+
+  }
+
+
+  #spotlight2_RayPath{
+
+    fill: url('#spotlight2_Gradient');
+  }
+
+
+  #spotlight2NativeRadGradContainer{
+
+
+
+   width: 12vw;
+    height: 12vw;
+    position: absolute;
+    background: radial-gradient(ellipse at 50% 56%, rgba(255, 247, 20, 0.6) 0% 50%, rgba(0, 0, 0, 0.0) 60% 100%);
+
+    bottom: 0;
+
+
+  }
+
+  #spotlight2SVGBox{
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  /*  transform: rotate(180deg); */
+  transform-origin: center;
+    pointer-events: none;
+    overflow: visible;
+
+    bottom: 0;
+
+  }
+
+
+
+  #spotlight2EmitterMock{
+
+    border: 2px solid red;
+    background-color: blue;
+
+    /*
+        height: 4vw;
+        width: 4vw;
+        */
+
+    height: 10%;
+    width: 100%;
+
+    margin: auto;
+    position: absolute;
+    bottom: 0;
+
+    opacity: 40%;
+
+    overflow: visible;
+
+  }
+
+  #spotlight2EmitterAxis{
+
+    width: 1px;
+    height: 1000%;
+    border: 2px solid white;
+    margin: auto;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    right: 50%;
+
+    overflow: visible;
+
+    margin-top: -200%;
+    visibility: hidden;
+  }
+
+  #spotlight2HBLLinkedRadGradContainer{
+
+  /*  border: 2px dashed orange; */
+    width: 12vw;
+     height: 12vw;
+
+      position: absolute;
+      left: var(--S2_HBL_RG_CurrX);
+      top: var(--S2_HBL_RG_CurrY);
+      background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, rgba(0, 0, 0, 0.5) 60% 100%);
+      opacity: 100%;
+      /*DESIGN NOTE: CONSIDER REMOVING THIS BORDER-RADIUS TO SEE IF IT FIXES THE CUTOUT CLIPPING EFFECT*/
+      border-radius: 50% 50%;
+
+
+  }
+
+
+  .spotlight2HBLLinkedRadGradContainer_Moving{
+
+    /*border: 2px solid yellow;*/
+    width: 12vw;
+      height: 12vw;
+    /*opacity: 100%; */
+    position: absolute;
+
+    /*background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, rgba(255, 0, 132, 1) 60% 100%); */
+      background: radial-gradient(ellipse at 50% 50%, rgba(155, 247, 20, 0.4) 0% 50%, black 60% 100%);
+
+    animation-name: S2_HBLRG_SweepAndRotate;
+    animation-duration: var(--S2_SweepTime);
+    transform-origin: 50% 50%;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-direction: forwards;
+    animation-timing-function: linear;
+
+  }
+
+  @keyframes S2_HBLRG_SweepAndRotate {
+
+    0%{
+
+      left: var(--S2_HBL_RG_CurrX);
+      top: var(--S2_HBL_RG_CurrY);
+      transform: rotateZ(var(--S2_HBL_RG_StartRO));
+
+    }
+
+
+    100%{
+      transform: translateX(var(--S2_HBL_RG_XDiff))
+                translateY(var(--S2_HBL_RG_YDiff))
+                rotateZ(var(--S2_HBL_RG_DestRO))  ;
+
+
+    }
+
+  }
+
+  @keyframes S2_HBLRG_SweepAnim {
+
+    0% {
+
+      left: var(--S2_HBL_RG_CurrX);
+
+      top: var(--S2_HBL_RG_CurrY);
+
+
+    }
+
+
+    100% {
+
+      left: var(--S2_HBL_RG_DestX);
+      top: var(--S2_HBL_RG_DestY);
+
+    }
+
+}
+
+
+  @keyframes S2_HBLRG_RotateAnim {
+
+    0%{
+      transform: rotateZ(var(--S2_HBL_RG_StartRO));
+    }
+
+
+    100%{
+      transform: rotateZ(var(--S2_HBL_RG_DestRO));
+    }
+
+  }
+
+  /*END OF SPOTLIGHT2 STYLES*/
+
+
+
+/*START OF MENU BUTTON HOVER AND CLICK STYLES*/
+/**
+.menuButton_Tier1:active .button_light{
+  border: 2px solid darkred;
+  background-color: red;
+  box-shadow: 5px 5px 2px 5px pink, -5px -5px 2px 5px red;
+  transition-duration: 0.25s;
+}
+*/
+
+
+
+
+/*END OF MENU BUTTON HOVER AND CLICK STYLES*/
+
+
+
+
+
+
+
+
+  /*START OF MOUSE TRACKING ANIMATION STYLES*/
+  .pauseAnimClass{
+  /*  border: 20px solid pink; */
+    animation-play-state: paused;
+  }
+
+  .mouseTrackSweepClass_S1_Cont{
+  /*  border: 2px solid turquoise; */
+
+    animation-name: mouseSweepAnim_S1_Cont;
+    animation-duration: 1.01s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    animation-play-state: running;
+  }
+
+  @keyframes mouseSweepAnim_S1_Cont {
+    0%{
+  /*    border: 2px solid orange; */
+      transform: rotateZ(var(--S1_Cont_PrevFrameMousePosRO));
+    }
+
+    100%{
+    /*  border: 2px solid green; */
+      transform: rotateZ(var(--S1_Cont_MousePosRO));
+    }
+
+  }
+
+  .mouseTrackSweepClass_S2_Cont{
+
+    animation-name: mouseSweepAnim_S2_Cont;
+    animation-duration: 1.01s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+
+    animation-play-state: running;
+  }
+
+  @keyframes mouseSweepAnim_S2_Cont {
+    0%{
+  /*    border: 2px solid orange; */
+      transform: rotateZ(var(--S2_Cont_PrevFrameMousePosRO));
+    }
+
+    100%{
+    /*  border: 2px solid green; */
+      transform: rotateZ(var(--S2_Cont_MousePosRO));
+    }
+
+  }
+
+
+
+  .mouseTrackSweepClass_S1_Cont_RG{
+
+  /*  border: 2px dashed white; */
+    opacity: 0%;
+    animation-name: mouseSweepAnim_S1_Cont_RG;
+    animation-duration: 1.01s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    pointer-events: none;
+
+
+
+  }
+
+  @keyframes mouseSweepAnim_S1_Cont_RG {
+
+    0%{
+      margin-bottom: var(--S1_Cont_RG_PrevFrameMB);
+    }
+
+    100%{
+      margin-bottom: var(--S1_Cont_RG_MousePosMB);
+
+
+    }
+
+  }
+
+  .mouseTrackSweepClass_S2_Cont_RG{
+
+    opacity: 40%;
+    animation-name: mouseSweepAnim_S2_Cont_RG;
+    animation-duration: 1.01s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    pointer-events: none;
+
+
+
+
+  }
+
+  @keyframes mouseSweepAnim_S2_Cont_RG {
+
+    0%{
+
+      margin-bottom: var(--S2_Cont_RG_PrevFrameMB);
+    }
+
+    100%{
+
+      margin-bottom: var(--S2_Cont_RG_MousePosMB);
+
+    }
+
+  }
+
+
+  .mouseTrackSweepClass_S1_HBL_RG{
+
+  /*  border: 2px solid green; */
+    visibility: hidden;
+
+  }
+
+  .mouseTrackSweepClass_S2_HBL_RG{
+    visibility: hidden;
+  }
+
+
+
+
+
+  /*END OF MOUSE TRACKING ANIMATION STYLES*/
