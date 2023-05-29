@@ -12,15 +12,22 @@ var S1_CPT_X; var S1_CPT_Y;
 var S1_Halos_Width; var S1_Halos_Height;
 var currPos_S1 = [];
 var realtimeTrackingAnimInstance_S1;
+var globalS1AxisCoordsForMouseTracking;
+
 
 
 //S2 Globals
 var S2_CPT_X; var S2_CPT_Y;
 var S2_Halos_Width; var S2_Halos_Height;
-
+var globalS2AxisCoordsForMouseTracking;
 
 //adding event listeners for main menu buttons
 initializeActiveMenuButtons();
+initializeClickListenersForMenuButtons();
+
+//globals for button Hover/click related functionality
+var mouseOnButtons = false;
+
 
 window.onload = main;
 
@@ -35,29 +42,21 @@ function main(){
     updatePXRangeOfHBI();
 
     spotlightPatrolLoop_bothSpotlights();
-    
-
-
-
-
 
 
 }
-  
+
 function spotlightPatrolLoop_bothSpotlights() {
 
-    console.log("patrol called");
-
-    console.log("patrol beginng class of spoltight1 : " + document.getElementById("spotlight1Container").className);
-
+ 
     //Dealing with S1
     let trajectory_S1 = createRandTrajectory();
     let startCoords_S1 = trajectory_S1[0];
     let destCoords_S1 = trajectory_S1[1];
 
     //For testing. delete after testing.
-    startCoords_S1 = [400, 220];
-    destCoords_S1 = [600, 490];
+   //let startCoords_S1 = [610, 400];
+   // let destCoords_S1 = [1200, 600];
 
     let sweepTime_S1 = generateRandSweepTime(startCoords_S1, destCoords_S1);
     let axisSourceCoords_S1 = getAxisSourceCoords("spotlight1EmitterMock");
@@ -86,14 +85,14 @@ function spotlightPatrolLoop_bothSpotlights() {
 
 
 
-    //Now dealing with spotlight2 
+    //Now dealing with spotlight2
     let trajectory_S2 = createRandTrajectory();
     let startCoords_S2 = trajectory_S2[0];
     let destCoords_S2 = trajectory_S2[1];
 
     //For testing. Delete after testing
-    startCoords_S2 = [820, 250];
-    destCoords_S2 = [740, 600];
+    //let startCoords_S2 = [820, 250];
+    //let destCoords_S2 = [740, 600];
 
     let sweepTime_S2 = generateRandSweepTime(startCoords_S2, destCoords_S2);
     let axisSourceCoords_S2 = getAxisSourceCoords("spotlight2EmitterMock");
@@ -194,30 +193,81 @@ function twoStageTrajectoryProgramLoop_S2(startCoords_S2, destCoords_S2, axisSou
 }
 
 
+
+//Will initialize the click listeners for menu buttons
+function initializeClickListenersForMenuButtons(){
+
+  
+    //Activating the main menu buttons (tier 1)
+    let tier1Buttons = document.querySelectorAll(".menuButton_Tier1");
+    for (let x = 0; x < tier1Buttons.length; x = x + 1) {
+
+        tier1Buttons[x].addEventListener("mousedown", function(event){
+            
+            //toggling buttonLight active styles
+            let buttonLight = event.target.getElementsByTagName("div")[0];
+            buttonLight.classList.toggle("ButtonLightPostClick");
+
+            //enabling the top buttons
+            //navigating to neightboring div
+            //The positions can differ based on which side of the HBI we are on. So we need to do some try and catch
+            let currPanel = event.target.parentElement;
+            let neighboringPanel;
+
+            if((currPanel.previousElementSibling)){
+              
+                neighboringPanel = currPanel.previousElementSibling;
+            }
+
+            else if(currPanel.nextSibling){
+                neighboringPanel = currPanel.nextElementSibling;
+            }
+
+           //console.log("neightboringPanel : " + neighboringPanel.children.className);
+            //navigating to the Tier 2 buttons
+            let tier2Buttons = neighboringPanel.children;
+
+            for(let y=0; y<tier2Buttons.length; y=y+1){
+                tier2Buttons[y].classList.toggle("Tier2Button_Expanded");
+            }
+
+           // neighboringPanel.children[x].classList.toggle("Tier2Button_Expanded");
+
+
+        });
+
+
+    }
+
+}
+
+
+
+
 //Will add event listeners to all the main menu buttons to make them detect mouseEnters
 function initializeActiveMenuButtons(){
-    
+
     //=======================TIER 1 BUTTONS CODE START========================================
     //Activating the main menu buttons (tier 1)
     let tier1Buttons = document.querySelectorAll(".menuButton_Tier1");
     for(let x=0; x<tier1Buttons.length; x=x+1){
 
         let animateInstance;
-        
+
         //Pause the styles on entry into button
-            
+
         tier1Buttons[x].addEventListener("mouseenter", pauseSpotlightsAnims_CSSTrigger);
-        tier1Buttons[x].addEventListener("focus", pauseSpotlightsAnims_CSSTrigger);
-        
-        //Engage live tracking 
+        tier1Buttons[x].addEventListener("focusin", pauseSpotlightsAnims_CSSTrigger);
+
+        //Engage live tracking
         tier1Buttons[x].addEventListener("mousemove", triggerTrackingSpotlightsAnim_CSSTrigger);
-        
+
         //resume styles on exit
         //EDIT: YOU HAVE TO ADD AN END CURRENT ANIMS OPERATION BEFORE RESTARTING THE SPOTLIGHTS
         tier1Buttons[x].addEventListener("mouseleave", resumeSpotlightsAnims_CSSTrigger);
         tier1Buttons[x].addEventListener("focusout", resumeSpotlightsAnims_CSSTrigger);
 
-        
+
     }
 
 
@@ -231,25 +281,25 @@ function initializeActiveMenuButtons(){
         });
         currPos_S1[0] = e.x;
         currPos_S1[1] = e.y;
-       
+
       //  document.getElementById("spotlight1Container").style.border = "10px solid lawngreen";
 
         console.log("realtimeTrackingAnimInstance_S1: " + typeof(realtimeTrackingAnimInstance_S1));
     }
 
-    
-    
+
+
 
     //=======================TIER 1 BUTTONS CODE END========================================
 
 
 
-      
+
     }
 
 
 function engageSpotlightRealtimeTracking(e){
-    
+
 
 
 }
@@ -298,13 +348,13 @@ function generateRandSweepTime(startPos, destPos){
 function getAxisSourceCoords(html_id){
 
     let emitter = document.getElementById(html_id);
-    
+
     let emitterWidth = emitter.getBoundingClientRect().width;
     let emitterXPos =  ((emitter.getBoundingClientRect().left) + window.scrollX) + (emitterWidth/2);
 
     //Possible Bug Source: If you test this emitterYPos with the squarePointer, you'll find that it lands a little below where the axisSource visually renders. This could be due to the margins of all the other nearby elements displacing the point. Investigate this and take this into coinsideration
-    let emitterYPos = (emitter.getBoundingClientRect().bottom) + window.scrollY;
-    
+    let emitterYPos = ((emitter.getBoundingClientRect().bottom) + window.scrollY);
+
     return [emitterXPos, emitterYPos];
 
 
@@ -315,17 +365,171 @@ function getAxisSourceCoords(html_id){
 
 //----START OF TRIG FUNCS-------
 
+function createRandTrajectory(){
+
+    let startCoords = generateRandCoord();
+
+    let destCoords = generateRandCoord();
+
+    return [startCoords, destCoords];
+
+
+    //will return a randCoord within the current px range of the HBI
+    function generateRandCoord() {
+
+        let xCoord = (Math.random() * (pxRangeOfHBI[0][1] - pxRangeOfHBI[0][0])) + pxRangeOfHBI[0][0];
+        let yCoord = (Math.random() * (pxRangeOfHBI[1][1] - pxRangeOfHBI[1][0])) + pxRangeOfHBI[1][0];
+
+        return [xCoord, yCoord];
+
+    }
+
+
+
+}
+
+
 
 //Will create a random trajectory that forms an appropriate triangle between the startPos, DestPos, and axisSourceCoords (the triangle must be a type where it is possible to draw the PerpLine and form point D)
-function createRandTrajectory(){
+function createRandTrajectory_QuadrantVersion(){
 
     //keep looping and generating rand coords until they pass the triangle test
     let startCoords = generateRandCoord();
-    let destCoords = generateRandCoord();
 
-    //to do : insert triangle test here.
+    let axisSourceCoords = getAxisSourceCoords("spotlight1EmitterMock");
+
+    let startCoords_zoneNum = checkZone(startCoords, pxRangeOfHBI);
+
+    let destCoords_assignedZoneNum = assignDestZone(startCoords_zoneNum);
+
+    let finalizedDestCoords;
+    let quadDivisionLevel = 0;
+    let workingRange = pxRangeOfHBI;
+
+    let twoStageTriangleTest = "";
+
+    let possibleDestCoords;
+
+    while(twoStageTriangleTest != "TwoStage"){
+
+        let currQuadRange = splitIntoQuads(workingRange, quadDivisionLevel, destCoords_assignedZoneNum);
+
+        possibleDestCoords = generateRandCoordAccordingToRange(currQuadRange);
+
+        //quadDivisionLevel = quadDivisionLevel + 1;
+        console.log("quaddison lvel: " + quadDivisionLevel);
+
+        twoStageTriangleTest = checkTrajectoryModelType(startCoords, possibleDestCoords, axisSourceCoords);
+    }
+
+    let destCoords = possibleDestCoords;
+
+
 
     return [startCoords, destCoords];
+
+    //Will take in a range (XMin, XMax, YMin, YMax) and a division level and recursively split the range into quads bassed on the division level. Will select which quad to further divide by the target Quad number
+    function splitIntoQuads(range, quadDivisionLevel, targetQuad){
+
+        let finalizedRange;
+
+        let currRange = range;
+
+        for(let x=0; x<quadDivisionLevel; x=x+1){
+
+            let currXMid = currRange[0][0] + ((currRange[0][1] - currRange[0][0])/2);
+            let currYMid = currRange[1][0] + ((currRange[1][1] - currRange[1][0]) / 2);
+
+            switch(targetQuad){
+                case 1: currRange[0][0] = currRange[0][0];
+                        currRange[0][1] = currXMid;
+                        currRange[1][0] = currRange[1][0];
+                        currRange[1][1] = currYMid; break;
+
+                case 2: currRange[0][0] = currXMid;
+                        currRange[0][1] = currRange[0][1];
+                        currRange[1][0] = currRange[1][0];
+                        currRange[1][1] = currYMid; break;
+
+                case 3: currRange[0][0] = currRange[0][0];
+                        currRange[0][1] = currXMid;
+                        currRange[1][0] = currYMid;
+                        currRange[1][1] = currRange[1][1]; break;
+
+
+                case 4: currRange[0][0] = currXMid;
+                        currRange[0][1] = currRange[0][1];
+                        currRange[1][0] = currYMid;
+                        currRange[1][1] = currRange[1][1]; break;
+
+            }
+
+        }
+        return currRange;
+    }
+
+    function generateRandCoordAccordingToRange(range){
+
+        let xCoord = (Math.random() * (range[0][1] - range[0][0])) + range[0][0];
+        let yCoord = (Math.random() * (range[1][1] - range[1][0])) + range[1][0];
+
+        return [xCoord, yCoord];
+
+    }
+
+    //Will take in coords and a range, and return which zone those coords fall into (top-left: quad1, top-right: quad2, bott-left: quad3, bott-right: quad4)
+    function checkZone(coords, range){
+        //remember that the y-value increases as we go from top to down.
+        let assignedQuadNum = 0;
+
+        let midX = range[0][0] + ((range[0][1] - range[0][0])/2);
+        let midY = range[1][0] + ((range[1][1] - range[1][0]) / 2);
+
+        //left
+        if(coords[0] < (midX)){
+            //up
+            if(coords[1] < midY){
+                assignedQuadNum = 1;
+            }
+            else if(coords[1] > midY){
+                assignedQuadNum = 3;
+            }
+        }
+
+        //right
+        else if(coords[0] > midX){
+            //up
+            if (coords[1] < midY) {
+                assignedQuadNum = 2;
+            }
+            else if (coords[1] > midY) {
+                assignedQuadNum = 4;
+            }
+
+        }
+
+        return assignedQuadNum;
+
+    }
+
+    //will assign the diagnol zone based on what zone is entered
+    function assignDestZone(startCoords_zoneNum){
+
+        let diagnolZone = 0;
+
+        switch (startCoords_zoneNum){
+
+            case 1: diagnolZone = 4; break;
+            case 2: diagnolZone = 3; break;
+            case 3: diagnolZone = 2; break;
+            case 4: diagnolZone = 1; break;
+        }
+
+        return diagnolZone;
+
+
+
+    }
 
 }
 
@@ -336,11 +540,13 @@ function calcContRGFlexingData_OneStage(trigTravelModelData_OneStage, totalDurat
 
     let cptTrajectoryLine = trigTravelModelData_OneStage[2];
 
+    let triangleHeight = trigTravelModelData_OneStage[4];
+
     let cptLinearVel = getCPTLinearVel(cptTrajectoryLine, totalDuration);
 
     let cptTrajectory_Dur = getDurOfJourney(cptTrajectoryLine, cptLinearVel);
 
-    let contRGFlex_BezierConfig = genBezConfigForContRGFlex_OneStage(startRad, destRad);
+    let contRGFlex_BezierConfig = genBezConfigForContRGFlex_OneStage(startRad, destRad, triangleHeight);
 
 
     return [cptTrajectory_Dur, contRGFlex_BezierConfig];
@@ -357,9 +563,7 @@ function calcContRGFlexingData_OneStage(trigTravelModelData_OneStage, totalDurat
         return dur;
     }
 
-    function genBezConfigForContRGFlex_OneStage(startRad, endRad) {
-
-
+    function genBezConfigForContRGFlex_OneStage(startRad, endRad, triangleHeight) {
 
         let config = "";
         let discrepancyRaw = startRad - endRad;
@@ -368,9 +572,17 @@ function calcContRGFlexingData_OneStage(trigTravelModelData_OneStage, totalDurat
         let discrepancy = discrepancyRaw / ((startRad + endRad) / 2);
         // discrepancy = Math.abs(discrepancy);
 
+
+        let discrepancyDivisor = (endRad/triangleHeight);
+       // discrepancyDivisor = Math.floor(discrepancyDivisor);
+        discrepancyDivisor = discrepancyDivisor * 4;
+
+        //console.log("the discrepancyDivisor: " + discrepancyDivisor);
+       // console.log("the tringle height: " + triangleHeight);
+       // console.log("the end rad: " + endRad);
         //splitting the discrepancy up between 2 points (otherwise its effect will be multiplied)
         //Common sense would tell me to divide by 2 since we are applying it on 2 points, however dividing by 3 has a better effect. I AM NOT SURE WHY. This needs to be investigated
-        discrepancy = discrepancy / 4;
+        discrepancy = discrepancy / discrepancyDivisor;
 
         //placing p1 and p2 at their proportional points
         let p1 = [0.33, 0.33]; let p2 = [0.66, 0.66];
@@ -479,7 +691,7 @@ function calcContRGFlexingData_TwoStage(trigTravelModelData_TwoStage, totalDurat
         yDisp = Math.abs(yDisp);
 
 
-    
+
 
         //deciding whether to add or subtract the disps based on accelerate or decelerate
         if (discrepancy > 0) {
@@ -517,7 +729,7 @@ function calcContTrigAccelerationData_OneStage(trigTravelModelData_OneStage, tot
 
     let startRad = trigTravelModelData_OneStage[0][0];
     let destRad = trigTravelModelData_OneStage[0][1];
-    
+
     let cptTrajectoryLine = trigTravelModelData_OneStage[2];
 
 
@@ -603,7 +815,7 @@ function calcContTrigAccelerationData_OneStage(trigTravelModelData_OneStage, tot
 }
 
 
-//Will calc the bezier configs and durs for the stages that cont has to go through. 
+//Will calc the bezier configs and durs for the stages that cont has to go through.
 function calcContTrigAccelerationData_TwoStage(trigTravelModelData, totalDuration){
 
     let startRad = trigTravelModelData[0][0];
@@ -615,7 +827,7 @@ function calcContTrigAccelerationData_TwoStage(trigTravelModelData, totalDuratio
     let cptTrajectoryLine = trigTravelModelData[3];
 
 
-    
+
     let cptLinearVel = getCPTLinearVel(cptTrajectoryLine, totalDuration);
 
     let cptTrajectory_part1Dur = getDurOfJourney(cpt_startPos_to_pointD, cptLinearVel);
@@ -623,7 +835,7 @@ function calcContTrigAccelerationData_TwoStage(trigTravelModelData, totalDuratio
     let contRot_part1BezierConfig = genBezConfigForContAcc_TwoStage(startRad, axisSource_to_pointD_rad);
 
     let cptTrajectory_part2Dur = getDurOfJourney(cpt_pointD_to_destPos, cptLinearVel);
-    
+
 
     let contRot_part2BezierConfig = genBezConfigForContAcc_TwoStage(axisSource_to_pointD_rad, destRad);
 
@@ -681,7 +893,7 @@ function calcContTrigAccelerationData_TwoStage(trigTravelModelData, totalDuratio
         }
 
         else if (discrepancy > 0) {
-            
+
             p1[0] = p1[0] + xDisp;
             p1[1] = p1[1] - yDisp;
 
@@ -702,16 +914,16 @@ function calcContTrigAccelerationData_TwoStage(trigTravelModelData, totalDuratio
 }
 
 
-//Will calculate all the data that comprises the 2 stage travel model (with point D) that is used to model the acceleration of the cont and the flexing of the Cont_RG 
+//Will calculate all the data that comprises the 2 stage travel model (with point D) that is used to model the acceleration of the cont and the flexing of the Cont_RG
 //Currently there are 2 variations of this function. Refer to the project folder
 //Will return this data in the format [ [stage1StartRadius, Stage1EndRadius(Also acts as Stage2StartRadius), Stage2EndRadius], [Stage1StartRO, Stage1EndRO, Stage2EndRO], PointDCoords, CPTTrajectoryLine, cpt_startPos_to_pointD, cpt_pointD_to_destPos, "TwoStage"]. That last string that it returns ("TwoStage") is used to indicate to other functions what kind of trajectory it is
 function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoords){
 
     return calcTrigTravelModelData_TwoStage_QuickDirtyMethod(startCoords, destCoords, axisSourceCoords);
 
-    //this is just the quickDirtymethod variation. 
+    //this is just the quickDirtymethod variation.
     function calcTrigTravelModelData_TwoStage_QuickDirtyMethod(startCoords, destCoords, axisSourceCoords){
-    
+
     //finding startRadius
     let startRadius = getRadius(startCoords, axisSourceCoords);
 
@@ -720,11 +932,11 @@ function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoo
     let cptTrajectoryLine = getRadius(destCoords, startCoords);
 
     let angleX = Math.acos(((Math.pow(cptTrajectoryLine, 2) + Math.pow(startRadius, 2)) - (Math.pow(destRadius, 2))) / (2 * cptTrajectoryLine * startRadius));
-       
+
     //console.log("ANGLEX: " + (angleX * (180/Math.PI)));
 
     //testing here with square pointer
-    
+
 
     //step 2: get side cpt_startPos_to_pointD (point D is where the perpendicular line hits the CPT trajectory line)
     let cpt_startPos_to_pointD = Math.cos(angleX) * startRadius;
@@ -738,7 +950,7 @@ function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoo
       //  console.log("COUNTER CLOCKWISE DETECTED");
     }
 
-    
+
     let pointDCoords = [(startCoords[0] + pointDDisps[0]), (startCoords[1] + pointDDisps[1])];
 
     //console.log("pointDDisps: " + pointDDisps);
@@ -747,21 +959,21 @@ function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoo
 
     //Test verify coordinates with square pointers
     // console.log("startradius:: " + startRadius + " , pointDRadius: " + pointDRadius + " , destRadius: " + destRadius);
-    activateStartPosSquarePointer(startCoords[0], startCoords[1]);
-    activateDestPosSquarePointer(destCoords[0], destCoords[1]); 
-    activatePointDPosSquarePointer(pointDCoords[0], pointDCoords[1]);
-    
-  
+   // activateStartPosSquarePointer(startCoords[0], startCoords[1]);
+   // activateDestPosSquarePointer(destCoords[0], destCoords[1]);
+   // activatePointDPosSquarePointer(pointDCoords[0], pointDCoords[1]);
+
+
     let startRO = getRO(startCoords, axisSourceCoords);
     let pointDRO = getRO(pointDCoords, axisSourceCoords);
     let destRO = getRO(destCoords, axisSourceCoords);
-    
+
     let cpt_pointD_to_destPos = cptTrajectoryLine - cpt_startPos_to_pointD;
 
     //console.log(" startPOs_topointD: " + cpt_startPos_to_pointD + " , pointD_to_dest: " + cpt_pointD_to_destPos);
-    
+
     return [ [startRadius, pointDRadius, destRadius], [startRO, pointDRO, destRO], pointDCoords, cptTrajectoryLine, cpt_startPos_to_pointD, cpt_pointD_to_destPos, "TwoStage"];
-    
+
 
     //Will check the trajectory direction and type
     //Note: This needs further evaluation. Are you sure you're considering all the conditions which determines whether a path is clockwise or counter clockwise?. Take the axisSourceCoords into account. Maybe you might need to take the axisSourceCoords into account for this to work for both spotlights
@@ -770,8 +982,8 @@ function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoo
 
         let trajectoryType = "Clockwise";
 
-        //checking for spotlight 2 
-        
+        //checking for spotlight 2
+
         if(destCoords[0] < startCoords[0]){
             if(destCoords[1] > startCoords[1]){
                 trajectoryType = "Counter-Clockwise";
@@ -790,7 +1002,7 @@ function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoo
     function getPointDDisps(startCoords, destCoords, cpt_startPos_to_pointD){
 
         let angleJ = Math.atan( (destCoords[1] - startCoords[1]) /  (destCoords[0] - startCoords[0]) );
-      
+
         let yDisp = Math.sin(angleJ) * cpt_startPos_to_pointD;
         let xDisp = Math.cos(angleJ) * cpt_startPos_to_pointD;
 
@@ -818,7 +1030,7 @@ function calcTrigTravelModelData_TwoStage(startCoords, destCoords, axisSourceCoo
 function getRadius(coordPoint, axisPoint) {
 
     let hypSquared = Math.pow((coordPoint[0] - axisPoint[0]), 2) + Math.pow((axisPoint[1] - coordPoint[1]), 2);
-    
+
     let hyp = Math.sqrt(hypSquared);
 
     return hyp;
@@ -842,9 +1054,9 @@ function getRO(coordPoint, axisPoint){
 //Will return data in the format [ [StartRadius, EndRadius], [StartRO, EndRO], CPTTrajectoryLine, "OneStage"]. That last string that it returns ("OneStage") is used to indicate to other functions what kind of trajectory it is.
 function calcTrigTravelModelData_OneStage(startCoords, destCoords, axisSourceCoords){
 
-    //finding startRadius 
+    //finding startRadius
     let startRadius = getRadius(startCoords, axisSourceCoords);
-    
+
     let destRadius = getRadius(destCoords, axisSourceCoords);
 
     let cptTrajectoryLine = getRadius(destCoords, startCoords);
@@ -853,7 +1065,32 @@ function calcTrigTravelModelData_OneStage(startCoords, destCoords, axisSourceCoo
 
     let destRO = getRO(destCoords, axisSourceCoords);
 
-    return [ [startRadius, destRadius], [startRO, destRO], cptTrajectoryLine, "OneStage"];
+    //calcing the height of the triangle (using Emitter_to_DestPos line as the base of the triangle)
+    let destCoord_to_StartCoords = getRadius([startCoords[0], startCoords[1]], [destCoords[0], destCoords[1]]);
+
+    let baseOfTriangle;
+    let oppSideOfTriangle;
+
+    //We have to add a conditional over here. The base of the triangle we use to calculate the height will depend on which is the longer side - axisSrc_to_dest or axisSrc_to_start
+    if(startRadius <  destRadius){
+        baseOfTriangle = destRadius;
+        oppSideOfTriangle = startRadius;
+    }
+
+    else{
+        baseOfTriangle = startRadius;
+        oppSideOfTriangle = destRadius;
+    }
+
+    let startCoordsPointAngle = Math.acos((Math.pow(destCoord_to_StartCoords, 2) + Math.pow(oppSideOfTriangle, 2) - Math.pow(baseOfTriangle, 2)) / (2 * oppSideOfTriangle * destCoord_to_StartCoords));
+
+    let triangleHeight = oppSideOfTriangle * Math.sin(startCoordsPointAngle);
+
+
+
+
+
+    return [[startRadius, destRadius], [startRO, destRO], cptTrajectoryLine, "OneStage", triangleHeight];
 
 }
 
@@ -886,24 +1123,24 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S1(startCoords, destCoords, t
 
     function triggerSweepAndRotateForHBLRG_TwoStage_S1_CSSTrigger(startCoords, destCoords, startRO, destRO, sweepTime){
 
-       
 
-        //we need to compensate for its current position in the DOM and subtract those offset pixels. 
+
+        //we need to compensate for its current position in the DOM and subtract those offset pixels.
         let totalLeftOffset_PX = calcTotalLeftPXOffsetOfNestedElement("#spotlight1HBLLinkedRadGradContainer");
         let totalTopOffset_PX = calcTotalTopPXOffsetOfNestedElement("#spotlight1HBLLinkedRadGradContainer");
 
         //The pixel values we assign to the HBL_RG will start from its parent's position. So we need to subtract that out so that it will be relative to the entire HBI
         let topOffsetByImmediateContainerTop = calcTopOffsetByImmediateContainer("#spotlight1HBLLinkedRadGradContainer");
         let leftOffsetByImmediateContainerLeft = calcLeftOffsetByImmediateContainer("#spotlight1HBLLinkedRadGradContainer");
-        
-       
+
+
         //subtracting the offset that is caused by the parent node
         startCoords[0] =  startCoords[0] - (leftOffsetByImmediateContainerLeft);
         startCoords[1] =  startCoords[1] - (topOffsetByImmediateContainerTop);
 
         destCoords[0] = destCoords[0] - (leftOffsetByImmediateContainerLeft);
         destCoords[1] = destCoords[1] - topOffsetByImmediateContainerTop;
-        
+
 
 
         //And now finally implementing the final offsets (half the width and half the height)
@@ -918,7 +1155,7 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S1(startCoords, destCoords, t
 
         let xDiff = destCoords[0] - startCoords[0];
         let yDiff = destCoords[1] - startCoords[1];
-        
+
 
         //Update CSS variables
         root.style.setProperty('--S1_HBL_RG_CurrX', (startCoords[0] + "px"));
@@ -944,7 +1181,7 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S1(startCoords, destCoords, t
         let S1_HBLRG = document.querySelector("#spotlight1HBLLinkedRadGradContainer");
         S1_HBLRG.classList.toggle("spotlight1HBLLinkedRadGradContainer_Moving");
 
-        /** 
+        /**
         console.log("reading css: " + root.style.getPropertyValue('--S1_HBL_RG_CurrX'));
         console.log("reading css: " + root.style.getPropertyValue('--S1_HBL_RG_CurrY'));
         console.log("reading css: " + root.style.getPropertyValue('--S1_HBL_RG_DestX'));
@@ -970,7 +1207,7 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S1(startCoords, destCoords, t
         let cptOffsetX = S1_Halos_Width / 2;
         let cptOffsetyY = S1_Halos_Height / 2;
 
-     
+
         startPoint.x = startCoords[0] + (0);
         startPoint.y = startCoords[1] + (0);
 
@@ -990,19 +1227,19 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S1(startCoords, destCoords, t
         let destPointConverted = destPoint.matrixTransform(ClipPathSVGCont.getCTM().inverse());
 
 
-        //dividing the halos by 2 because we are setting radius not diameter 
+        //dividing the halos by 2 because we are setting radius not diameter
         s1ClipPathCircle.setAttribute("rx", S1_Halos_Width/2);
         s1ClipPathCircle.setAttribute("ry", S1_Halos_Height/2);
-        
+
        // s1ClipPathCircle.setAttribute("fill", "freeze");
-        
+
 
 
 
         //dealing with the animation
-        
+
         //Dealing with translation
-         
+
         let animTagX = document.querySelector("#spotlight1ClipPath_AnimTagX");
         animTagX.setAttribute("repeatCount", "1");
         animTagX.setAttribute("attributeName", "cx");
@@ -1023,7 +1260,7 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S1(startCoords, destCoords, t
         animTagY.setAttribute("dur", sweepTime + "s");
         animTagY.setAttribute("fill", "freeze");
         animTagY.beginElement();
-        /** 
+        /**
         let animTagTransform = document.querySelector("#spotlight1ClipPath_AnimTransformTag3");
 
         animTagTransform.setAttribute("from", (startPoint.x + (S1_Halos_Width / 2)) + " " + (startPoint.y + (S1_Halos_Height / 2) ))
@@ -1058,19 +1295,19 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
 
     function triggerSweepAndRotateForHBLRG_TwoStage_S2_CSSTrigger(startCoords, destCoords, startRO, destRO, sweepTime){
 
-       
+
         //The pixel values we assign to the HBL_RG will start from its parent's position. So we need to subtract that out so that it will be relative to the entire HBI
         let topOffsetByImmediateContainerTop = calcTopOffsetByImmediateContainer("#spotlight2HBLLinkedRadGradContainer");
         let leftOffsetByImmediateContainerLeft = calcLeftOffsetByImmediateContainer("#spotlight2HBLLinkedRadGradContainer");
 
-        
+
         //subtracting the offset that is caused by the parent node
         startCoords[0] = startCoords[0] - leftOffsetByImmediateContainerLeft;
         startCoords[1] = startCoords[1] - topOffsetByImmediateContainerTop;
 
         destCoords[0] = destCoords[0] - leftOffsetByImmediateContainerLeft;
         destCoords[1] = destCoords[1] - topOffsetByImmediateContainerTop;
-        
+
 
 
         //And now finally implementing the final offsets (half the width and half the height)
@@ -1085,7 +1322,7 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
 
         let xDiff = destCoords[0] - startCoords[0];
         let yDiff = destCoords[1] - startCoords[1];
-     
+
 
 
         //Update CSS variables
@@ -1098,19 +1335,19 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
         root.style.setProperty('--S2_HBL_RG_StartRO', (startRO + "rad"));
         root.style.setProperty('--S2_HBL_RG_DestRO', (destRO + "rad"));
 
-        /** 
+        /**
         root.style.setProperty('--S2_HBL_RG_XOffset', ((cptOffsetX*2) + "px"));
         root.style.setProperty('--S2_HBL_RG_YOffset', ((cptOffsetyY*2) + "px"));
         */
 
         root.style.setProperty('--S2_HBL_RG_XDiff', (xDiff + "px"));
         root.style.setProperty('--S2_HBL_RG_YDiff', (yDiff + "px"));
-      
+
 
 
         root.style.setProperty('--S2_SweepTime', (sweepTime + "s"));
 
-      
+
 
         let S1_HBLRG = document.querySelector("#spotlight2HBLLinkedRadGradContainer");
         S1_HBLRG.classList.toggle("spotlight2HBLLinkedRadGradContainer_Moving");
@@ -1133,7 +1370,7 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
         let cptOffsetX = S2_Halos_Width / 2;
         let cptOffsetyY = S2_Halos_Height / 2;
 
-    
+
 
         startPoint.x = startCoords[0] + (0);
         startPoint.y = startCoords[1] + (0);
@@ -1169,6 +1406,8 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
         animTagX.setAttribute("from", startPoint.x + S2_Halos_Width/2);
         animTagX.setAttribute("to", destPoint.x + S2_Halos_Height/2);
         animTagX.setAttribute("dur", sweepTime + "s");
+        animTagX.setAttribute("fill", "freeze");
+        animTagX.beginElement();
 
         let animTagY = document.querySelector("#spotlight2ClipPath_AnimTagY");
         animTagY.setAttribute("repeatCount", "1");
@@ -1177,8 +1416,10 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
         animTagY.setAttribute("from", startPoint.y + S2_Halos_Height/2);
         animTagY.setAttribute("to", destPoint.y + S2_Halos_Height/2);
         animTagY.setAttribute("dur", sweepTime + "s");
+        animTagY.setAttribute("fill", "freeze");
+        animTagY.beginElement();
 
-        /** 
+        /**
 
         //dealing with rotation
         let animTagRotate = document.querySelector("#spotlight2ClipPath_AnimTransformTagRotate");
@@ -1206,11 +1447,11 @@ function triggerSweepAndRotateForExtHalos_TwoStage_S2(startCoords, destCoords, t
 
 //Important Note: The SVG container of the ray is using an upside down coord system, so you need to think in terms of upside down. Update documentation with this.
 function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaqueShellOffset){
-   
+
     let s1RaySVGCont = document.getElementById("spotlight1SVGBox");
 
     let axisSrcCoords = getAxisSourceCoords("spotlight1EmitterMock");
-    
+
     let emitterWidth = document.getElementById("spotlight1EmitterMock").getBoundingClientRect().width;
 
     //BL=Bottom left, TL = Top Left
@@ -1222,13 +1463,13 @@ function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaq
 
 
 
-  
+
     let Ray_BR = s1RaySVGCont.createSVGPoint();
     Ray_BR.x = axisSrcCoords[0];
     Ray_BR.y = axisSrcCoords[1];
     let Ray_BR_Converted = Ray_BR.matrixTransform(s1RaySVGCont.getCTM());
 
-    
+
     //TO DO: You need to find the TL and TR positions by considering the Stage1Radius, and half of the S1_Halos_Width. Using that make a triangle and calculate the disps
     let Ray_TL = s1RaySVGCont.createSVGPoint();
     Ray_TL.x = axisSrcCoords[0] - (S1_Halos_Width/2);
@@ -1244,7 +1485,7 @@ function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaq
     let Ray_CP1 = s1RaySVGCont.createSVGPoint();
     Ray_CP1.x = axisSrcCoords[0] - (S1_Halos_Width/3);
     Ray_CP1.y = axisSrcCoords[1] - trigTravelData[0][0];
-    
+
     let Ray_CP1_Converted = Ray_CP1.matrixTransform(s1RaySVGCont.getCTM());
 
 
@@ -1252,19 +1493,19 @@ function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaq
     //Setting the stage1Start Coords (remember we are working upside down so we need to factor in the container's height)
     Ray_BL.x = ((s1RaySVGCont.clientWidth)/2)-2; Ray_BL.y = s1RaySVGCont.clientHeight;
     Ray_BR.x = ((s1RaySVGCont.clientWidth) / 2) + 2; Ray_BR.y = s1RaySVGCont.clientHeight;
-   
+
     Ray_TR.x = ((s1RaySVGCont.clientWidth/2) + (S1_Halos_Width/2)) - extHalosOpaqueShellOffset;
      Ray_TR.y = (s1RaySVGCont.clientHeight) - trigTravelData[0][0];
-   
+
      Ray_TL.x = ((s1RaySVGCont.clientWidth/2) - (S1_Halos_Width/2)) + extHalosOpaqueShellOffset;
      Ray_TL.y = (s1RaySVGCont.clientHeight) - trigTravelData[0][0];
 
-    
+   // console.log("DrawAndAnimate: S1_Halos_Width: " + S1_Halos_Width);
     Ray_CP1.x = (((s1RaySVGCont.clientWidth) / 2));
      Ray_CP1.y = ((s1RaySVGCont.clientHeight) -trigTravelData[0][0]) + (S1_Halos_Height/2) + extHalosOpaqueShellOffset;
-   
+
     let stage1StartRayString = createRayString_OneControlPoint(Ray_BL, Ray_BR, Ray_TR, Ray_TL, Ray_CP1);
-    
+
     //creating new svg points for stage1End
     let Ray_BL_Stage1End = s1RaySVGCont.createSVGPoint();
     Ray_BL_Stage1End.x = ((s1RaySVGCont.clientWidth) / 2) - 2; Ray_BL_Stage1End.y = s1RaySVGCont.clientHeight;
@@ -1282,8 +1523,8 @@ function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaq
     Ray_CP1_Stage1End.x = ((s1RaySVGCont.clientWidth/2));
      Ray_CP1_Stage1End.y = ((s1RaySVGCont.clientHeight) - trigTravelData[0][1]) + (S1_Halos_Height/2) + extHalosOpaqueShellOffset;
 
-  
-    
+
+
     let stage1EndRayString = createRayString_OneControlPoint(Ray_BL_Stage1End, Ray_BR_Stage1End, Ray_TR_Stage1End, Ray_TL_Stage1End, Ray_CP1_Stage1End);
 
 
@@ -1327,9 +1568,9 @@ function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaq
     Ray_CP1_Stage2End.x = ((s1RaySVGCont.clientWidth/2));
      Ray_CP1_Stage2End.y = ((s1RaySVGCont.clientHeight) - trigTravelData[0][2]) + (S1_Halos_Height / 2) + extHalosOpaqueShellOffset;
 
-    
 
-    //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height) 
+
+    //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height)
     let stage2EndRayString = createRayString_OneControlPoint(Ray_BL_Stage2End, Ray_BR_Stage2End, Ray_TR_Stage2End, Ray_TL_Stage2End, Ray_CP1_Stage2End);
 
 
@@ -1338,27 +1579,33 @@ function drawAndAnimateRay_TwoStage_S1(flexingData, trigTravelData, extHalosOpaq
     s1RayAnimateTag1.setAttribute("repeatCount", "1");
     s1RayAnimateTag1.setAttribute("calcMode", "linear");
     //  s1RayAnimateTag1.setAttribute("d", startPosRayString);
-    s1RayAnimateTag1.setAttribute("begin", 0 + "s");
+  //  s1RayAnimateTag1.setAttribute("begin", 0 + "s");
     s1RayAnimateTag1.setAttribute("from", stage1StartRayString);
     s1RayAnimateTag1.setAttribute("to", stage1EndRayString);
     s1RayAnimateTag1.setAttribute("dur", flexingData[0] + "s");
     s1RayAnimateTag1.setAttribute("fill", "freeze");
+    s1RayAnimateTag1.setAttribute("restart", "always");
+    s1RayAnimateTag1.beginElement();
 
-    
+    console.log("s1rayanimatetag1: " +  s1RayAnimateTag1.begininstancetimeslist);
+
+
     //Setting the Stage 2 Animation
-      
+
     let s1RayAnimateTag2 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage2");
     s1RayAnimateTag2.setAttribute("repeatCount", "1");
     s1RayAnimateTag2.setAttribute("calcMode", "linear");
- 
-    s1RayAnimateTag2.setAttribute("begin", flexingData[0] + "s");
-   
+
+   // s1RayAnimateTag2.setAttribute("begin", flexingData[0] + "s");
+
     s1RayAnimateTag2.setAttribute("from", stage2StartRayString);
     s1RayAnimateTag2.setAttribute("to", stage2EndRayString);
     s1RayAnimateTag2.setAttribute("dur", flexingData[2] + "s");
     s1RayAnimateTag2.setAttribute("fill", "freeze");
+    s1RayAnimateTag2.setAttribute("restart", "always");
+   // s1RayAnimateTag2.beginElementAt(flexingData[0]);
+    s1RayAnimateTag2.setAttribute("begin", "spotlight1RayPath2_AnimTag_Stage1.end");
 
-  
 
    // let path = document.querySelector("#RayPath2");
     //path.setAttribute("d", startPosRayString);
@@ -1381,7 +1628,7 @@ function drawAndAnimateRay_TwoStage_S2(flexingData, trigTravelData, extHalosOpaq
     Ray_BL.x = axisSrcCoords[0];
     Ray_BL.y = axisSrcCoords[1];
 
-    
+
     let Ray_BR = s2RaySVGCont.createSVGPoint();
     Ray_BR.x = axisSrcCoords[0];
     Ray_BR.y = axisSrcCoords[1];
@@ -1430,11 +1677,11 @@ function drawAndAnimateRay_TwoStage_S2(flexingData, trigTravelData, extHalosOpaq
 
 
     let Ray_TR_Stage1End = s2RaySVGCont.createSVGPoint();
-    Ray_TR_Stage1End.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset; 
+    Ray_TR_Stage1End.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset;
         Ray_TR_Stage1End.y = ((s2RaySVGCont.clientHeight) - trigTravelData[0][1]);
 
     let Ray_TL_Stage1End = s2RaySVGCont.createSVGPoint();
-    Ray_TL_Stage1End.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset; 
+    Ray_TL_Stage1End.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset;
         Ray_TL_Stage1End.y = (s2RaySVGCont.clientHeight) - trigTravelData[0][1];
 
     let Ray_CP1_Stage1End = s2RaySVGCont.createSVGPoint();
@@ -1456,11 +1703,11 @@ function drawAndAnimateRay_TwoStage_S2(flexingData, trigTravelData, extHalosOpaq
     Ray_BR_Stage2Start.x = ((s2RaySVGCont.clientWidth) / 2) + 2; Ray_BR_Stage2Start.y = s2RaySVGCont.clientHeight;
 
     let Ray_TR_Stage2Start = s2RaySVGCont.createSVGPoint();
-    Ray_TR_Stage2Start.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset; 
+    Ray_TR_Stage2Start.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset;
         Ray_TR_Stage2Start.y = (s2RaySVGCont.clientHeight) - trigTravelData[0][1];
 
     let Ray_TL_Stage2Start = s2RaySVGCont.createSVGPoint();
-    Ray_TL_Stage2Start.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset; 
+    Ray_TL_Stage2Start.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset;
         Ray_TL_Stage2Start.y = (s2RaySVGCont.clientHeight) - trigTravelData[0][1];
 
 
@@ -1472,11 +1719,11 @@ function drawAndAnimateRay_TwoStage_S2(flexingData, trigTravelData, extHalosOpaq
     Ray_CP2_Stage2Start.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 4)) - extHalosOpaqueShellOffset;
     Ray_CP2_Stage2Start.y = ((s2RaySVGCont.clientHeight) - trigTravelData[0][1]) + (S2_Halos_Height / 2);
 
-    
+
     //setting the stage2Start Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height)
     let stage2StartRayString = createRayString_OneControlPoint(Ray_BL_Stage2Start, Ray_BR_Stage2Start, Ray_TR_Stage2Start, Ray_TL_Stage2Start, Ray_CP1_Stage2Start);
 
-   
+
     //creating new svg points for stage2End
     let Ray_BL_Stage2End = s2RaySVGCont.createSVGPoint();
     Ray_BL_Stage2End.x = ((s2RaySVGCont.clientWidth) / 2) - 2; Ray_BL_Stage2End.y = s2RaySVGCont.clientHeight;
@@ -1500,7 +1747,7 @@ function drawAndAnimateRay_TwoStage_S2(flexingData, trigTravelData, extHalosOpaq
     Ray_CP2_Stage2End.x = ((s2RaySVGCont.clientWidth / 2) + ((S2_Halos_Width / 4))) - extHalosOpaqueShellOffset;
     Ray_CP2_Stage2End.y = ((s2RaySVGCont.clientHeight) - trigTravelData[0][2]) + (S2_Halos_Height / 2);
 
-     //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height) 
+     //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height)
     let stage2EndRayString = createRayString_OneControlPoint(Ray_BL_Stage2End, Ray_BR_Stage2End, Ray_TR_Stage2End, Ray_TL_Stage2End, Ray_CP1_Stage2End);
 
 
@@ -1511,23 +1758,31 @@ function drawAndAnimateRay_TwoStage_S2(flexingData, trigTravelData, extHalosOpaq
     s2RayAnimateTag1.setAttribute("repeatCount", "1");
     s2RayAnimateTag1.setAttribute("calcMode", "linear");
     //  s1RayAnimateTag1.setAttribute("d", startPosRayString);
-    s2RayAnimateTag1.setAttribute("begin", 0 + "s");
+   // s2RayAnimateTag1.setAttribute("begin", 0 + "s");
     s2RayAnimateTag1.setAttribute("from", stage1StartRayString);
     s2RayAnimateTag1.setAttribute("to", stage1EndRayString);
     s2RayAnimateTag1.setAttribute("dur", flexingData[0] + "s");
+    s2RayAnimateTag1.setAttribute("fill", "freeze");
+    s2RayAnimateTag1.setAttribute("restart", "always");
+    s2RayAnimateTag1.beginElement();
 
-    
+
+
     //Setting the Stage 2 Animation
-      
+
     let s2RayAnimateTag2 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage2");
     s2RayAnimateTag2.setAttribute("repeatCount", "1");
     s2RayAnimateTag2.setAttribute("calcMode", "linear");
- 
-    s2RayAnimateTag2.setAttribute("begin", flexingData[0] + "s");
-   
+
+    //s2RayAnimateTag2.setAttribute("begin", flexingData[0] + "s");
+
     s2RayAnimateTag2.setAttribute("from", stage2StartRayString);
     s2RayAnimateTag2.setAttribute("to", stage2EndRayString);
     s2RayAnimateTag2.setAttribute("dur", flexingData[2] + "s");
+    s2RayAnimateTag2.setAttribute("fill", "freeze");
+    s2RayAnimateTag2.setAttribute("restart", "always");
+    s2RayAnimateTag2.setAttribute("begin", "spotlight2RayPath2_AnimTag_Stage1.end");
+
 
 
 
@@ -1599,7 +1854,7 @@ function drawAndAnimateRay_OneStage_S1(flexingData, trigTravelData, extHalosOpaq
     let Ray_CP2_End = s1RaySVGCont.createSVGPoint();
     Ray_CP2_End.x = ((s1RaySVGCont.clientWidth / 2) + ((S1_Halos_Width / 4) * 3)) - extHalosOpaqueShellOffset; Ray_CP2_End.y = ((s1RaySVGCont.clientHeight) - trigTravelData[0][1]) + (S1_Halos_Height / 2);
 
-    //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height) 
+    //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height)
     let endRayString = createRayString_OneControlPoint(Ray_BL_End, Ray_BR_End, Ray_TR_End, Ray_TL_End, Ray_CP1_End);
 
 
@@ -1610,14 +1865,15 @@ function drawAndAnimateRay_OneStage_S1(flexingData, trigTravelData, extHalosOpaq
     s1RayAnimateTag1.setAttribute("repeatCount", "1");
     s1RayAnimateTag1.setAttribute("calcMode", "linear");
     //  s1RayAnimateTag1.setAttribute("d", startPosRayString);
-    s1RayAnimateTag1.setAttribute("begin", 0 + "s");
+   // s1RayAnimateTag1.setAttribute("begin", 0 + "s");
     s1RayAnimateTag1.setAttribute("from", startRayString);
     s1RayAnimateTag1.setAttribute("to", endRayString);
     s1RayAnimateTag1.setAttribute("dur", flexingData[0] + "s");
+    s1RayAnimateTag1.setAttribute("fill", "freeze");
+    s1RayAnimateTag1.setAttribute("restart", "always");
+    s1RayAnimateTag1.beginElement();
 
-    console.log("onesstageRay: startRayString: " + startRayString);
-    console.log("onestageRay: endRaystring: " + endRayString);
-    console.log("onestageRay: dur: " + flexingData[0]);
+
 }
 
 function drawAndAnimateRay_OneStage_S2(flexingData, trigTravelData, extHalosOpaqueShellOffset){
@@ -1658,7 +1914,7 @@ function drawAndAnimateRay_OneStage_S2(flexingData, trigTravelData, extHalosOpaq
     Ray_BR_Start.x = ((s2RaySVGCont.clientWidth) / 2) + 2; Ray_BR_Start.y = s2RaySVGCont.clientHeight;
     Ray_TR_Start.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset;
      Ray_TR_Start.y = (s2RaySVGCont.clientHeight) - trigTravelData[0][0];
-    Ray_TL_Start.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset; 
+    Ray_TL_Start.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset;
     Ray_TL_Start.y = (s2RaySVGCont.clientHeight) - trigTravelData[0][0];
 
 
@@ -1676,7 +1932,7 @@ function drawAndAnimateRay_OneStage_S2(flexingData, trigTravelData, extHalosOpaq
     Ray_BR_End.x = ((s2RaySVGCont.clientWidth) / 2) + 2; Ray_BR_End.y = s2RaySVGCont.clientHeight;
 
     let Ray_TR_End = s2RaySVGCont.createSVGPoint();
-    Ray_TR_End.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset; 
+    Ray_TR_End.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset;
     Ray_TR_End.y = (s2RaySVGCont.clientHeight) - trigTravelData[0][1];
 
     let Ray_TL_End = s2RaySVGCont.createSVGPoint();
@@ -1685,14 +1941,14 @@ function drawAndAnimateRay_OneStage_S2(flexingData, trigTravelData, extHalosOpaq
 
 
     let Ray_CP1_End = s2RaySVGCont.createSVGPoint();
-    Ray_CP1_End.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 4)) + extHalosOpaqueShellOffset; 
+    Ray_CP1_End.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 4)) + extHalosOpaqueShellOffset;
     Ray_CP1_End.y = ((s2RaySVGCont.clientHeight) - trigTravelData[0][1]) + (S2_Halos_Height / 2);
 
     let Ray_CP2_End = s2RaySVGCont.createSVGPoint();
-    Ray_CP2_End.x = ((s2RaySVGCont.clientWidth / 2) + ((S2_Halos_Width / 4) * 3)) - extHalosOpaqueShellOffset; 
+    Ray_CP2_End.x = ((s2RaySVGCont.clientWidth / 2) + ((S2_Halos_Width / 4) * 3)) - extHalosOpaqueShellOffset;
     Ray_CP2_End.y = ((s2RaySVGCont.clientHeight) - trigTravelData[0][1]) + (S2_Halos_Height / 2);
 
-    //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height) 
+    //setting the stage2End Coords by REASSIGNING EXISTING VARS (remember we are working upside down so we need to factor in the container's height)
     let endRayString = createRayString_OneControlPoint(Ray_BL_End, Ray_BR_End, Ray_TR_End, Ray_TL_End, Ray_CP1_End);
 
 
@@ -1702,11 +1958,13 @@ function drawAndAnimateRay_OneStage_S2(flexingData, trigTravelData, extHalosOpaq
     s2RayAnimateTag1.setAttribute("repeatCount", "1");
     s2RayAnimateTag1.setAttribute("calcMode", "linear");
     //  s1RayAnimateTag1.setAttribute("d", startPosRayString);
-    s2RayAnimateTag1.setAttribute("begin", 0 + "s");
+    //s2RayAnimateTag1.setAttribute("begin", 0 + "s");
     s2RayAnimateTag1.setAttribute("from", startRayString);
     s2RayAnimateTag1.setAttribute("to", endRayString);
     s2RayAnimateTag1.setAttribute("dur", flexingData[0] + "s");
-
+    s2RayAnimateTag1.setAttribute("fill", "freeze");
+    s2RayAnimateTag1.setAttribute("restart", "always");
+    s2RayAnimateTag1.beginElement();
 
 
 
@@ -1733,7 +1991,7 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
     let startRO = trigTravelModelData_S1_OneStage[1][0];
     let destRO = trigTravelModelData_S1_OneStage[1][1];
 
-   
+
 
     triggerSweepAndRotateForHBLRG_OneStage_S1_CSSTrigger(startCoords, destCoords, startRO, destRO, sweepTime);
 
@@ -1742,8 +2000,8 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
 
     function triggerSweepAndRotateForHBLRG_OneStage_S1_CSSTrigger(startCoords, destCoords, startRO, destRO, sweepTime) {
 
-        
-        //we need to compensate for its current position in the DOM and subtract those offset pixels. 
+
+        //we need to compensate for its current position in the DOM and subtract those offset pixels.
         let totalLeftOffset_PX = calcTotalLeftPXOffsetOfNestedElement("#spotlight1HBLLinkedRadGradContainer");
         let totalTopOffset_PX = calcTotalTopPXOffsetOfNestedElement("#spotlight1HBLLinkedRadGradContainer");
 
@@ -1759,7 +2017,7 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
         destCoords[1] = destCoords[1] - topOffsetByImmediateContainerTop;
 
 
-        
+
         //And now finally implementing the final offsets (half the width and half the height)
         let cptOffsetX = S1_Halos_Width / 2;
         let cptOffsetyY = S1_Halos_Height / 2;
@@ -1773,7 +2031,7 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
         let xDiff = destCoords[0] - startCoords[0];
         let yDiff = destCoords[1] - startCoords[1];
 
-      
+
         //Update CSS variables
         root.style.setProperty('--S1_HBL_RG_CurrX', (startCoords[0] + "px"));
         root.style.setProperty('--S1_HBL_RG_CurrY', (startCoords[1] + "px"));
@@ -1789,12 +2047,10 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
 
         root.style.setProperty('--S1_SweepTime', (sweepTime + "s"));
 
-        console.log("S1_swwptime" + sweepTime);
-
         let S1_HBLRG = document.querySelector("#spotlight1HBLLinkedRadGradContainer");
         S1_HBLRG.classList.toggle("spotlight1HBLLinkedRadGradContainer_Moving");
 
-        
+
 
     }
 
@@ -1802,20 +2058,20 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
 
         let s1ClipPathCircle = document.getElementById("spotlight1ClipPath");
         let ClipPathSVGCont = document.getElementById("spotlightClipPathsSVGBoundingBox");
-        
+
         //we won't render this we will just use it as the reference for the clip path's coordinate
         let startPoint = ClipPathSVGCont.createSVGPoint();
         let destPoint = ClipPathSVGCont.createSVGPoint();
 
         let startPivot = ClipPathSVGCont.createSVGPoint();
         let destPivot = ClipPathSVGCont.createSVGPoint();
-       
+
         let cptOffsetX = S1_Halos_Width / 2;
         let cptOffsetyY = S1_Halos_Height / 2;
 
-      
-        
-        
+
+
+
         startPoint.x = startCoords[0] + (0);
         startPoint.y = startCoords[1] + (0);
 
@@ -1834,9 +2090,9 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
         let startPointConverted = startPoint.matrixTransform( ClipPathSVGCont.getCTM().inverse() );
         let destPointConverted = destPoint.matrixTransform(ClipPathSVGCont.getCTM().inverse());
 
-            
 
-        //dividing the halos by 2 because we are setting radius not diameter 
+
+        //dividing the halos by 2 because we are setting radius not diameter
         s1ClipPathCircle.setAttribute("rx", S1_Halos_Width / 2);
         s1ClipPathCircle.setAttribute("ry", S1_Halos_Height / 2);
 
@@ -1851,6 +2107,8 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
         animTagX.setAttribute("from", startPoint.x + S1_Halos_Width / 2);
         animTagX.setAttribute("to", destPoint.x + S1_Halos_Width / 2);
         animTagX.setAttribute("dur", sweepTime + "s");
+        animTagX.setAttribute("fill", "freeze");
+        animTagX.beginElement();
 
         let animTagY = document.querySelector("#spotlight1ClipPath_AnimTagY");
         animTagY.setAttribute("repeatCount", "1");
@@ -1859,9 +2117,11 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
         animTagY.setAttribute("from", startPoint.y + S1_Halos_Height / 2);
         animTagY.setAttribute("to", destPoint.y + S1_Halos_Height / 2);
         animTagY.setAttribute("dur", sweepTime + "s");
+        animTagY.setAttribute("fill", "freeze");
+        animTagY.beginElement();
 
-        
-        /** 
+
+        /**
         //dealing with rotation
         let animTagRotate = document.querySelector("#spotlight1ClipPath_AnimTransformTagRotate");
         animTagRotate.setAttribute("repeatCount", "1");
@@ -1871,7 +2131,7 @@ function triggerSweepAndRotateForExtHalos_S1_OneStage(startCoords, destCoords, t
         animTagRotate.setAttribute("to", (destRO * (180 / Math.PI)) + " " + destPivot.x + " " + destPivot.y);
         animTagRotate.setAttribute("dur", sweepTime + "s");
         */
-    
+
     }
 
 
@@ -1889,7 +2149,7 @@ function triggerSweepAndRotateForExtHalos_S2_OneStage(startCoords, destCoords, t
 
     function triggerSweepAndRotateForHBLRG_OneStage_S2_CSSTrigger(startCoords, destCoords, startRO, destRO, sweepTime){
 
-        //we need to compensate for its current position in the DOM and subtract those offset pixels. 
+        //we need to compensate for its current position in the DOM and subtract those offset pixels.
         let totalLeftOffset_PX = calcTotalLeftPXOffsetOfNestedElement("#spotlight2HBLLinkedRadGradContainer");
         let totalTopOffset_PX = calcTotalTopPXOffsetOfNestedElement("#spotlight2HBLLinkedRadGradContainer");
 
@@ -1968,7 +2228,7 @@ function triggerSweepAndRotateForExtHalos_S2_OneStage(startCoords, destCoords, t
         destPivot.y = destCoords[1] + (cptOffsetyY);
 
 
-        //dividing the halos by 2 because we are setting radius not diameter 
+        //dividing the halos by 2 because we are setting radius not diameter
         s2ClipPathCircle.setAttribute("rx", S2_Halos_Width / 2);
         s2ClipPathCircle.setAttribute("ry", S2_Halos_Height / 2);
 
@@ -1980,6 +2240,8 @@ function triggerSweepAndRotateForExtHalos_S2_OneStage(startCoords, destCoords, t
         animTagX.setAttribute("from", startPoint.x + S2_Halos_Width / 2);
         animTagX.setAttribute("to", destPoint.x + S2_Halos_Width / 2);
         animTagX.setAttribute("dur", sweepTime + "s");
+        animTagX.setAttribute("fill", "freeze")
+        animTagX.beginElement();
 
         let animTagY = document.querySelector("#spotlight2ClipPath_AnimTagY");
         animTagY.setAttribute("repeatCount", "1");
@@ -1988,6 +2250,8 @@ function triggerSweepAndRotateForExtHalos_S2_OneStage(startCoords, destCoords, t
         animTagY.setAttribute("from", startPoint.y + S2_Halos_Height / 2);
         animTagY.setAttribute("to", destPoint.y + S2_Halos_Height / 2);
         animTagY.setAttribute("dur", sweepTime + "s");
+        animTagY.setAttribute("fill", "freeze");
+        animTagY.beginElement();
 
 
 
@@ -2006,7 +2270,7 @@ function triggerContAcceleration_OneStage_S1_CSSTrigger(s1ContTrigAccelerationDa
 
     let startRO = trigTravelModelData_OneStage[1][0];
     let destRO = trigTravelModelData_OneStage[1][1];
-    
+
     let Dur = s1ContTrigAccelerationData_OneStage[0];
     let BezierConfig = s1ContTrigAccelerationData_OneStage[1];
 
@@ -2081,11 +2345,11 @@ function triggerContAcceleration_TwoStage_S1_CSSTrigger(s1ContTrigAccelerationDa
 function triggerContAcceleration_TwoStage_S2_CSSTrigger(s2ContTrigAccelerationData, trigTravelModelData){
 
     let startRO = trigTravelModelData[1][0];
-      
+
     let pointDRO = trigTravelModelData[1][1];
-       
+
     let destRO = trigTravelModelData[1][2];
-        
+
 
 
     let stage1Dur = s2ContTrigAccelerationData[0];
@@ -2134,8 +2398,8 @@ function triggerContRGFlexing_OneStage_S1_CSSTrigger(s1ContRGFlexingData_OneStag
 
     let S1_Cont_rg = document.querySelector("#spotlight1NativeRadGradContainer");
     S1_Cont_rg.classList.toggle("spotlight1NativeRadGradContainer_moving_oneStage");
-    
-   
+
+
 
 }
 
@@ -2266,7 +2530,8 @@ function initializeDimensionsOfHalos() {
 //Will get the pixel coordinates of the borders of the HBI and update the global variable, pxRangeOfHBI.
 function updatePXRangeOfHBI() {
 
-    let hbi = document.getElementById("homeBaseInterfaceContainer");
+    //IMPORTANT: Make sure you designate only the logo area for generating coords. Do not designate the entire Page
+    let hbi = document.getElementById("HomeBaseTestSvgCONTAINER");
 
     //adding window.scrollX to compensate for any scrolls and get the element position relative to the entire document regardless of scroll position
     //also subtracting 50 from the right and bottom edges just to make a nice margin
@@ -2278,10 +2543,10 @@ function updatePXRangeOfHBI() {
 
     //Note: For the bottom edge of the range, we cannot use the actual position of the HBI because it extends way below the spotlightPanel so our trigs functions won't work. So we need to use the spotlight panel to define the limit of the Y-axis range
     let spotlightPanel = document.getElementById("hbi_spotlightPanel");
-    
+
     pxRangeOfHBI[1][1] = (spotlightPanel.getBoundingClientRect().top) - 50;
-    
-  
+
+
 
 }
 
@@ -2290,16 +2555,16 @@ function updatePXRangeOfHBI() {
 function calcTotalLeftPXOffsetOfNestedElement(elementName){
 
     let totalLeftOffset = 0;
-    
+
     let element = document.querySelector(elementName);
 
     let currElement = element;
-  
+
     while (currElement.parentElement){
 
         totalLeftOffset = totalLeftOffset + currElement.offsetLeft;
         currElement = currElement.parentElement;
-      
+
 
     }
 
@@ -2317,7 +2582,7 @@ function calcTotalTopPXOffsetOfNestedElement(elementName){
     let element = document.querySelector(elementName);
 
     let currElement = element;
-    
+
     while (currElement.parentElement) {
 
         totalTopOffset = totalTopOffset + currElement.offsetTop;
@@ -2361,10 +2626,38 @@ function checkTrajectoryModelType(startCoords, destCoords, axisSourceCoords){
     //Conditions: For the trajectory to be One stage, it must contain an obtuse angle WHICH IS NOT formed at the axisSourceCoords
 
     // To Do: Check the angle and determine trajectory type.
-    let trajectoryType = "NULL";
 
-    //temporary code for testing purposes. The function must set this variable dynamically after figuring out the trajectory type.
-    trajectoryType = "TwoStage";
+
+    let destCoords_to_AxisSrc = getRadius([ destCoords[0], destCoords[1] ], [ axisSourceCoords[0], axisSourceCoords[1] ]);
+    let destCoord_to_StartCoords = getRadius( [ startCoords[0], startCoords[1]], [ destCoords[0], destCoords[1] ] );
+    let axisSourceCoords_to_startCoords = getRadius( [startCoords[0], startCoords[1]], [ axisSourceCoords[0], axisSourceCoords[1] ] );
+
+     //Stage 1: Calcing angle at destCoords Point (using  law of cosines)
+    //Rough Calc below
+    // Math.acos(( (destCoord_to_AxisSrc)^2 + (dest_to_Start)^2 - (axisSrc_to_StartCoords)^2 ) / (2* (axisSrc_to_DestCoords) * (destCoord_to_StartCoords)) )
+    //actual code calc
+    let destCoordPointAngle = Math.acos((Math.pow(destCoords_to_AxisSrc, 2) + Math.pow(destCoord_to_StartCoords, 2) - Math.pow(axisSourceCoords_to_startCoords, 2) ) / (2 * destCoords_to_AxisSrc * destCoord_to_StartCoords));
+
+
+    //Stage 2: calcing angle at startCoords Point
+    //rough calc below
+    // Math.acos(  ( (startCoord_to_DestCoord)^2 + (startCoord_to_AxisCoord)^2 - (axisCoord_to_DestCoord)^2 ) / ( 2 * axisCoord_to_startCoord * startCoord_to_DestCoord ) )
+
+    let startCoordsPointAngle = Math.acos( (Math.pow(destCoord_to_StartCoords, 2) + Math.pow(axisSourceCoords_to_startCoords, 2) - Math.pow(destCoords_to_AxisSrc, 2) ) / (2 * axisSourceCoords_to_startCoords * destCoord_to_StartCoords) );
+
+    //stage 3: now check if any the angles (startCoordsPointAngle or destCoordsPointAngle are obtuse)
+    let trajectoryType = "TwoStage";
+
+    if(destCoordPointAngle > (Math.PI/2)){
+        trajectoryType = "OneStage";
+    }
+
+    if(startCoordsPointAngle > (Math.PI/2)){
+        trajectoryType = "OneStage";
+    }
+
+    //trajectoryType = "OneStage";
+
 
     return trajectoryType;
 
@@ -2374,7 +2667,7 @@ function checkTrajectoryModelType(startCoords, destCoords, axisSourceCoords){
 //will take in the names (S1 or S2) of either spotlight and then calc the px amount of the black shell that is created by the opaque part of the radgrad.
 function calcExtHalosOpaqueShellOffset(SX){
 
-    let HBL_RG; let Cont_RG; 
+    let HBL_RG; let Cont_RG;
 
     if(SX == "S1"){
 
@@ -2405,7 +2698,7 @@ function calcExtHalosOpaqueShellOffset(SX){
      * The only values you are concerned with here are those percentage values that come after  rgba(255, 247, 20, 0.6)....which in the string above is - 0%, 50%, 60%, 100%
      * You just have to get the 2nd last border value (before 100) and use that with the computed PX width of the halo to find out what percentage of it is in the opaque part.
      */
-    
+
     function extractRGCheckpoints(configString){
 
         let rgCheckpoints = [];
@@ -2453,7 +2746,7 @@ function calcExtHalosOpaqueShellOffset(SX){
                     while(configString[x]!='%'){
                         borderNum = borderNum + configString[x];
                     }
-                    
+
                     rgCheckpoints.push(borderNum);
 
                 }
@@ -2479,7 +2772,7 @@ function calcExtHalosOpaqueShellOffset(SX){
                 }
                 targetIndex = targetIndex + 1;
             }
-            
+
             return isRgba;
 
         }
@@ -2513,7 +2806,7 @@ function activateStartPosSquarePointer(xPos, yPos) {
     root.style.setProperty('--StartPos_SQ_Y', topString);
 
     square.classList.toggle("startPosSquarePointer_ACTIVE");
-
+    console.log("activate startPos pointer active");
 }
 
 function activateDestPosSquarePointer(xPos, yPos){
@@ -2568,7 +2861,7 @@ function createRayString_OneControlPoint(BLPoint, BRPoint, TLPoint, TRPoint, CP1
 
 
 
-    let rayString = "M" + TR_X + " " + TR_Y + "C" + TR_X + " " + TR_Y + " " + BL_X + " " + BL_Y + " " + BL_X + " " + BL_Y + 
+    let rayString = "M" + TR_X + " " + TR_Y + "C" + TR_X + " " + TR_Y + " " + BL_X + " " + BL_Y + " " + BL_X + " " + BL_Y +
     " " + BL_X +  " " + BL_Y + " " + BR_X + " " + BR_Y + " " + BR_X + " " + BR_Y + " " + BR_X + " " + BR_Y + " " + TL_X + " " +
      TL_Y + " " + TL_X + " " + TL_Y + " Q " + CP1_X + " " + CP1_Y + " " + TR_X + " " + TR_Y + " Z";
 
@@ -2578,8 +2871,8 @@ function createRayString_OneControlPoint(BLPoint, BRPoint, TLPoint, TRPoint, CP1
 
 
 /**This is a variation of the createRayString function. The only difference is that you have 2 control points instead of 1. The reason why this was discontinued was because it was
- * difficult to model a smooth curve at the halo area of the curve. 
- * 
+ * difficult to model a smooth curve at the halo area of the curve.
+ *
  */
 function createRayString_TwoControlPoints(BLPoint, BRPoint, TLPoint, TRPoint, CP1Point, CP2Point){
 
@@ -2650,7 +2943,7 @@ function createRayString_TwoControlPoints(BLPoint, BRPoint, TLPoint, TRPoint, CP
 
 
 function angleSpotlightContsToMousePosition(currX, currY, mouseX, mouseY){
-  
+
      //dealing with spotlight1
      //stage1: get current angle
 
@@ -2658,9 +2951,9 @@ function angleSpotlightContsToMousePosition(currX, currY, mouseX, mouseY){
      let spotlight1AxisSrcCoords = getAxisSourceCoords("spotlight1EmitterMock");
      let spotlight1AxisSrcX = spotlight1AxisSrcCoords[0]; let spotlight1AxisSrcY = spotlight1AxisSrcCoords[1];
 
-    
+
     let startRO = getRO([currX, currY], [spotlight1AxisSrcX, spotlight1AxisSrcY]);
-    
+
     //stage2: get angle of where the mouse pos is
     let mouseRO = getRO([mouseX, mouseY], [spotlight1AxisSrcX, spotlight1AxisSrcY]);
 
@@ -2670,9 +2963,9 @@ function angleSpotlightContsToMousePosition(currX, currY, mouseX, mouseY){
 
 
 
-     
+
      let contAnimData = [{
-          // transformorigin: "50% 100%",    
+          // transformorigin: "50% 100%",
          transform: "rotate(" + startRO + "rad)"
          },
          { transform: "rotate(" + mouseRO + "rad)" }
@@ -2683,17 +2976,17 @@ function angleSpotlightContsToMousePosition(currX, currY, mouseX, mouseY){
             iterations: Infinity,
             fill:"none"
         };
-        
+
        // let spotlight1Cont = document.getElementById("spotlight1Container");
 
-        
+
 
          spotlight1Cont.animate(contAnimData, contAnimTimeData);
-        
-        
 
 
- 
+
+
+
 
     //step 1: Get current angle of spotlights
     //angleSpotlight1ToMousePosition();
@@ -2711,18 +3004,18 @@ function angleSpotlightContsToMousePosition(currX, currY, mouseX, mouseY){
 
         let spotlight1AxisSrcCoords = getAxisSourceCoords("spotlight1EmitterMock");
         let spotlight1AxisSrcX = spotlight1AxisSrcCoords[0]; let spotlight1AxisSrcY = spotlight1AxisSrcCoords[1];
-        
+
         let startRO = getRO([extHaloX, extHaloY], [spotlight1AxisSrcX, spotlight1AxisSrcY]);
 
-       
+
         //stage2: get angle of where the mouse pos is
         let mouseX = event.x;
         let mouseY = event.y;
         let mouseRO = getRO([mouseX, mouseY], [spotlight1AxisSrcX, spotlight1AxisSrcY]);
 
-        
+
         let contAnimData = [{
-            // transformorigin: "50% 100%",    
+            // transformorigin: "50% 100%",
             transform: "rotate(" + startRO + "rad)"
         },
             { transform: "rotate(" + mouseRO + "rad)" }
@@ -2763,20 +3056,20 @@ function resumeSpotlightsAnims_CSSTrigger(){
     document.getElementById("spotlight1HBLLinkedRadGradContainer").classList = [];
 
     console.log("current class after resume: " + document.getElementById("spotlight1Container").className);
-    
+
   //  document.getElementById("spotlight1Container").setAttribute("id", "spotlight1Container");
 
     //now dealing with the ray. Just erase all the tag data after setting the class to null
     resumeS1Ray();
-   
+
     resumeS1ClipPath();
 
-    document.getElementById("spotlight2Container").className = "";
+   // document.getElementById("spotlight2Container").className = "";
     
-    //Will clear everything out of the clip path out so that it can restart 
+    //Will clear everything out of the clip path out so that it can restart
     function resumeS1ClipPath(){
         let s1ClipPathCircle = document.getElementById("spotlight1ClipPath");
-       
+
         s1ClipPathCircle.setAttribute("rx", "0");
         s1ClipPathCircle.setAttribute("ry", "0");
 
@@ -2808,6 +3101,8 @@ function resumeSpotlightsAnims_CSSTrigger(){
         s1RaySVGCont.className = "";
         s1RaySVGCont.classList = [];
         let s1RayAnimateTag1 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage1");
+      //  s1RayAnimateTag1.endElement();
+       // s1RayAnimateTag1.setAttribute("additive", "replace");
         s1RayAnimateTag1.setAttribute("repeatCount", "");
         s1RayAnimateTag1.setAttribute("calcMode", "");
         s1RayAnimateTag1.setAttribute("begin", "");
@@ -2815,19 +3110,98 @@ function resumeSpotlightsAnims_CSSTrigger(){
         s1RayAnimateTag1.setAttribute("to", "");
         s1RayAnimateTag1.setAttribute("dur", "");
         s1RayAnimateTag1.setAttribute("fill", "remove");
+        s1RayAnimateTag1.setAttribute("restart", "always");
 
         let s1RayAnimateTag2 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage2");
+      //  s1RayAnimateTag2.endElement();
+       // s1RayAnimateTag2.setAttribute("additive", "replace");
         s1RayAnimateTag2.setAttribute("repeatCount", "");
         s1RayAnimateTag2.setAttribute("calcMode", "");
         s1RayAnimateTag2.setAttribute("begin", "");
         s1RayAnimateTag2.setAttribute("from", "");
         s1RayAnimateTag2.setAttribute("to", "");
         s1RayAnimateTag2.setAttribute("dur", "");
-        s1RayAnimateTag2.setAttribute("fill", "");
+        s1RayAnimateTag2.setAttribute("fill", "remove");
+        s1RayAnimateTag2.setAttribute("restart", "always");
+    }
+
+    //dealing with s2
+
+    //removing the pause class from the container
+    //IMPROVED METHOD: JUST CLERAING THE ENTIRE CLASSLIST on all of the spotlight's elements to reset them so that the patrolLoop can orient them from scratch
+    document.getElementById("spotlight2Container").className = "";
+    document.getElementById("spotlight2Container").classList = [];
+
+    document.getElementById("spotlight2NativeRadGradContainer").className = "";
+    document.getElementById("spotlight2NativeRadGradContainer").classList = [];
+
+    document.getElementById("spotlight2HBLLinkedRadGradContainer").className = "";
+    document.getElementById("spotlight2HBLLinkedRadGradContainer").classList = [];
+
+    resumeS2Ray();
+
+    resumeS2ClipPath();
+
+    function resumeS2Ray(){
+        let s2RaySVGCont = document.getElementById("spotlight2SVGBox");
+        s2RaySVGCont.className = "";
+        s2RaySVGCont.classList = [];
+        let s2RayAnimateTag1 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage1");
+      //  s1RayAnimateTag1.endElement();
+       // s1RayAnimateTag1.setAttribute("additive", "replace");
+        s2RayAnimateTag1.setAttribute("repeatCount", "");
+        s2RayAnimateTag1.setAttribute("calcMode", "");
+        s2RayAnimateTag1.setAttribute("begin", "");
+        s2RayAnimateTag1.setAttribute("from", "");
+        s2RayAnimateTag1.setAttribute("to", "");
+        s2RayAnimateTag1.setAttribute("dur", "");
+        s2RayAnimateTag1.setAttribute("fill", "remove");
+        s2RayAnimateTag1.setAttribute("restart", "always");
+
+         let s2RayAnimateTag2 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage2");
+
+          s2RayAnimateTag2.setAttribute("repeatCount", "");
+        s2RayAnimateTag2.setAttribute("calcMode", "");
+        s2RayAnimateTag2.setAttribute("begin", "");
+        s2RayAnimateTag2.setAttribute("from", "");
+        s2RayAnimateTag2.setAttribute("to", "");
+        s2RayAnimateTag2.setAttribute("dur", "");
+        s2RayAnimateTag2.setAttribute("fill", "remove");
+        s2RayAnimateTag2.setAttribute("restart", "always");
+
+
+    }
+
+    function resumeS2ClipPath(){
+        
+        let s2ClipPathCircle = document.getElementById("spotlight2ClipPath");
+
+        s2ClipPathCircle.setAttribute("rx", "0");
+        s2ClipPathCircle.setAttribute("ry", "0");
+
+        let animTagX = document.querySelector("#spotlight2ClipPath_AnimTagX");
+        animTagX.setAttribute("repeatCount", "");
+        animTagX.setAttribute("attributeName", "");
+        animTagX.setAttribute("calcMode", "");
+        animTagX.setAttribute("from", "");
+        animTagX.setAttribute("to", "");
+        animTagX.setAttribute("dur", "");
+        animTagX.setAttribute("fill", "");
+
+        let animTagY = document.querySelector("#spotlight2ClipPath_AnimTagY");
+        animTagY.setAttribute("repeatCount", "");
+        animTagY.setAttribute("attributeName", "");
+        animTagY.setAttribute("calcMode", "");
+        animTagY.setAttribute("from", "");
+        animTagY.setAttribute("to", "");
+        animTagY.setAttribute("dur", "");
+        animTagY.setAttribute("fill", "");
+
+
     }
 
     spotlightPatrolLoop_bothSpotlights();
-   
+
     //removing the Cont_RG pause class
    // document.getElementById("spotlight1NativeRadGradContainer").classList.remove("pauseAnimClass");
 
@@ -2836,34 +3210,33 @@ function resumeSpotlightsAnims_CSSTrigger(){
 
     //TO DO : Pause the Clip Path and the Ray points
 
+    mouseOnButtons = false;
+
+    console.log("Current value of mouseOnButtons: " + mouseOnButtons);
+
 }
 
 
 function triggerTrackingSpotlightsAnim_CSSTrigger(e){
     //Dealing with S1
     let s1 = document.getElementById("spotlight1Container");
-  
-     //updating the mousePosRO of S1Cont
-    let axisSrcCoords = getAxisSourceCoords("spotlight1EmitterMock");
 
-    
-    let mousePosRO = getRO([e.x, e.y], axisSrcCoords);
+    //TO DO: Calc the extHalosOpaqueShellOffset dynamically
+    let extHalosOpaqueShellOffset = 18;
 
-    //displacing the actual mouse positions by the S1_Width/2 accoring to the current bearing
-    let mouseDisplacementVals = calcMouseHoverDisplacement((S1_Halos_Width/2), mousePosRO);
-    let displacedMouseX = e.x + mouseDisplacementVals[0];
-    let displacedMouseY = e.y + mouseDisplacementVals[1];
+    let mousePosRO = getRO([e.x, e.y], globalS1AxisCoordsForMouseTracking);
 
-    let displacedMousePosRO = getRO([displacedMouseX, displacedMouseY], axisSrcCoords);
+    let mouseHoverDisps = calcMouseHoverDisplacement(S1_Halos_Width/2, mousePosRO);
+    mousePosRO = getRO([e.x + mouseHoverDisps[0], e.y + mouseHoverDisps[1]], globalS1AxisCoordsForMouseTracking);
 
-    root.style.setProperty('--S1_Cont_MousePosRO', displacedMousePosRO + "rad");
-    root.style.setProperty('--S1_Cont_PrevFrameMousePosRO', displacedMousePosRO + "rad");
+    root.style.setProperty('--S1_Cont_MousePosRO', mousePosRO + "rad");
+    root.style.setProperty('--S1_Cont_PrevFrameMousePosRO', mousePosRO + "rad");
 
-    
+
     let s1_rg = document.getElementById("spotlight1NativeRadGradContainer");
 
     //calcing the stretch (margin bottom) value for the cont_rg
-    let s1_rg_mousePosMB = getRadius([displacedMouseX, displacedMouseY], axisSrcCoords); 
+    let s1_rg_mousePosMB = getRadius([e.x + mouseHoverDisps[0], e.y + mouseHoverDisps[1]], globalS1AxisCoordsForMouseTracking);
 
     //displacing that margin bottom value by the center of the CPT to align it on top of the mouse cursor
     s1_rg_mousePosMB = s1_rg_mousePosMB - (S1_Halos_Height / 2);
@@ -2877,8 +3250,10 @@ function triggerTrackingSpotlightsAnim_CSSTrigger(e){
     //now dealing with the ray
     let s1RaySVGCont = document.getElementById("spotlight1SVGBox");
 
-    let axisSrc_To_MousePos = getRadius([e.x, e.y], axisSrcCoords);
-    
+    let axisSrc_To_MousePos = getRadius([e.x, e.y], globalS1AxisCoordsForMouseTracking);
+
+  
+
     //Creating ray points (remember we are working in an upside down orientation)
     let Ray_BL = s1RaySVGCont.createSVGPoint();
     Ray_BL.x = ((s1RaySVGCont.clientWidth) / 2) - 2;
@@ -2888,15 +3263,16 @@ function triggerTrackingSpotlightsAnim_CSSTrigger(e){
     Ray_BR.x = ((s1RaySVGCont.clientWidth) / 2) + 2;
     Ray_BR.y = s1RaySVGCont.clientHeight;
 
-    
+
 
     let Ray_TL = s1RaySVGCont.createSVGPoint();
     //TO DO: Add the Ext Halos Opaque Shell Offset Here
-    Ray_TL.x = ((s1RaySVGCont.clientWidth / 2) - (S1_Halos_Width / 2));
+    Ray_TL.x = ((s1RaySVGCont.clientWidth / 2) - (S1_Halos_Width / 2)) + extHalosOpaqueShellOffset;
+   // console.log("TriggerTrack: S1_Halos_Width: " + S1_Halos_Width);
     Ray_TL.y = (s1RaySVGCont.clientHeight) - axisSrc_To_MousePos;
 
     let Ray_TR = s1RaySVGCont.createSVGPoint();
-    Ray_TR.x = ((s1RaySVGCont.clientWidth / 2) + (S1_Halos_Width / 2));
+    Ray_TR.x = ((s1RaySVGCont.clientWidth / 2) + (S1_Halos_Width / 2)) - extHalosOpaqueShellOffset;
     Ray_TR.y = (s1RaySVGCont.clientHeight) - axisSrc_To_MousePos;
 
     let Ray_CP1 = s1RaySVGCont.createSVGPoint();
@@ -2905,9 +3281,23 @@ function triggerTrackingSpotlightsAnim_CSSTrigger(e){
 
     let rayStringLiveTrack = createRayString_OneControlPoint(Ray_BL, Ray_BR, Ray_TR, Ray_TL, Ray_CP1);
 
-    console.log("rayStringLiveTrack: " + rayStringLiveTrack);
+    //first clearing the 2nd anim tag to remove any previous history
+        let s1RayAnimateTag2 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage2");
+        s1RayAnimateTag2.endElement();
+        s1RayAnimateTag2.setAttribute("repeatCount", "");
+        s1RayAnimateTag2.setAttribute("calcMode", "");
+        s1RayAnimateTag2.setAttribute("begin", "");
+        s1RayAnimateTag2.setAttribute("from", "");
+        s1RayAnimateTag2.setAttribute("to", "");
+        s1RayAnimateTag2.setAttribute("dur", "");
+        s1RayAnimateTag2.setAttribute("fill", "");
+
+
+  //  console.log("rayStringLiveTrack: " + rayStringLiveTrack);
     //Setting the tracking Animation
     let s1RayAnimateTag1 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage1");
+
+
     s1RayAnimateTag1.setAttribute("repeatCount", "1");
     s1RayAnimateTag1.setAttribute("calcMode", "linear");
     s1RayAnimateTag1.setAttribute("begin", 0 + "s");
@@ -2920,17 +3310,117 @@ function triggerTrackingSpotlightsAnim_CSSTrigger(e){
     }
 
 
+    //dealing with s2
+    //Design Note: You are currently using the Y-value of GlobalS1AxisCoords Because the Y value of GlobalS2 is messed up for some reason
+    let mousePosRO_S2 = getRO([e.x, e.y], [globalS2AxisCoordsForMouseTracking[0], globalS1AxisCoordsForMouseTracking[1]]);
+
+    //activateStartPosSquarePointer(globalS2AxisCoordsForMouseTracking[0], globalS2AxisCoordsForMouseTracking[1]);
+   // activatePointDPosSquarePointer(globalS2AxisCoordsForMouseTracking[0], globalS2AxisCoordsForMouseTracking[1]);
+    
+   // let gs2Floored = [Math.floor(globalS2AxisCoordsForMouseTracking[0]), Math.floor(globalS2AxisCoordsForMouseTracking[1])];
+
+    /**TESTING */ 
+  //  activateDestPosSquarePointer(globalS2AxisCoordsForMouseTracking[0], globalS2AxisCoordsForMouseTracking[1]-50);
+   // activateDestPosSquarePointer(globalS1AxisCoordsForMouseTracking[0], globalS1AxisCoordsForMouseTracking[1]);
+    // activateDestPosSquarePointer(600, 500);
+
+    /**TESTING */
+    
+    let mouseHoverDisps_S2 = calcMouseHoverDisplacement(S2_Halos_Width / 2, mousePosRO_S2);
+    
+    
+    mousePosRO_S2 = getRO([e.x - mouseHoverDisps_S2[0], e.y - mouseHoverDisps_S2[1]], [globalS2AxisCoordsForMouseTracking[0], globalS1AxisCoordsForMouseTracking[1]]);
 
 
 
-    //will return x and y dispalcements 
+    root.style.setProperty('--S2_Cont_MousePosRO', mousePosRO_S2 + "rad");
+    root.style.setProperty('--S2_Cont_PrevFrameMousePosRO', mousePosRO_S2 + "rad");
+   
+    //calcing the stretch (margin bottom) value for the cont_rg
+    let s2_rg_mousePosMB = getRadius([e.x + mouseHoverDisps_S2[0], e.y + mouseHoverDisps_S2[1]], [globalS2AxisCoordsForMouseTracking[0], globalS1AxisCoordsForMouseTracking[1]]);
+    
+    //displacing that margin bottom value by the center of the CPT to align it on top of the mouse cursor
+    s2_rg_mousePosMB = s2_rg_mousePosMB - (S2_Halos_Height / 2);
+
+    root.style.setProperty('--S2_Cont_RG_PrevFrameMB', s2_rg_mousePosMB + "px");
+    root.style.setProperty('--S2_Cont_RG_MousePosMB', s2_rg_mousePosMB + "px");
+
+    triggerS2RayTrack(mouseHoverDisps_S2);
+
+    function triggerS2RayTrack(mouseHoverDisps_S2){
+
+         //now dealing with the ray
+        let s2RaySVGCont = document.getElementById("spotlight2SVGBox");
+
+        let axisSrc_To_MousePos = getRadius([e.x + mouseHoverDisps_S2[0], e.y + mouseHoverDisps_S2[1] ], [globalS2AxisCoordsForMouseTracking[0], globalS1AxisCoordsForMouseTracking[1]]);
+
+        //Creating ray points (remember we are working in an upside down orientation)
+    let Ray_BL = s2RaySVGCont.createSVGPoint();
+    Ray_BL.x = ((s2RaySVGCont.clientWidth) / 2) - 2;
+    Ray_BL.y = s2RaySVGCont.clientHeight;
+
+     let Ray_BR = s2RaySVGCont.createSVGPoint();
+    Ray_BR.x = ((s2RaySVGCont.clientWidth) / 2) + 2;
+    Ray_BR.y = s2RaySVGCont.clientHeight;
+
+     let Ray_TL = s2RaySVGCont.createSVGPoint();
+    //TO DO: Add the Ext Halos Opaque Shell Offset Here
+    Ray_TL.x = ((s2RaySVGCont.clientWidth / 2) - (S2_Halos_Width / 2)) + extHalosOpaqueShellOffset;
+   // console.log("TriggerTrack: S1_Halos_Width: " + S1_Halos_Width);
+    Ray_TL.y = (s2RaySVGCont.clientHeight) - axisSrc_To_MousePos;
+
+    let Ray_TR = s2RaySVGCont.createSVGPoint();
+    Ray_TR.x = ((s2RaySVGCont.clientWidth / 2) + (S2_Halos_Width / 2)) - extHalosOpaqueShellOffset;
+    Ray_TR.y = (s2RaySVGCont.clientHeight) - axisSrc_To_MousePos;
+
+    let Ray_CP1 = s2RaySVGCont.createSVGPoint();
+    Ray_CP1.x = (((s2RaySVGCont.clientWidth) / 2));
+    Ray_CP1.y = ((s2RaySVGCont.clientHeight) - axisSrc_To_MousePos) + (S2_Halos_Height / 2);
+
+    let rayStringLiveTrack = createRayString_OneControlPoint(Ray_BL, Ray_BR, Ray_TR, Ray_TL, Ray_CP1);
+
+        //first clearing the 2nd anim tag to remove any previous history
+        let s2RayAnimateTag2 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage2");
+        s2RayAnimateTag2.endElement();
+        s2RayAnimateTag2.setAttribute("repeatCount", "");
+        s2RayAnimateTag2.setAttribute("calcMode", "");
+        s2RayAnimateTag2.setAttribute("begin", "");
+        s2RayAnimateTag2.setAttribute("from", "");
+        s2RayAnimateTag2.setAttribute("to", "");
+        s2RayAnimateTag2.setAttribute("dur", "");
+        s2RayAnimateTag2.setAttribute("fill", "");
+
+    
+    //Setting the tracking Animation
+    let s2RayAnimateTag1 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage1");
+
+    s2RayAnimateTag1.setAttribute("repeatCount", "1");
+    s2RayAnimateTag1.setAttribute("calcMode", "linear");
+    s2RayAnimateTag1.setAttribute("begin", 0 + "s");
+    s2RayAnimateTag1.setAttribute("from", rayStringLiveTrack);
+    s2RayAnimateTag1.setAttribute("to", rayStringLiveTrack);
+    /*Note: It's important to set the dur as 0, if you set it as 1 or anything above 0, it will result in a snapping in the subsequent ray animation*/
+    s2RayAnimateTag1.setAttribute("dur", 0 +"s");
+    s2RayAnimateTag1.setAttribute("fill", "freeze");
+
+
+
+
+
+
+
+        
+    }
+
+
+    //will return x and y dispalcements. NOTE: UNUSED FUNCTION
     function calcMouseHoverDisplacement(hyp, ro){
 
         let yDisp = Math.sin(ro) * hyp;
         let xDisp = Math.cos(ro) * hyp;
 
         return [xDisp, yDisp];
-    
+
 
     }
 
@@ -2939,6 +3429,13 @@ function triggerTrackingSpotlightsAnim_CSSTrigger(e){
 //Will pause BOTH of the spotlight's anims (ext halos, cont and cont_rg)
 function pauseSpotlightsAnims_CSSTrigger(){
 
+    //preventing REFIRING of function by checking mouseOnButtons global var
+    if(mouseOnButtons==true){
+        return;
+    }
+
+    mouseOnButtons = true;
+
     //DEALING WITH S1
 
     //updating the postPause RO of S1Cont
@@ -2946,31 +3443,59 @@ function pauseSpotlightsAnims_CSSTrigger(){
     let currX_HBL_RG = document.getElementById("spotlight1HBLLinkedRadGradContainer").getBoundingClientRect().x;
     let currY_HBL_RG = document.getElementById("spotlight1HBLLinkedRadGradContainer").getBoundingClientRect().y;
     let axisSrcCoords = getAxisSourceCoords("spotlight1EmitterMock");
-    
+
     let currRO = getRO([currX_HBL_RG, currY_HBL_RG], axisSrcCoords);
     root.style.setProperty('--S1_Cont_PrevFrameMousePosRO', currRO + "rad");
-  
+
     //pausing the container
     document.getElementById("spotlight1Container").classList.toggle("mouseTrackSweepClass_S1_Cont");
 
     //Calculating the margin bottom of S1_Cont_RG (find hypoteneuse)
     //actually we don't need to update the prev frame here. Do that in the trigger tracking function. we just need to pause it
     document.getElementById("spotlight1NativeRadGradContainer").classList.toggle("mouseTrackSweepClass_S1_Cont_RG");
-    
+
+
+    //updating the globalS1AxisCoordsForMouseTracking variable so that the triggerTrackingSpotlightsAnim_CSSTrigger function can reference it
+    //For s1
+    globalS1AxisCoordsForMouseTracking = getAxisSourceCoords("spotlight1EmitterMock");
 
     //Now setting the Ray
     //We have to simply pause the animations here and then trigger the live tracking in the live track function
     //Pausing both ray anim tags. (Clearing their anim tag's attributes to empty)
-    //TO DO LATER: Add a transition animation instead of just an abrupt pause. That way it will look liike the 
+    //TO DO LATER: Add a transition animation instead of just an abrupt pause. That way it will look liike the
     pauseS1Ray();
-
 
     pauseS1ClipPath();
 
     pauseS1HBL_RG();
 
     //Dealing with S2
-    document.getElementById("spotlight2Container").classList.toggle("mouseTrackSweepClass");
+
+    //first calc the current HBL_RG
+    let currX_HBL_RG_S2 = document.getElementById("spotlight2HBLLinkedRadGradContainer").getBoundingClientRect().x;
+    let currY_HBL_RG_S2 = document.getElementById("spotlight2HBLLinkedRadGradContainer").getBoundingClientRect().y;
+    let axisSrcCoords_S2 = getAxisSourceCoords("spotlight2EmitterMock");
+
+    let currRO_S2 = getRO([currX_HBL_RG_S2, currY_HBL_RG_S2], axisSrcCoords_S2);
+
+    root.style.setProperty('--S2_Cont_PrevFrameMousePosRO', currRO_S2 + "rad");
+
+    document.getElementById("spotlight2Container").classList.toggle("mouseTrackSweepClass_S2_Cont");
+
+    //dealing with S2 Cont_RG
+    document.getElementById("spotlight2NativeRadGradContainer").classList.toggle("mouseTrackSweepClass_S2_Cont_RG");
+
+    console.log("The classlist of S2_RG: " + document.getElementById("spotlight2NativeRadGradContainer").className);
+    console.log("The classlist of S1_RG: " + document.getElementById("spotlight1NativeRadGradContainer").className);
+    //updating the globalS2AxisCoordsForMouseTracking variable so that the triggerTrackingSpotlightsAnim_CSSTrigger function can reference it
+    //For s2
+    globalS2AxisCoordsForMouseTracking = getAxisSourceCoords("spotlight2EmitterMock");
+
+    pauseS2Ray();
+
+    pauseS2ClipPath();
+
+    pauseS2HBL_RG();
 
     //logging the last known coords of the halo
     //currPos_S1[0] = document.getElementById("spotlight1HBLLinkedRadGradContainer").getBoundingClientRect().left;
@@ -2984,26 +3509,58 @@ function pauseSpotlightsAnims_CSSTrigger(){
 
     //TO DO : Pause the Clip Path and the Ray points
 
+
+    
+
+
+
+
     function pauseS1Ray() {
         let s1RayAnimateTag1 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage1");
+        s1RayAnimateTag1.endElement();
         s1RayAnimateTag1.setAttribute("repeatCount", "");
         s1RayAnimateTag1.setAttribute("calcMode", "");
         s1RayAnimateTag1.setAttribute("begin", "");
         s1RayAnimateTag1.setAttribute("from", "");
         s1RayAnimateTag1.setAttribute("to", "");
         s1RayAnimateTag1.setAttribute("dur", "");
-        s1RayAnimateTag1.setAttribute("fill", "remove");
+        s1RayAnimateTag1.setAttribute("fill", "");
 
 
 
         let s1RayAnimateTag2 = document.querySelector("#spotlight1RayPath2_AnimTag_Stage2");
+        s1RayAnimateTag2.endElement();
         s1RayAnimateTag2.setAttribute("repeatCount", "");
         s1RayAnimateTag2.setAttribute("calcMode", "");
         s1RayAnimateTag2.setAttribute("begin", "");
         s1RayAnimateTag2.setAttribute("from", "");
         s1RayAnimateTag2.setAttribute("to", "");
         s1RayAnimateTag2.setAttribute("dur", "");
-        s1RayAnimateTag2.setAttribute("fill", "remove");
+        s1RayAnimateTag2.setAttribute("fill", "");
+    }
+
+    function pauseS2Ray(){
+
+        let s2RayAnimateTag1 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage1");
+        s2RayAnimateTag1.endElement();
+        s2RayAnimateTag1.setAttribute("repeatCount", "");
+        s2RayAnimateTag1.setAttribute("calcMode", "");
+        s2RayAnimateTag1.setAttribute("begin", "");
+        s2RayAnimateTag1.setAttribute("from", "");
+        s2RayAnimateTag1.setAttribute("to", "");
+        s2RayAnimateTag1.setAttribute("dur", "");
+        s2RayAnimateTag1.setAttribute("fill", "");
+
+        let s2RayAnimateTag2 = document.querySelector("#spotlight2RayPath2_AnimTag_Stage2");
+        s2RayAnimateTag2.endElement();
+        s2RayAnimateTag2.setAttribute("repeatCount", "");
+        s2RayAnimateTag2.setAttribute("calcMode", "");
+        s2RayAnimateTag2.setAttribute("begin", "");
+        s2RayAnimateTag2.setAttribute("from", "");
+        s2RayAnimateTag2.setAttribute("to", "");
+        s2RayAnimateTag2.setAttribute("dur", "");
+        s2RayAnimateTag2.setAttribute("fill", "");
+
     }
 
     function pauseS1ClipPath(){
@@ -3016,9 +3573,9 @@ function pauseSpotlightsAnims_CSSTrigger(){
         //stage2: set freeze to none to erase out previous render frame
         //the line below might be useless
       //  s1ClipPathCircle.setAttribute("fill", "remove");
-       
+
         let animTagX = document.querySelector("#spotlight1ClipPath_AnimTagX");
-        
+
         //endElement is an inbuilt SVG function which terminates an animation
         animTagX.endElement();
         animTagX.setAttribute("repeatCount", "");
@@ -3029,11 +3586,11 @@ function pauseSpotlightsAnims_CSSTrigger(){
         animTagX.setAttribute("dur", "");
         animTagX.setAttribute("fill", "remove");
         /*animTagX.setAttribute("end", "0s");*/
-          
+
 
         let animTagY = document.querySelector("#spotlight1ClipPath_AnimTagY");
-        
-        
+
+
         //endElement is an inbuilt SVG function which terminates an animation
         animTagY.endElement();
         animTagY.setAttribute("repeatCount", "");
@@ -3048,10 +3605,53 @@ function pauseSpotlightsAnims_CSSTrigger(){
 
     }
 
+    function pauseS2ClipPath(){
+
+        //stage 1: reduce the radius to 0 to make it disappear
+        let s2ClipPathCircle = document.getElementById("spotlight2ClipPath");
+        s2ClipPathCircle.setAttribute("rx", "0");
+        s2ClipPathCircle.setAttribute("ry", "0");
+
+        let animTagX_S2 = document.querySelector("#spotlight2ClipPath_AnimTagX");
+
+        //endElement is an inbuilt SVG function which terminates an animation
+        animTagX_S2.endElement();
+        animTagX_S2.setAttribute("repeatCount", "");
+        animTagX_S2.setAttribute("attributeName", "");
+        animTagX_S2.setAttribute("calcMode", "");
+        animTagX_S2.setAttribute("from", "");
+        animTagX_S2.setAttribute("to", "");
+        animTagX_S2.setAttribute("dur", "");
+        animTagX_S2.setAttribute("fill", "remove");
+
+        let animTagY_S2 = document.querySelector("#spotlight2ClipPath_AnimTagY");
+
+        //endElement is an inbuilt SVG function which terminates an animation
+        animTagY_S2.endElement();
+        animTagY_S2.setAttribute("repeatCount", "");
+        animTagY_S2.setAttribute("attributeName", "");
+        animTagY_S2.setAttribute("calcMode", "");
+        animTagY_S2.setAttribute("from", "");
+        animTagY_S2.setAttribute("to", "");
+        animTagY_S2.setAttribute("dur", "");
+        animTagY_S2.setAttribute("fill", "remove");
+
+    }
+
     //Will simply hide the HBL_RG because its needed only for illumination within the logo area
     function pauseS1HBL_RG(){
 
         document.getElementById("spotlight1HBLLinkedRadGradContainer").classList.toggle("mouseTrackSweepClass_S1_HBL_RG");
+
+
+
+    }
+
+    function pauseS2HBL_RG(){
+
+
+        document.getElementById("spotlight2HBLLinkedRadGradContainer").classList.toggle("mouseTrackSweepClass_S2_HBL_RG");
+
 
 
 
@@ -3076,7 +3676,7 @@ function terminateSpotlightAnims_bothSpotlights(){
 
 //Will acquire the real time pixel coordinates of S1 halo (wherever it is....whether its static or in the middle of an animation)
 function getCurrS1Coords_CenterOfRG(){
-    
+
     //get the x and y coords of the halos
     let s1X = document.getElementById("spotlight1HBLLinkedRadGradContainer").getBoundingClientRect().left;
     let s1Y = document.getElementById("spotlight1HBLLinkedRadGradContainer").getBoundingClientRect().top;
@@ -3092,9 +3692,3 @@ function getCurrS1Coords_CenterOfRG(){
 }
 
 //-----------------END OF REAL TIME MOUSE TRACKING FUNCS---------------------
-
-/** Copyright Abhishekh Shivayogi
- * 
- * 
- * 
- */
