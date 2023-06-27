@@ -1,0 +1,142 @@
+body {
+    background-color: black;
+    overflow-x: hidden;
+
+}
+
+
+
+
+.navbar {
+
+
+    border: 2px solid transparent;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    border-radius: 20% 20% 20% 20%;
+    background: linear-gradient(180deg, rgba(55, 0, 175, 0.545) 7%, rgba(78, 78, 78, 0.548) 48%, rgba(171, 0, 182, 0.23104579722514005) 98%);
+}
+
+.navbar a {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-style: bold;
+    color: whitesmoke;
+   /* background-color: #410000; */
+   background: linear-gradient(120deg, rgba(117, 117, 123, 0.847) 16%, rgba(107, 107, 107, 0.597) 34%, rgba(90, 89, 89, 0.386) 92%);
+    padding: 5px;
+    text-decoration: none;
+    border-radius: 8% 8% 8% 8%;
+    text-align: center;
+    border: 2px solid rgba(59, 59, 59, 0.744);
+}
+
+
+
+
+.navbar a:nth-of-type(1){
+    background: linear-gradient(120deg, rgba(123, 117, 122, 0.847) 16%, rgba(107, 107, 107, 0.597) 34%, rgba(90, 89, 89, 0.386) 92%);
+}
+.navbar a:nth-of-type(2) {
+    background: linear-gradient(120deg, rgba(117, 117, 123, 0.847) 16%, rgba(107, 107, 107, 0.597) 34%, rgba(90, 89, 89, 0.386) 92%);
+}
+
+.navbar a:nth-of-type(3) {
+    background: linear-gradient(180deg, rgba(117, 117, 123, 0.847) 16%, rgba(107, 107, 107, 0.597) 34%, rgba(90, 89, 89, 0.386) 92%);
+}
+
+.navbar a:nth-of-type(4) {
+    background: linear-gradient(120deg, rgba(90, 89, 89, 0.386) 16%, rgba(107, 107, 107, 0.597) 34%, rgba(117, 117, 123, 0.847) 92%);
+}
+
+.navbar a:nth-of-type(5) {
+    background: linear-gradient(120deg, rgba(90, 89, 89, 0.386) 16%, rgba(107, 107, 107, 0.597) 34%, rgba(117, 117, 123, 0.847) 92%);
+}
+
+
+
+.navbar a p{
+    background: repeating-linear-gradient(45deg,
+    #191919ad,
+        #181b18 4px,
+        #191919ad 4px,
+        #181b18 4px
+       );
+    margin: auto;
+    border-radius: 5% 8% 5% 8%;
+    opacity: 70%;
+   
+    width: 80%;
+    text-align: center;
+}
+
+
+
+
+
+
+/*desktop query*/
+@media only screen and (min-width: 600px) {
+
+
+
+    .logoSvgSection {
+        border: 2px solid transparent;
+        width: 500px;
+        display: block;
+        margin: auto;
+
+    }
+
+
+    .navbar a {
+        width: 7%;
+
+    }
+
+
+
+
+}
+
+
+
+
+
+/*Mobile query*/
+@media only screen and (max-width: 600px) {
+
+    * {
+        overflow-x: hidden;
+    }
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .headerContainer {
+        border: 2px solid rgb(209, 0, 94);
+    }
+
+    .logoSvgSection {
+        border: 2px solid transparent;
+        width: 300px;
+        display: block;
+        margin: auto;
+
+    }
+
+    .pageContentContainer {
+
+        overflow-y: visible;
+
+        border: 2px solid orange;
+        ;
+    }
+
+
+
+
+}
