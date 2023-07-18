@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="universalStyles.css">
+  <link rel="stylesheet" href="homepageStyles.css">
+</head>
+
+<body>
+
+  <div id="squarePointer_PX">
+
+  </div>
+
+  <div id="squarePointer">
+
+  </div>
+
+  <div id="startPosSquarePointer">
+
+  </div>
+
+  <div id="destPosSquarePointer">
+
+  </div>
+
+  <div id="pointDPosSquarePointer">
+
+  </div>
+
+  <div class="headerContainer">
+
+
+
+
+    <section class="logoSvgSection">
+
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 80 1438 300">
+
+        <defs>
+          <radialGradient id="logoTextGradient" gradientTransform="translate(-0.11 -0.03) scale(1.22, 1.05)">
+       <stop offset="1%" stop-color="#e53e3e"/>
+       <stop offset="25%" stop-color="#dd3a3a"/>
+       <stop offset="49%" stop-color="#d53737"/>
+       <stop offset="97%" stop-color="#c53030"/>
+     </radialGradient>
+
+          <linearGradient id="logoBackgroundGradient" x1="0.49" y1="0" x2="0.51" y2="1">
+      <stop offset="14%" stop-color="#001885"/>
+      <stop offset="23.25%" stop-color="rgba(2, 22, 147, 0.94)"/>
+      <stop offset="32.5%" stop-color="rgba(5, 18, 163, 0.88)"/>
+      <stop offset="51%" stop-color="rgba(27, 13, 186, 0.75)"/>
+      <stop offset="63%" stop-color="rgba(17, 7, 157, 0.81)"/>
+      <stop offset="75%" stop-color="rgba(8, 3, 128, 0.88)"/>
+      <stop offset="99%" stop-color="#000042"/>
+    </linearGradient>
+
+
+    <linearGradient id="logoBoxStrokeGradient" x1="0.13" y1="0.17" x2="0.87" y2="0.83">
+      <stop offset="5%" stop-color="#3a59e4"/>
+      <stop offset="10.25%" stop-color="#4663e6"/>
+      <stop offset="15.5%" stop-color="#516ce7"/>
+      <stop offset="26%" stop-color="#667eea"/>
+      <stop offset="30.75%" stop-color="#5989eb"/>
+      <stop offset="35.5%" stop-color="#4c94eb"/>
+      <stop offset="45%" stop-color="#50a5e2"/>
+      <stop offset="49%" stop-color="#4ca5ee"/>
+      <stop offset="53%" stop-color="#5ba4f2"/>
+      <stop offset="61%" stop-color="#77a2f8"/>
+      <stop offset="70.75%" stop-color="#668eef"/>
+      <stop offset="80.5%" stop-color="#5979e3"/>
+      <stop offset="100%" stop-color="#4c51bf"/>
+    </linearGradient>
+        </defs>
+
+
+
+        <path id="box" fill="url(#logoBackgroundGradient)" stroke="url(#logoBoxStrokeGradient)" stroke-width="5"
+           stroke-linecap="round"
+           stroke-linejoin="round"
+         d="M 182.70,120.96
+                       C 182.70,120.96 182.69,310.25 182.69,310.25
+                         182.69,310.25 220.50,348.06 220.50,348.06
+                         220.50,348.06 1275.35,348.00 1275.35,348.00
+                         1275.35,348.00 1275.48,158.74 1275.48,158.74
+                         1275.48,158.74 1237.87,120.96 1237.87,120.96
+                         1237.87,120.96 182.70,120.96 182.70,120.96 Z" />
+
+        <path id="textPath" fill="url(#logoTextGradient)" stroke="darkred" stroke-width="4"
+
+         d="M 360.27,258.00
+                           C 360.27,258.00 360.27,284.00 360.27,284.00
+                             360.27,284.00 272.62,284.00 272.62,284.00
+                             272.62,284.00 272.62,263.00 272.62,263.00
+                             272.62,263.00 319.30,205.00 319.30,205.00
+                             319.30,205.00 276.17,205.00 276.17,205.00
+                             276.17,205.00 276.17,179.00 276.17,179.00
+                             276.17,179.00 358.80,179.00 358.80,179.00
+                             358.80,179.00 358.80,201.00 358.80,201.00
+                             358.80,201.00 313.52,258.00 313.52,258.00
+                             313.52,258.00 360.27,258.00 360.27,258.00 Z
+                           M 415.44,286.00
+                           C 402.43,286.00 392.09,281.94 384.42,273.81
+                             376.77,265.68 372.94,256.14 372.94,245.19
+                             372.94,233.43 376.93,223.62 384.92,215.78
+                             392.92,207.93 403.33,204.00 416.14,204.00
+                             429.05,204.00 439.42,207.88 447.27,215.62
+                             455.11,223.37 459.03,233.07 459.03,244.73
+                             459.03,256.51 455.05,266.33 447.11,274.20
+                             439.16,282.07 428.60,286.00 415.44,286.00 Z
+                           M 415.91,267.00
+                           C 420.69,267.00 423.60,264.51 424.66,259.52
+                             425.72,254.52 426.25,249.30 426.25,243.88
+                             426.25,236.48 425.50,231.15 424.00,227.89
+                             422.51,224.63 419.84,223.00 415.98,223.00
+                             412.43,223.00 409.83,224.68 408.19,228.05
+                             406.54,231.41 405.72,236.95 405.72,244.66
+                             405.72,253.71 406.57,259.70 408.27,262.62
+                             409.96,265.54 412.51,267.00 415.91,267.00 Z
+                           M 553.70,284.00
+                           C 553.70,284.00 522.92,284.00 522.92,284.00
+                             522.92,284.00 522.92,234.52 522.92,234.52
+                             522.92,230.45 522.29,227.84 521.03,226.70
+                             519.77,225.57 518.19,225.00 516.30,225.00
+                             510.69,225.00 507.89,228.92 507.89,236.75
+                             507.89,236.75 507.89,284.00 507.89,284.00
+                             507.89,284.00 477.09,284.00 477.09,284.00
+                             477.09,284.00 477.09,206.00 477.09,206.00
+                             477.09,206.00 505.64,206.00 505.64,206.00
+                             505.64,206.00 505.64,217.11 505.64,217.11
+                             509.86,208.37 517.39,204.00 528.25,204.00
+                             533.96,204.00 538.77,205.09 542.70,207.28
+                             546.64,209.46 549.46,212.28 551.16,215.75
+                             552.85,219.22 553.70,225.25 553.70,233.83
+                             553.70,233.83 553.70,284.00 553.70,284.00 Z
+                           M 627.94,256.00
+                           C 627.94,256.00 656.64,257.92 656.64,257.92
+                             654.94,265.70 650.61,272.33 643.64,277.80
+                             636.67,283.27 627.25,286.00 615.38,286.00
+                             602.16,286.00 591.61,282.17 583.73,274.50
+                             575.87,266.84 571.94,257.32 571.94,245.97
+                             571.94,234.20 575.82,224.26 583.58,216.16
+                             591.35,208.05 601.71,204.00 614.67,204.00
+                             627.22,204.00 637.37,207.81 645.11,215.42
+                             652.85,223.04 656.72,233.41 656.72,246.53
+                             656.72,247.61 656.69,249.09 656.64,251.00
+                             656.64,251.00 604.11,251.00 604.11,251.00
+                             604.21,256.42 605.09,260.44 606.73,263.06
+                             608.38,265.69 611.52,267.00 616.14,267.00
+                             622.82,267.00 626.75,263.34 627.94,256.00 Z
+                           M 625.94,236.00
+                           C 625.88,230.87 624.82,227.42 622.73,225.66
+                             620.65,223.89 618.07,223.00 614.98,223.00
+                             607.68,223.00 604.03,227.34 604.03,236.00
+                             604.03,236.00 625.94,236.00 625.94,236.00 Z
+                           M 767.69,286.00
+                           C 752.88,286.00 740.80,281.07 731.47,271.20
+                             722.13,261.34 717.47,248.14 717.47,231.61
+                             717.47,215.81 721.93,202.76 730.84,192.45
+                             739.77,182.15 752.16,177.00 768.00,177.00
+                             782.66,177.00 794.60,181.86 803.83,191.56
+                             813.07,201.27 817.69,214.23 817.69,230.45
+                             817.69,247.23 813.03,260.69 803.72,270.81
+                             794.41,280.94 782.41,286.00 767.69,286.00 Z
+                           M 767.55,262.00
+                           C 772.99,262.00 776.91,259.61 779.30,254.83
+                             781.69,250.05 782.89,241.30 782.89,228.59
+                             782.89,210.20 777.98,201.00 768.16,201.00
+                             757.56,201.00 752.27,211.49 752.27,232.47
+                             752.27,252.16 757.36,262.00 767.55,262.00 Z
+                           M 869.28,225.00
+                           C 869.28,225.00 869.28,284.00 869.28,284.00
+                             869.28,284.00 840.27,284.00 840.27,284.00
+                             840.27,284.00 840.27,225.00 840.27,225.00
+                             840.27,225.00 828.55,225.00 828.55,225.00
+                             828.55,225.00 828.55,206.00 828.55,206.00
+                             828.55,206.00 840.27,206.00 840.27,206.00
+                             840.27,199.36 840.55,194.44 841.11,191.25
+                             841.68,188.05 843.10,184.99 845.36,182.06
+                             847.62,179.14 850.65,176.90 854.45,175.34
+                             858.27,173.78 863.38,173.00 869.81,173.00
+                             876.71,173.00 883.32,173.67 889.64,175.00
+                             889.64,175.00 889.64,195.00 889.64,195.00
+                             884.75,194.34 881.10,194.00 878.69,194.00
+                             876.27,194.00 874.05,194.52 872.05,195.55
+                             870.05,196.57 869.05,199.08 869.05,203.08
+                             869.05,203.08 869.05,206.00 869.05,206.00
+                             869.05,206.00 889.11,206.00 889.11,206.00
+                             889.11,206.00 889.11,225.00 889.11,225.00
+                             889.11,225.00 869.28,225.00 869.28,225.00 Z
+                           M 1009.28,284.00
+                           C 1009.28,284.00 1003.33,263.00 1003.33,263.00
+                             1003.33,263.00 975.09,263.00 975.09,263.00
+                             975.09,263.00 968.77,284.00 968.77,284.00
+                             968.77,284.00 942.55,284.00 942.55,284.00
+                             942.55,284.00 975.09,179.00 975.09,179.00
+                             975.09,179.00 1009.28,179.00 1009.28,179.00
+                             1009.28,179.00 1042.22,284.00 1042.22,284.00
+                             1042.22,284.00 1009.28,284.00 1009.28,284.00 Z
+                           M 980.58,239.00
+                           C 980.58,239.00 997.70,239.00 997.70,239.00
+                             997.70,239.00 989.14,211.77 989.14,211.77
+                             989.14,211.77 980.58,239.00 980.58,239.00 Z
+                           M 1074.61,284.00
+                           C 1074.61,284.00 1057.25,284.00 1057.25,284.00
+                             1057.25,284.00 1057.25,179.00 1057.25,179.00
+                             1057.25,179.00 1087.58,179.00 1087.58,179.00
+                             1087.58,179.00 1087.58,214.80 1087.58,214.80
+                             1091.80,207.60 1098.51,204.00 1107.72,204.00
+                             1114.20,204.00 1119.70,205.70 1124.22,209.11
+                             1128.74,212.52 1132.10,217.38 1134.31,223.70
+                             1136.53,230.03 1137.64,236.67 1137.64,243.64
+                             1137.64,256.34 1134.81,266.57 1129.16,274.34
+                             1123.50,282.12 1115.06,286.00 1103.84,286.00
+                             1092.79,286.00 1084.38,281.92 1078.62,273.77
+                             1076.98,276.70 1075.64,280.11 1074.61,284.00 Z
+                           M 1087.58,255.19
+                           C 1087.58,263.06 1090.55,267.00 1096.52,267.00
+                             1099.75,267.00 1102.23,265.57 1103.95,262.72
+                             1105.68,259.86 1106.55,253.96 1106.55,245.05
+                             1106.55,235.34 1105.57,229.24 1103.61,226.75
+                             1101.66,224.25 1099.25,223.00 1096.38,223.00
+                             1094.10,223.00 1092.07,223.90 1090.27,225.69
+                             1088.47,227.47 1087.58,230.06 1087.58,233.47
+                             1087.58,233.47 1087.58,255.19 1087.58,255.19 Z
+                           M 1186.89,175.00
+                           C 1186.89,175.00 1186.89,199.00 1186.89,199.00
+                             1186.89,199.00 1156.09,199.00 1156.09,199.00
+                             1156.09,199.00 1156.09,175.00 1156.09,175.00
+                             1156.09,175.00 1186.89,175.00 1186.89,175.00 Z
+                           M 1186.89,206.00
+                           C 1186.89,206.00 1186.89,284.00 1186.89,284.00
+                             1186.89,284.00 1156.09,284.00 1156.09,284.00
+                             1156.09,284.00 1156.09,206.00 1156.09,206.00
+                             1156.09,206.00 1186.89,206.00 1186.89,206.00 Z" />
+      </svg>
+    </section>
+
+    <nav class="navbar">
+      <a href=""><p>Home</p></a>
+      <a href=""><p>VFX</p></a>
+      <a href=""><p>Apps</p></a>
+      <a href=""><p>Writing</p></a>
+      <a href=""><p>Contact</p></a>
+
+    </nav>
+
+  </div>
+
+  <div class="pageContentContainer">
+
+    <section id="homeBaseInterfaceContainer">
+
+      <div class="S1_Ref_CPT">
+
+      </div>
+
+      <div id="S1_CPT">
+      </div>
+
+
+
+
+
+      <!-- its best to keep the hpmebase text logo and spot light seoerate. botg of them should be ch of the homebaselogocpntainer div. remember thr spotligjt jas toove outside the text  -->
+
+      <!-- hbi = home base interface -->
+      <div id="hbi_TopMenuPanel">
+
+        <div id="hbi_TMP_LeftSiren">
+
+          <div id="hbi_TMP_LeftSiren_Light">
+            <div id="hbi_TMP_LeftSiren_Light_InnerLight">
+          
+            </div>
+          
+          
+          </div>
+
+          <div id="hbi_TMP_LeftSiren_TextPanel">
+
+            <div class="hbi_TMP_LeftSiren_TextPanel_Pole">
+
+            </div>
+
+            <div class="hbi_TMP_LeftSiren_TextPanel_MidPanel">
+
+            </div>
+            <div class="hbi_TMP_LeftSiren_TextPanel_Pole">
+            
+            </div>
+            <div class="hbi_TMP_LeftSiren_TextPanel_MidPanel">
+            
+            </div>
+          
+          </div>
+
+        </div>
+
+
+
+        <!--Remember how this works: You press the button at bottom section hbi_TMP_VMT_Bottom, and it should open up the buttons on VMT_Top-->
+        <div class="hbi_TMP_VertMenuTree">
+          <div class="hbi_TMP_VMT_Top">
+            <!-- instead of buzz text you should put lightyear logo and cowboy hat logo. make a dedicated div for this and use icons or svg -->
+            <button onclick="redirectToExtSite('Buzz')" class="Tier2Button_Resting">
+
+              <svg id="buzzButtonLogo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                <path id="RocketFins2"  d="M 61.09,57.04
+                         C 61.09,57.04 70.88,66.06 68.81,83.31
+                           64.31,77.69 59.96,70.20 59.96,70.20M 40.50,57.00
+                         C 40.50,57.00 27.25,69.50 34.88,83.50
+                           38.74,74.74 41.39,70.09 41.39,70.09M 60.00,70.25
+                         C 65.00,32.75 51.75,18.50 51.75,18.50
+                           51.75,18.50 36.94,32.38 41.44,70.12
+                           55.19,70.12 47.81,70.25 60.00,70.25 Z
+                         M 44.00,5.46
+                         C 34.39,7.54 25.12,11.56 18.46,19.09
+                           -3.00,43.37 6.87,83.59 39.00,92.36
+                           45.06,94.01 51.78,94.64 58.00,93.54
+                           64.24,92.43 69.67,90.33 75.00,86.91
+                           98.30,71.97 101.74,38.03 82.70,18.17
+                           72.80,7.85 57.93,3.54 44.00,5.46 Z" />
+              </svg>
+
+            </button>
+            <button onclick="redirectToExtSite('ATST')" class="Tier2Button_Resting" onclick="funcx()">
+
+            <svg id="atstButtonLogo" xmlns="http://www.w3.org/2000/svg" viewBox="20 20 60 60">
+              <path id="ATSTLogo" fill="none"  d="M 53.75,29.12
+                       C 53.75,29.12 53.62,36.75 53.62,36.75
+                         53.62,36.75 64.88,38.88 64.88,38.88
+                         64.88,38.88 66.00,29.25 66.00,29.25
+                         66.00,29.25 53.75,29.12 53.75,29.12 Z
+                       M 35.50,28.88
+                       C 35.50,28.88 47.88,28.88 47.88,28.88
+                         47.88,28.88 48.00,36.88 48.00,36.88
+                         48.00,36.88 36.62,39.25 36.62,39.25
+                         36.62,39.25 35.50,28.88 35.50,28.88 Z
+                       M 39.27,63.45
+                       C 39.27,63.45 40.45,74.73 40.45,74.73
+                         40.45,74.73 59.27,74.73 59.27,74.73
+                         59.27,74.73 60.91,63.55 60.91,63.55
+                         60.91,63.55 39.27,63.45 39.27,63.45 Z
+                       M 48.03,40.53
+                       C 48.03,40.53 36.75,42.88 36.75,42.88
+                         36.75,42.88 38.67,60.38 38.67,60.38
+                         38.67,60.38 61.76,60.75 61.76,60.75
+                         61.76,60.75 63.62,42.88 63.62,42.88
+                         63.62,42.88 53.59,40.50 53.59,40.50
+                         53.59,40.50 48.03,40.53 48.03,40.53 Z
+                       M 29.66,22.18
+                       C 29.66,22.18 71.30,22.18 71.30,22.18
+                         71.30,22.18 62.73,77.27 62.73,77.27
+                         62.73,77.27 37.09,77.09 37.09,77.09
+                         37.09,77.09 29.66,22.18 29.66,22.18 Z" />
+            </svg>
+
+
+            </button>
+
+
+            <svg class="Tier2Panel_SVGBG">
+
+              <defs>
+                <radialGradient id="Tier2BG_RGrad1" r="20%" fr="5%">
+                  <stop class="stop1" offset="0%" stop-opacity="70%" stop-color="purple" />
+                  <stop class="stop2" offset="50%" stop-opacity="80%" stop-color="blue" />
+                  <stop class="stop3" offset="70%" stop-opacity="30%" stop-color="yellow" />
+                  <stop class="stop3" offset="100%" stop-opacity="10%" stop-color="yellow" />
+                </radialGradient>
+
+
+
+                <filter id="Tier2BG_Grad1_Blur1">
+                  <feGaussianBlur stdDeviation="2">
+                </filter>
+              </defs>
+
+              <rect x="0" y="0">
+
+            </svg>
+
+
+
+
+
+          </div>
+
+        <svg class="hbi_TMP_VMT_Tier1Lasso" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 100 100">
+          <path id="Unnamed" fill="transparent" stroke="orange" stroke-width="20" d="M 47.67,100.00
+                     C 47.67,100.00 78.33,60.00 53.00,0.00" />
+        </svg>
+
+          <div class="hbi_TMP_VMT_Bottom">
+            <!---->
+            <div class="buttonShooterPanelContainer">
+              <div class="buttonShooterPanel">
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+            
+              </div>
+            </div>
+            <!---->
+            <button class="menuButton_Tier1">VFX
+              <div class="button_light"></div>
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="hbi_TMP_VertMenuTree">
+          <div class="hbi_TMP_VMT_Top">
+            <!-- instead of buzz text you should put lightyear logo and cowboy hat logo. make a dedicated div for this and use icons or svg -->
+            <button onclick="redirectToExtSite('RuffEngine')" class="Tier2Button_Resting">
+            
+              <h2 style="font-style: italic;">Ruff Engine</h2>
+             
+            </button>
+
+            <button onclick="redirectToExtSite('ETSDocs')" class="Tier2Button_Resting" onclick="funcx()">
+
+              <h2 style="font-style: italic;">E.T. Sightings</h2>
+
+
+            </button>
+            
+            <svg class="Tier2Panel_SVGBG">
+
+              <defs>
+                <radialGradient id="Tier2BG_RGrad1" r="20%" fr="5%">
+                  <stop class="stop1" offset="0%" stop-opacity="70%" stop-color="purple" />
+                  <stop class="stop2" offset="50%" stop-opacity="80%" stop-color="blue" />
+                  <stop class="stop3" offset="70%" stop-opacity="30%" stop-color="yellow" />
+                  <stop class="stop3" offset="100%" stop-opacity="10%" stop-color="yellow" />
+                </radialGradient>
+
+
+
+                <filter id="Tier2BG_Grad1_Blur1">
+                  <feGaussianBlur stdDeviation="2">
+                </filter>
+              </defs>
+
+              <rect x="0" y="0">
+
+            </svg>
+          </div>
+
+          <svg class="hbi_TMP_VMT_Tier1Lasso" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path fill="transparent" stroke="orange" stroke-width="20" d="M 47.67,100.00
+                               C 47.67,100.00 78.33,60.00 53.00,0.00" />
+          </svg>
+
+          <div class="hbi_TMP_VMT_Bottom">
+            <!---->
+            <div class="buttonShooterPanelContainer">
+              <div class="buttonShooterPanel">
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+            
+              </div>
+            </div>
+            <!---->
+            <button class="menuButton_Tier1">
+           
+              Apps
+              <div class="button_light"></div>
+            </button>
+
+          </div>
+
+        </div>
+
+
+
+
+
+        <div id="hbi_TMP_RightSiren">
+          <div id="hbi_TMP_RightSiren_Light">
+            <div id="hbi_TMP_RightSiren_Light_InnerLight">
+
+            </div>
+  
+
+          </div>
+
+          <div id="hbi_TMP_RightSiren_TextPanel">
+            <div class="hbi_TMP_RightSiren_TextPanel_Pole">
+
+            </div>
+
+            <div class="hbi_TMP_RightSiren_TextPanel_MidPanel">
+
+            </div>
+            <div class="hbi_TMP_RightSiren_TextPanel_Pole">
+            
+            </div>
+            <div class="hbi_TMP_RightSiren_TextPanel_MidPanel">
+            
+            </div>
+
+          </div>
+        </div>
+
+
+
+
+      </div>
+
+      <div id="hbi_LeftMenuPanel">
+
+        <div class="hbi_LMP_HorzMenuTree">
+          <div class="hbi_LMP_HMT_Left">
+            <button onclick="redirectToExtSite('ReceiverReview')" class="Tier2Button_Resting">
+              Receiver Review
+            </button>
+            <button onclick="redirectToExtSite('AceCombatReview')" class="Tier2Button_Resting">
+              Ace Combat 7 Review
+            </button>
+          </div>
+
+          <svg class="hbi_LMP_HMT_Tier1Lasso" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 100">
+            <path id="Unnamed" fill="transparent" stroke="orange" stroke-width="3" d="M -15.55,46.36
+                                 C -5.55,46.36 17.45,58.09 44.91,45.00" />
+          </svg>
+
+          <div class="hbi_LMP_HMT_Right">
+            <div class="buttonShooterPanelContainer">
+              <div class="buttonShooterPanel">
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+            
+              </div>
+            </div>
+
+            <button class="menuButton_Tier1">Game Reviews
+              <div class="button_light"></div>
+            </button>
+          </div>
+        </div>
+
+        <div class="hbi_LMP_HorzMenuTree">
+          <div class="hbi_LMP_HMT_Left">
+            <button class="Tier2Button_Resting">Writing</button>
+            <button class="Tier2Button_Resting">Writing</button>
+          </div>
+
+          <svg class="hbi_LMP_HMT_Tier1Lasso" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 100">
+            <path id="Unnamed" fill="transparent" stroke="orange" stroke-width="4" d="M -15.55,46.36
+                                 C -5.55,46.36 17.45,58.09 44.91,45.00" />
+          </svg>
+
+          <div class="hbi_LMP_HMT_Right">
+            <div class="buttonShooterPanelContainer">
+              <div class="buttonShooterPanel">
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+            
+              </div>
+            </div>
+           <button class="menuButton_Tier1">Blog
+             <div class="button_light"></div>
+            </button>
+          </div>
+        </div>
+
+
+      </div>
+
+
+
+      <div id="hbi_RightMenuPanel">
+        <div class="hbi_RMP_HorzMenuTree">
+          <div class="hbi_RMP_HMT_Left">
+           <button class="menuButton_Tier1">
+            App Documentation
+              <div class="button_light"></div>
+
+              
+            </button>
+            <div class="buttonShooterPanelContainer" >
+             <div class="buttonShooterPanel">
+              <div class="buttonShooterPanel_Shot_Dormant">
+                
+              </div>
+              <div class="buttonShooterPanel_Shot_Dormant">
+              
+              </div>
+              
+             </div>
+            </div>
+          </div>
+
+
+
+          <svg class="hbi_RMP_HMT_Tier1Lasso" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 100">
+            
+            
+            <path id="Unnamed" fill="transparent" stroke="orange" stroke-width="3" d="M -5.55,46.36
+                                 C -5.55,46.36 17.45,58.09 34.91,45.00" />
+          </svg>
+
+
+
+          <div class="hbi_RMP_HMT_Right">
+            <button onclick="redirectToExtSite('RuffDocs')" class="Tier2Button_Resting">
+              <span class="desktopTextSpan">Ruff Engine Docs</span>
+              <span class="mobileTextSpan">Ruff Docs</span>
+            </button>
+            <button onclick="redirectToExtSite('ETSDocs')" class="Tier2Button_Resting">
+              <span class="desktopTextSpan">ETS Docs</span>
+              <span class="mobileTextSpan">ETS Docs</span>
+            </button>
+          </div>
+        </div>
+
+         <div class="hbi_RMP_HorzMenuTree">
+          <div class="hbi_RMP_HMT_Left">
+            <button class="menuButton_Tier1">
+              Code Articles
+              <div class="button_light"></div>
+            </button>
+            <!---->
+            <div class="buttonShooterPanelContainer">
+              <div class="buttonShooterPanel">
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+                <div class="buttonShooterPanel_Shot_Dormant">
+            
+                </div>
+            
+              </div>
+            </div>
+            <!---->
+
+          </div>
+
+
+
+          <svg class="hbi_RMP_HMT_Tier1Lasso" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 100">
+            <path id="Unnamed" fill="transparent" stroke="orange" stroke-width="3" d="M -5.55,46.36
+                     C -5.55,46.36 17.45,58.09 34.91,45.00" />
+          </svg>
+
+          <div class="hbi_RMP_HMT_Right">
+            <button class="Tier2Button_Resting">DSA</button>
+            <button class="Tier2Button_Resting">Sample Answers</button>
+          </div>
+        </div>
+
+
+
+      </div>
+
+      <div id="hbi_LeftSiren">
+        <div id="hbi_LeftSiren_LightCont">
+          <div class="hbi_LeftSiren_LightCont_Light"></div>
+          <div class="hbi_LeftSiren_LightCont_Light"></div>
+          <div class="hbi_LeftSiren_LightCont_Light"></div>
+        
+        </div>
+      </div>
+
+      <div id="hbi_RightSiren">
+
+       <div id="hbi_RightSiren_LightCont">
+        <div class="hbi_RightSiren_LightCont_Light"></div>
+        <div class="hbi_RightSiren_LightCont_Light"></div>
+        <div class="hbi_RightSiren_LightCont_Light"></div>
+       
+       </div>
+
+      </div>
+
+      <div id="HomeBaseTestSvgCONTAINER">
+
+
+
+        <div id="HomeBaseTestSvg_DarkTint">
+
+
+
+          <svg id="HomeBaseTestSvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 232 143">
+            <path id="NewPath" fill="Green" stroke="black" stroke-width="1" d="M 57.02,65.00
+                                     C 57.02,65.00 45.95,65.00 45.95,65.00
+                                       45.95,65.00 45.95,45.50 45.95,45.50
+                                       45.95,45.50 25.64,45.50 25.64,45.50
+                                       25.64,45.50 25.64,65.00 25.64,65.00
+                                       25.64,65.00 14.61,65.00 14.61,65.00
+                                       14.61,65.00 14.61,16.00 14.61,16.00
+                                       14.61,16.00 25.64,16.00 25.64,16.00
+                                       25.64,16.00 25.64,36.00 25.64,36.00
+                                       25.64,36.00 45.95,36.00 45.95,36.00
+                                       45.95,36.00 45.95,16.00 45.95,16.00
+                                       45.95,16.00 57.02,16.00 57.02,16.00
+                                       57.02,16.00 57.02,65.00 57.02,65.00 Z
+                                     M 89.31,66.00
+                                     C 82.30,66.00 76.58,63.70 72.16,59.11
+                                       67.74,54.51 65.53,48.52 65.53,41.14
+                                       65.53,33.34 67.77,27.03 72.27,22.22
+                                       76.75,17.41 82.70,15.00 90.11,15.00
+                                       97.10,15.00 102.75,17.31 107.06,21.92
+                                       111.38,26.53 113.55,32.60 113.55,40.14
+                                       113.55,47.89 111.30,54.14 106.83,58.89
+                                       102.35,63.63 96.51,66.00 89.31,66.00 Z
+                                     M 89.80,24.50
+                                     C 85.93,24.50 82.86,25.97 80.58,28.91
+                                       78.30,31.84 77.16,35.71 77.16,40.55
+                                       77.16,45.45 78.30,49.34 80.58,52.19
+                                       82.86,55.04 85.84,56.47 89.53,56.47
+                                       93.33,56.47 96.35,55.09 98.58,52.31
+                                       100.82,49.54 101.94,45.70 101.94,40.77
+                                       101.94,35.63 100.85,31.64 98.69,28.78
+                                       96.52,25.93 93.55,24.50 89.80,24.50 Z
+                                     M 177.45,65.00
+                                     C 177.45,65.00 166.55,65.00 166.55,65.00
+                                       166.55,65.00 166.55,35.69 166.55,35.69
+                                       166.55,32.52 166.69,29.02 166.97,25.19
+                                       166.97,25.19 166.70,25.19 166.70,25.19
+                                       166.13,28.20 165.61,30.37 165.16,31.69
+                                       165.16,31.69 153.67,65.00 153.67,65.00
+                                       153.67,65.00 144.64,65.00 144.64,65.00
+                                       144.64,65.00 132.95,32.03 132.95,32.03
+                                       132.64,31.14 132.13,28.86 131.42,25.19
+                                       131.42,25.19 131.11,25.19 131.11,25.19
+                                       131.40,30.02 131.55,34.26 131.55,37.91
+                                       131.55,37.91 131.55,65.00 131.55,65.00
+                                       131.55,65.00 121.61,65.00 121.61,65.00
+                                       121.61,65.00 121.61,16.00 121.61,16.00
+                                       121.61,16.00 137.77,16.00 137.77,16.00
+                                       137.77,16.00 147.78,45.05 147.78,45.05
+                                       148.58,47.37 149.16,49.70 149.53,52.05
+                                       149.53,52.05 149.73,52.05 149.73,52.05
+                                       150.35,49.34 151.00,46.98 151.69,44.97
+                                       151.69,44.97 161.70,16.00 161.70,16.00
+                                       161.70,16.00 177.45,16.00 177.45,16.00
+                                       177.45,16.00 177.45,65.00 177.45,65.00 Z
+                                     M 218.00,65.00
+                                     C 218.00,65.00 188.61,65.00 188.61,65.00
+                                       188.61,65.00 188.61,16.00 188.61,16.00
+                                       188.61,16.00 216.88,16.00 216.88,16.00
+                                       216.88,16.00 216.88,24.98 216.88,24.98
+                                       216.88,24.98 199.64,24.98 199.64,24.98
+                                       199.64,24.98 199.64,36.00 199.64,36.00
+                                       199.64,36.00 215.67,36.00 215.67,36.00
+                                       215.67,36.00 215.67,44.95 215.67,44.95
+                                       215.67,44.95 199.64,44.95 199.64,44.95
+                                       199.64,44.95 199.64,56.05 199.64,56.05
+                                       199.64,56.05 218.00,56.05 218.00,56.05
+                                       218.00,56.05 218.00,65.00 218.00,65.00 Z
+                                     M 35.61,131.00
+                                     C 35.61,131.00 35.61,82.00 35.61,82.00
+                                       35.61,82.00 53.45,82.00 53.45,82.00
+                                       58.92,82.00 63.12,83.02 66.06,85.05
+                                       69.00,87.07 70.47,89.92 70.47,93.61
+                                       70.47,96.28 69.57,98.62 67.78,100.62
+                                       66.00,102.62 63.72,104.02 60.94,104.80
+                                       60.94,104.80 60.94,104.94 60.94,104.94
+                                       64.43,105.37 67.21,106.64 69.30,108.77
+                                       71.38,110.88 72.42,113.46 72.42,116.52
+                                       72.42,120.95 70.81,124.48 67.59,127.09
+                                       64.38,129.70 60.00,131.00 54.44,131.00
+                                       54.44,131.00 35.61,131.00 35.61,131.00 Z
+                                     M 46.64,90.14
+                                     C 46.64,90.14 46.64,102.00 46.64,102.00
+                                       46.64,102.00 51.50,102.00 51.50,102.00
+                                       53.77,102.00 55.56,101.44 56.88,100.31
+                                       58.19,99.18 58.84,97.62 58.84,95.66
+                                       58.84,91.98 56.16,90.14 50.78,90.14
+                                       50.78,90.14 46.64,90.14 46.64,90.14 Z
+                                     M 46.64,110.20
+                                     C 46.64,110.20 46.64,122.86 46.64,122.86
+                                       46.64,122.86 52.62,122.86 52.62,122.86
+                                       55.18,122.86 57.18,122.28 58.62,121.12
+                                       60.07,119.96 60.80,118.37 60.80,116.36
+                                       60.80,114.45 60.08,112.94 58.66,111.84
+                                       57.23,110.75 55.24,110.20 52.69,110.20
+                                       52.69,110.20 46.64,110.20 46.64,110.20 Z
+                                     M 123.70,131.00
+                                     C 123.70,131.00 111.67,131.00 111.67,131.00
+                                       111.67,131.00 108.19,120.48 108.19,120.48
+                                       108.19,120.48 90.75,120.48 90.75,120.48
+                                       90.75,120.48 87.31,131.00 87.31,131.00
+                                       87.31,131.00 75.34,131.00 75.34,131.00
+                                       75.34,131.00 93.19,82.00 93.19,82.00
+                                       93.19,82.00 106.28,82.00 106.28,82.00
+                                       106.28,82.00 123.70,131.00 123.70,131.00 Z
+                                     M 105.66,112.00
+                                     C 105.66,112.00 100.39,95.16 100.39,95.16
+                                       100.00,93.93 99.73,92.46 99.58,90.75
+                                       99.58,90.75 99.30,90.75 99.30,90.75
+                                       99.18,92.19 98.90,93.62 98.45,95.03
+                                       98.45,95.03 93.11,112.00 93.11,112.00
+                                       93.11,112.00 105.66,112.00 105.66,112.00 Z
+                                     M 127.34,129.27
+                                     C 127.34,129.27 127.34,118.31 127.34,118.31
+                                       129.32,119.98 131.47,121.23 133.80,122.06
+                                       136.13,122.90 138.48,123.31 140.84,123.31
+                                       142.24,123.31 143.45,123.19 144.48,122.94
+                                       145.52,122.68 146.39,122.32 147.08,121.88
+                                       147.77,121.43 148.30,120.90 148.64,120.28
+                                       148.98,119.67 149.16,119.00 149.16,118.28
+                                       149.16,117.32 148.88,116.46 148.33,115.70
+                                       147.79,114.95 147.04,114.25 146.09,113.61
+                                       145.14,112.96 144.02,112.34 142.72,111.75
+                                       141.43,111.16 140.03,110.55 138.53,109.92
+                                       134.70,108.32 131.84,106.36 129.95,104.05
+                                       128.08,101.73 127.14,98.94 127.14,95.66
+                                       127.14,93.09 127.65,90.88 128.67,89.03
+                                       129.70,87.19 131.10,85.67 132.86,84.48
+                                       134.63,83.29 136.68,82.41 139.00,81.84
+                                       141.32,81.28 143.79,81.00 146.39,81.00
+                                       148.94,81.00 151.20,81.15 153.17,81.45
+                                       155.14,81.75 156.96,82.20 158.62,82.81
+                                       158.62,82.81 158.62,92.69 158.62,92.69
+                                       157.80,92.19 156.91,91.75 155.94,91.38
+                                       154.97,90.99 153.97,90.67 152.94,90.42
+                                       151.91,90.17 150.90,89.99 149.89,89.88
+                                       148.88,89.75 147.91,89.69 147.00,89.69
+                                       145.75,89.69 144.61,89.81 143.58,90.06
+                                       142.55,90.30 141.69,90.64 140.98,91.08
+                                       140.27,91.52 139.73,92.04 139.34,92.66
+                                       138.96,93.27 138.77,93.96 138.77,94.72
+                                       138.77,95.54 138.98,96.28 139.41,96.94
+                                       139.84,97.59 140.46,98.21 141.25,98.80
+                                       142.05,99.38 143.02,99.95 144.16,100.52
+                                       145.30,101.08 146.59,101.66 148.03,102.25
+                                       149.99,103.07 151.75,103.95 153.31,104.89
+                                       154.88,105.82 156.21,106.87 157.33,108.03
+                                       158.44,109.20 159.30,110.53 159.89,112.03
+                                       160.48,113.53 160.78,115.28 160.78,117.28
+                                       160.78,120.03 160.26,122.34 159.22,124.22
+                                       158.19,126.09 156.78,127.59 155.00,128.75
+                                       153.23,129.91 151.16,130.73 148.80,131.23
+                                       146.44,131.74 143.95,132.00 141.33,132.00
+                                       138.64,132.00 136.08,131.77 133.66,131.31
+                                       131.23,130.86 129.12,130.17 127.34,129.27 Z
+                                     M 198.00,131.00
+                                     C 198.00,131.00 168.61,131.00 168.61,131.00
+                                       168.61,131.00 168.61,82.00 168.61,82.00
+                                       168.61,82.00 196.88,82.00 196.88,82.00
+                                       196.88,82.00 196.88,90.98 196.88,90.98
+                                       196.88,90.98 179.64,90.98 179.64,90.98
+                                       179.64,90.98 179.64,102.00 179.64,102.00
+                                       179.64,102.00 195.67,102.00 195.67,102.00
+                                       195.67,102.00 195.67,110.95 195.67,110.95
+                                       195.67,110.95 179.64,110.95 179.64,110.95
+                                       179.64,110.95 179.64,122.05 179.64,122.05
+                                       179.64,122.05 198.00,122.05 198.00,122.05
+                                       198.00,122.05 198.00,131.00 198.00,131.00 Z" />
+          </svg>
+
+
+
+
+
+          <!--SVG elements for clip paths-->
+          <!--clipPathUnits=objectBoundingBox is what keeps the paths relative and adhering to its container-->
+          <!--We need to apply a scale transform as a filter because setting clipPathUnits to objectBoundingBox sets a unit of the path to be 1 unit of the container. So this is like a compensator function-->
+          <svg id="spotlightClipPathsSVGBoundingBox">
+
+
+            <clipPath id="dualSpotlightsClipPath" clipPathUnits="userSpaceOnUse" filter="url(#ClipPath_BlurTag)">
+
+              <ellipse  id="spotlight1ClipPath">
+                <animate id="spotlight1ClipPath_AnimTagX" attributeName="" attributeType="XML" fill="" />
+                <animate id="spotlight1ClipPath_AnimTagY" attributeName="" attributeType="XML" fill="" />
+                <animateTransform id="spotlight1ClipPath_AnimTransformTagRotate" attributeName="transform" attributeType="XML" type="rotate" />
+                <animateTransform id="spotlight1ClipPath_AnimTransformTag2" attributeName="transform" attributeType="XML" type="scale" />
+                <animateTransform id="spotlight1ClipPath_AnimTransformTag3" attributeName="transform" attributeType="XML" type="translate" />
+              </ellipse >
+
+              <ellipse id="spotlight2ClipPath">
+
+                <animate id="spotlight2ClipPath_AnimTagX" attributeName="" attributeType="XML" fill="freeze" />
+		              <animate id="spotlight2ClipPath_AnimTagY" attributeName="" attributeType="XML" fill="freeze" />
+
+                <animateTransform id="spotlight2ClipPath_AnimTransformTagRotate" attributeName="transform" attributeType="XML" type="rotate" />
+                <animateTransform id="spotlight2ClipPath_AnimTransformTag2" attributeName="transform" attributeType="XML" type="scale" />
+                <animateTransform id="spotlight2ClipPath_AnimTransformTag3" attributeName="transform" attributeType="XML" type="translate" />
+              </ellipse>
+            </clipPath>
+          </svg>
+
+
+
+
+
+
+
+
+        </div>
+
+        <!--HBL stands for Home Base Logo  Its important to place the spotlight1HBLradgradcontainer here so that its relative to the entire SVG container like everything else-->
+        <div id="spotlight1HBLLinkedRadGradContainer">
+
+
+        </div>
+
+        <!--HBL stands for Home Base Logo  Its important to place the spotlight1HBLradgradcontainer here so that its relative to the entire SVG container like everything else-->
+        <div id="spotlight2HBLLinkedRadGradContainer">
+
+
+        </div>
+
+
+
+
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <div id="hbi_spotlightPanel">
+
+        <div id="spotlight1Container">
+          <!--This Native radGrad Container is native to spotlight1 it must position itself over the home base logo radgrad container whenever its scanning the logo-->
+          <div id="spotlight1NativeRadGradContainer">
+
+
+          </div>
+
+
+            <!--Documentation: The SVG Viewbox of the ray should be set to HBI rel coords. It is 20 units wide and 100 units long as per HBI Rel coords-->
+            <svg id="spotlight1SVGBox" xmlns="http://www.w3.org/2000/svg" >
+
+              <defs>
+                <linearGradient id="Gradient1" gradientTransform="rotate(80)">
+                  <stop class="stop1" offset="0%" stop-opacity="30%" stop-color="yellow">
+
+                  </stop>
+
+                  <stop class="stop2" offset="50%" stop-opacity="80%" stop-color="orange">
+                    <animate id="Gradient1_HoverTrackAnimTag_Stop2">
+
+
+                    </stop>
+
+                  <stop class="stop3" offset="100%" stop-opacity="30%" stop-color="green">
+
+                    </stop>
+
+
+                </linearGradient>
+
+                <filter id="RayPath2_BlurTag">
+                  <feGaussianBlur stdDeviation="2">
+                </filter>
+              </defs>
+
+              <!--252.50,82.50 is the top right control point-->
+              <!--THe first point after C, the last point right before Z, and the firs tpoint right after M are what control the top  left point -->
+              <path id="RayPath2" fill="red" stroke="" stroke-width="1" filter="url(#RayPath2_BlurTag)">
+                <animate id="spotlight1RayPath2_AnimTag_Stage1" attributeName="d" attributeType="XML" fill="" begin="" from="" to=""/>
+                <animate id="spotlight1RayPath2_AnimTag_Stage2" attributeName="d" attributeType="XML" fill="" begin="" from="" to=""/>
+              </path>
+            </svg>
+
+
+
+
+          <div id="spotlight1EmitterMock">
+            <div id="spotlight1EmitterActual">
+            <div id="spotlight1EmitterActual_Light"></div>
+          </div>
+            <div id="spotlight1EmitterAxis"></div>
+          </div>
+
+
+        </div>
+
+      <!-- -->
+
+      <div id="spotlight2Container">
+        <!--This Native radGrad Container is native to spotlight1 it must position itself over the home base logo radgrad container whenever its scanning the logo-->
+        <div id="spotlight2NativeRadGradContainer">
+
+
+        </div>
+
+
+          <!--Documentation: The SVG Viewbox of the ray should be set to HBI rel coords. It is 20 units wide and 100 units long as per HBI Rel coords-->
+          <svg id="spotlight2SVGBox" xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+              <linearGradient id="spotlight2_Gradient" gradientTransform="rotate(80)">
+                <stop class="stop1" offset="0%" stop-opacity="30%" stop-color="yellow" />
+                <stop class="stop2" offset="50%" stop-opacity="80%" stop-color="orange">
+                  <animate id="spotlight2_Gradient_HoverTrackAnimTag_Stop2">
+                </stop>
+                <stop class="stop3" offset="100%" stop-opacity="30%" stop-color="green" />
+              </linearGradient>
+
+              <filter id="spotlight2_RayPath_BlurTag">
+                <feGaussianBlur stdDeviation="2">
+              </filter>
+            </defs>
+
+            <!--252.50,82.50 is the top right control point-->
+            <!--THe first point after C, the last point right before Z, and the firs tpoint right after M are what control the top  left point -->
+            <path id="spotlight2_RayPath" fill="red" stroke="" stroke-width="1" filter="url(#spotlight2_RayPath_BlurTag)">
+              <animate id="spotlight2RayPath2_AnimTag_Stage1" attributeName="d" attributeType="XML" fill="freeze" begin="" />
+              <animate id="spotlight2RayPath2_AnimTag_Stage2" attributeName="d" attributeType="XML" fill="freeze" begin="" />
+            </path>
+          </svg>
+
+
+
+
+        <div id="spotlight2EmitterMock">
+          <div id="spotlight2EmitterActual">
+            <div id="spotlight2EmitterActual_Light"></div>
+          </div>
+          <div id="spotlight2EmitterAxis"></div>
+        </div>
+
+
+      </div>
+
+
+      </div>
+
+
+
+    </section>
+
+
+  </div>
+
+
+  <div class="footerContainer">
+
+
+  </div>
+
+
+
+
+  <script src="scriptFile.js" async defer></script>
+</body>
+
+</html>
