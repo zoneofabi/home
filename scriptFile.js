@@ -4630,20 +4630,20 @@ function redirectToExtSite(pageName){
             break;
 
         case "Buzz":
-            window.location.href = "https://dynamic-abi.github.io/animationPage.html";
+            window.location.href = "https://zoneofabi.github.io/art/";
             break;
             
             
         case "ATST":
-            window.location.href = "https://dynamic-abi.github.io/animationPage.html";
+            window.location.href = "https://zoneofabi.github.io/art/";
             break;
 
         case "ReceiverReview":
-            window.location.href = "https://dynamic-abi.github.io/creativeWriting.html";
+            window.location.href = "https://zoneofabi.github.io/writing/";
             break;   
             
         case "AceCombatReview":
-            window.location.href = "https://dynamic-abi.github.io/creativeWriting.html";
+            window.location.href = "https://zoneofabi.github.io/writing/";
             break;    
 
     }
