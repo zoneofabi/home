@@ -4634,6 +4634,11 @@ function redirectToExtSite(pageName){
             window.location.href = "https://zoneofabi.github.io/zoadocs/";
             break;
 
+        case "ArtOfCoding":
+            window.location.href = "https://zoneofabi.github.io/writing/ca/";
+            break;
+            
+
         case "Buzz":
             window.location.href = "https://zoneofabi.github.io/art/";
             break;
