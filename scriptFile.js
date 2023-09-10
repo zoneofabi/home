@@ -4635,7 +4635,7 @@ function redirectToExtSite(pageName){
             break;
 
         case "ArtOfCoding":
-            window.location.href = "https://zoneofabi.github.io/writing/ca/";
+            window.location.href = "https://zoneofabi.github.io/writing/ca/ca.html";
             break;
             
 
@@ -4649,11 +4649,11 @@ function redirectToExtSite(pageName){
             break;
 
         case "ReceiverReview":
-            window.location.href = "https://zoneofabi.github.io/writing/";
+            window.location.href = "https://zoneofabi.github.io/writing/gr/gr.html";
             break;   
             
         case "AceCombatReview":
-            window.location.href = "https://zoneofabi.github.io/writing/";
+            window.location.href = "https://zoneofabi.github.io/writing/gr/gr.html";
             break;    
 
     }
